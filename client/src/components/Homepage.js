@@ -3,6 +3,7 @@ import "./Homepage.css";
 import LatestSpaces from "./LatestSpaces";
 import Navbar from "./Navbar";
 import HeroSection from "./HeroSection";
+import Categories from "./Categories";
 
 const Homepage = () => {
   return (
@@ -38,6 +39,7 @@ const Homepage = () => {
         </div> */}
 
         <LatestSpaces />
+        <Categories />
         <div className="Features">
           <div className="GivingYouPeaceOfMind">Giving you peace of mind</div>
           <div className="Frame427320976">
