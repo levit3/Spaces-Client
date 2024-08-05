@@ -37,8 +37,8 @@ const LatestSpaces = () => {
 
   return (
     <div className="properties">
-      <h2>Latest Listed Properties</h2>
-      <div className="properties__filters">
+      <h2>Latest Listed Spaces</h2>
+      {/* <div className="properties__filters">
         <button>Locations near me</button>
         <button>Top locations</button>
         <button>See all</button>
@@ -47,7 +47,7 @@ const LatestSpaces = () => {
           <option>City 1</option>
           <option>City 2</option>
         </select>
-      </div>
+      </div> */}
       <div className="properties__list">
         {properties.map((property, index) => (
           <div key={index} className="property">
