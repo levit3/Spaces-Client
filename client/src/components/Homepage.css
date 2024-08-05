@@ -1,0 +1,287 @@
+/* General Styles */
+.Homepage {
+  width: 100%;
+  height: auto;
+  background: #f5f5f5;
+}
+
+/* Hero Section */
+.HeroSection {
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+
+.Rectangle259376 {
+  width: 100%;
+  height: auto;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.4) 68%
+  );
+}
+
+.Frame427320957 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.RentOfficesTailoredToYourSuccess {
+  color: white;
+  font-size: 2.5em;
+  font-family: "Plus Jakarta Sans";
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+/* Search Section */
+.Frame427320752 {
+  width: 90%;
+  padding: 12px;
+  background: #3b3b3b;
+  box-shadow: 0px 11px 52px rgba(0, 0, 0, 0.04);
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.Frame427320749 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.Component1 {
+  width: 24px;
+  height: 24px;
+  position: relative;
+}
+
+.Vector {
+  width: 14px;
+  height: 18px;
+  background: #d89b1c;
+  position: absolute;
+  left: 5px;
+  top: 3px;
+}
+
+.Vector small {
+  width: 4px;
+  height: 4px;
+  background: #3b3b3b;
+  position: absolute;
+  left: 10px;
+  top: 7px;
+}
+
+.SearchHere {
+  color: white;
+  font-size: 1em;
+  font-family: "Poppins";
+  font-weight: 400;
+}
+
+.Frame427320794 {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.Buttons {
+  padding: 12px 24px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.Buttons.search {
+  background: #3b3b3b;
+}
+
+.Buttons.white {
+  background: white;
+}
+
+.Button {
+  color: white;
+  font-size: 1em;
+  font-family: "Poppins";
+  font-weight: 500;
+}
+
+.Buttons.white .Button {
+  color: #3b3b3b;
+}
+
+/* Features Section */
+.Features {
+  padding: 80px 10%;
+  background: #212121;
+  text-align: left;
+}
+
+.GivingYouPeaceOfMind {
+  color: white;
+  font-size: 2em;
+  font-family: "Plus Jakarta Sans";
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+
+.Frame427320976 {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.Frame427320974 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.Frame386,
+.Frame387,
+.Frame388,
+.Frame389,
+.Frame390,
+.Frame391 {
+  flex: 1 1 calc(33% - 40px);
+  background: #3b3b3b;
+  box-shadow: 0px 11px 52px rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.Frame386,
+.Frame387,
+.Frame388,
+.Frame389,
+.Frame390,
+.Frame391 div {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.Notepad8860368,
+.Hut88603311,
+.Wand8860488,
+.Tag8860449,
+.Globe8860304,
+.Like88603361 {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Group {
+  position: relative;
+}
+
+.EasyBookingProcess,
+.CommunityAndNetworking,
+.ModernAmenities,
+.BestPrice,
+.StrategicLocation {
+  color: white;
+  font-size: 1.25em;
+  font-family: "Plus Jakarta Sans";
+  font-weight: 700;
+}
+
+.RentingAnOfficeWithUsIsSimpleAndHassleFreeOurUserFriendlyOnlinePlatformAllowsYouToBookYourIdealWorkspaceInJustAFewClicks,
+.JoinAVibrantCommunityOfProfessionalsAndEntrepreneursNetworkCollaborateAndExchangeIdeasInAnEnvironmentThatFostersInnovationAndGrowth,
+.EnjoyAComfortableAndProductiveWorkEnvironmentWithStateOfTheArtFacilitiesHighSpeedInternetMeetingRoomsErgonomicFurniture,
+.NotSureWhatYouShouldBeChargingForYourPropertyLetUsDoTheNumbersForYouContactUsTodayForAFreeRentalAppraisalOnYourHome,
+.LocatedInTheCityCenterCloseToTheShoppingCenterVeryGoodForAreasSurroundedByInternationalEducationCentersStartUpOfficeCenters {
+  color: white;
+  font-size: 1em;
+  font-family: "Poppins";
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+  .Frame427320974 {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .Frame386,
+  .Frame387,
+  .Frame388,
+  .Frame389,
+  .Frame390,
+  .Frame391 {
+    flex: 1 1 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .Frame427320957 {
+    padding: 10px;
+  }
+  .RentOfficesTailoredToYourSuccess {
+    font-size: 2em;
+  }
+  .Frame427320752 {
+    flex-direction: column;
+    padding: 10px;
+  }
+  .Frame427320794 {
+    justify-content: center;
+  }
+  .Features {
+    padding: 40px 5%;
+  }
+  .GivingYouPeaceOfMind {
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width: 480px) {
+  .RentOfficesTailoredToYourSuccess {
+    font-size: 1.5em;
+  }
+  .SearchHere {
+    font-size: 0.875em;
+  }
+  .GivingYouPeaceOfMind {
+    font-size: 1.25em;
+  }
+  .EasyBookingProcess,
+  .CommunityAndNetworking,
+  .ModernAmenities,
+  .BestPrice,
+  .StrategicLocation {
+    font-size: 1em;
+  }
+  .RentingAnOfficeWithUsIsSimpleAndHassleFreeOurUserFriendlyOnlinePlatformAllowsYouToBookYourIdealWorkspaceInJustAFewClicks,
+  .JoinAVibrantCommunityOfProfessionalsAndEntrepreneursNetworkCollaborateAndExchangeIdeasInAnEnvironmentThatFostersInnovationAndGrowth,
+  .EnjoyAComfortableAndProductiveWorkEnvironmentWithStateOfTheArtFacilitiesHighSpeedInternetMeetingRoomsErgonomicFurniture,
+  .NotSureWhatYouShouldBeChargingForYourPropertyLetUsDoTheNumbersForYouContactUsTodayForAFreeRentalAppraisalOnYourHome,
+  .LocatedInTheCityCenterCloseToTheShoppingCenterVeryGoodForAreasSurroundedByInternationalEducationCentersStartUpOfficeCenters {
+    font-size: 0.875em;
+  }
+}
