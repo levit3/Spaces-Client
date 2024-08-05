@@ -2,13 +2,16 @@ import React from "react";
 import "./Homepage.css";
 import LatestSpaces from "./LatestSpaces";
 import Navbar from "./Navbar";
+import HeroSection from "./HeroSection";
 
 const Homepage = () => {
   return (
     <>
       <Navbar />
+      <HeroSection />
+
       <div className="Homepage">
-        <div className="HeroSection">
+        {/* <div className="HeroSection">
           <div className="Rectangle259376"></div>
           <div className="Frame427320957">
             <div className="RentOfficesTailoredToYourSuccess">
@@ -32,7 +35,8 @@ const Homepage = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
+
         <LatestSpaces />
         <div className="Features">
           <div className="GivingYouPeaceOfMind">Giving you peace of mind</div>

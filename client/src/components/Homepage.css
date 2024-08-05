@@ -1,16 +1,20 @@
 /* General Styles */
 .Homepage {
+  font-family: "Mooli", sans-serif;
+  font-weight: 900;
   width: 100%;
   height: auto;
   background: #f5f5f5;
 }
-/*Navbar styles*/
+
+/* Navbar Styles */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 1.5rem 2rem;
   background: #fff;
+  position: relative;
 }
 
 .navbar__brand {
@@ -22,17 +26,18 @@
   display: flex;
   gap: 1.5rem;
   list-style: none;
+  margin: 0;
 }
 
 .navbar__auth {
   display: flex;
   gap: 1rem;
+  align-items: center;
 }
 
 .login,
 .signup {
   padding: 0.5rem 1rem;
-  border: none;
   cursor: pointer;
 }
 
@@ -40,11 +45,82 @@
   background: #fff;
   color: #000;
   border: 1px solid #000;
+  border-radius: 10px;
+  transition: 300ms ease-in-out;
+}
+
+.signup:hover {
+  background: #000;
+  color: #fff;
+  border-radius: 10px;
 }
 
 .login {
+  background: #fff;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 10px;
+  transition: 300ms ease-in-out;
+}
+
+.login:hover {
   background: #000;
   color: #fff;
+  border-radius: 1px;
+}
+
+.navbar__profile {
+  position: relative;
+}
+
+.profile__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.profile__menu {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.profile__menu a {
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  color: #333;
+  border-bottom: 1px solid #ccc;
+}
+
+.profile__menu a:hover {
+  background: #f0f0f0;
+}
+
+.profile__menu a:last-child {
+  border-bottom: none;
+}
+
+.navbar__hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 25px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.navbar__hamburger span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: #000;
 }
 
 @media (max-width: 768px) {
@@ -52,129 +128,60 @@
   .navbar__auth {
     display: none;
   }
+
+  .navbar__links--open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    padding: 1rem 2rem;
+  }
+
+  .navbar__hamburger {
+    display: flex;
+  }
 }
 
 /* Hero Section */
-.HeroSection {
-  width: 100%;
-  height: auto;
+.hero {
   position: relative;
-}
-
-.Rectangle259376 {
-  width: 100%;
-  height: auto;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.4) 68%
-  );
-}
-
-.Frame427320957 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
-}
-
-.RentOfficesTailoredToYourSuccess {
-  color: white;
-  font-size: 2.5em;
-  font-family: "Plus Jakarta Sans";
-  font-weight: 800;
-  line-height: 1.2;
-  margin-bottom: 20px;
-}
-
-/* Search Section */
-.Frame427320752 {
-  width: 90%;
-  padding: 12px;
-  background: #3b3b3b;
-  box-shadow: 0px 11px 52px rgba(0, 0, 0, 0.04);
-  border-radius: 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.Frame427320749 {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex: 1;
-}
-
-.Component1 {
-  width: 24px;
-  height: 24px;
-  position: relative;
-}
-
-.Vector {
-  width: 14px;
-  height: 18px;
-  background: #d89b1c;
-  position: absolute;
-  left: 5px;
-  top: 3px;
-}
-
-.Vector small {
-  width: 4px;
-  height: 4px;
-  background: #3b3b3b;
-  position: absolute;
-  left: 10px;
-  top: 7px;
-}
-
-.SearchHere {
-  color: white;
-  font-size: 1em;
-  font-family: "Poppins";
-  font-weight: 400;
-}
-
-.Frame427320794 {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.Buttons {
-  padding: 12px 24px;
-  border-radius: 12px;
+  background-image: url("https://media.istockphoto.com/id/850137910/photo/trendy-modern-open-concept-loft-office-space-with-big-windows-natural-light-and-a-layout-to.jpg?s=612x612&w=0&k=20&c=PEexnHZhdvaubdDcBQnAwiE40wA-DvbaQdjqTfKyQZk=");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.hero__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
   text-align: center;
+  color: #fff;
 }
 
-.Buttons.search {
-  background: #3b3b3b;
+.hero__content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
 }
 
-.Buttons.white {
-  background: white;
-}
-
-.Button {
-  color: white;
-  font-size: 1em;
-  font-family: "Poppins";
-  font-weight: 500;
-}
-
-.Buttons.white .Button {
-  color: #3b3b3b;
+@media (max-width: 768px) {
+  .hero__content h1 {
+    font-size: 2rem;
+  }
 }
 
 /* Features Section */
@@ -187,7 +194,7 @@
 .GivingYouPeaceOfMind {
   color: white;
   font-size: 2em;
-  font-family: "Plus Jakarta Sans";
+  font-family: "Mooli", sans-serif;
   font-weight: 600;
   margin-bottom: 40px;
 }
@@ -255,7 +262,7 @@
 .StrategicLocation {
   color: white;
   font-size: 1.25em;
-  font-family: "Plus Jakarta Sans";
+  font-family: "Mooli", sans-serif;
   font-weight: 700;
 }
 
@@ -266,12 +273,11 @@
 .LocatedInTheCityCenterCloseToTheShoppingCenterVeryGoodForAreasSurroundedByInternationalEducationCentersStartUpOfficeCenters {
   color: white;
   font-size: 1em;
-  font-family: "Poppins";
+  font-family: "Mooli", sans-serif;
   font-weight: 400;
   line-height: 1.6;
 }
 
-/* Media Queries for Responsiveness */
 @media (max-width: 1200px) {
   .Frame427320974 {
     flex-direction: column;
