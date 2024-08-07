@@ -186,6 +186,11 @@ function SpaceDetails() {
           </section>
         </div>
         </article>
+        <div className="service-container">
+        {services.map((service, index) => (
+          <ServiceCard key={index} iconSrc={service.iconSrc} title={service.title} />
+        ))}
+      </div>
       <SpaceAndBuildingAmenities/>
     </div>
 );}
