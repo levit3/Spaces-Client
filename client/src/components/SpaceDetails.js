@@ -99,6 +99,32 @@ const handleBooking = () => {
   // Implement booking logic here
 };
 
+const LocationInfo = ({ content, icon, text }) => {
+  return (
+    <div className="info-item">
+      <img src={icon} alt="" className="info-icon" />
+      <div>
+        <p>
+          {content}: {text}
+        </p>
+      </div>
+    </div>
+  );
+};
+
+const renderStars = (rating) => {
+  const fullStars = Math.floor(rating);
+  const halfStars = rating % 1 >= 0.5 ? 1 : 0;
+  const emptyStars = 5 - fullStars - halfStars;
+
+return (
+<>
+  {'★'.repeat(fullStars)}
+  {halfStars ? '☆' : ''}
+  {'☆'.repeat(emptyStars)}
+</>
+);}
+
 function SpaceDetails() {
   return (
     <div className='display-item'>
