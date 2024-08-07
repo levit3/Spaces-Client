@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./CSS/SussessfulPayment.css";
 
 function SuccessfulPayment() {
   const [booking, setBooking] = useState([]);
