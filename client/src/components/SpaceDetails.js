@@ -45,7 +45,34 @@ const AmenitiesColumn = ({ amenities }) => (
   </div>
 );
 
-function SpaceDetails() {
+const SpaceAndBuildingAmenities = () => (
+  <section className="amenitiesWrapper">
+    <div className="amenitiesGroup">
+      <h2 className="sectionTitle">Space Amenities</h2>
+      <div className="amenitiesList">
+        {spaceAmenities.map((column, index) => (
+          <AmenitiesColumn key={index} amenities={column} />
+        ))}
+      </div>
+    </div>
+    <div className="separate-divider" role="separator" />
+    <div className="buildingAmenitiesWrapper">
+      <h2 className="sectionTitle">Building Amenities</h2>
+      <div className="buildingAmenitiesList">
+        {buildingAmenities.map((column, index) => (
+          <AmenitiesColumn key={index} amenities={column} />
+        ))}
+      </div>
+    </div>
+  </section>
+);
 
+function SpaceDetails() {
+  return (
+    <div className='display-item'>
+      <SpaceAndBuildingAmenities/>
+    </div>
+);
 }
+
 export default SpaceDetails;
