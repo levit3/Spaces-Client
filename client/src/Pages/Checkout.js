@@ -30,6 +30,14 @@ function Checkout() {
     return `${year}-${month}-${day}`;
   };
 
+  const handleClick = (method) => {
+    setSelectedMethod(method);
+  };
+
+  const handleBack = () => {
+    window.history.back();
+  };
+
   if (loading) {
     return <h1>Loading...</h1>;
   }
