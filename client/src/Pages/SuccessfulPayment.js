@@ -1,6 +1,23 @@
 import React, { useState, useEffect } from "react";
 
 function SuccessfulPayment() {
+  const [booking, setBooking] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:5555/api/bookings/1/")
+      .then((response) => response.json())
+      .then((data) => {
+        setBooking(data);
+        console.log(data);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <main className="booking-main">
       <section className="booking-section">
