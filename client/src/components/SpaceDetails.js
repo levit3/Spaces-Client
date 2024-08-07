@@ -126,11 +126,27 @@ return (
 );}
 
 function SpaceDetails() {
+    // const { id } = useParams();
+    const [space, setSpace] = useState([]);
+    const [loading, setLoading] = useState(false);
+  
+    useEffect(() => {
+      fetch("http://localhost:5555/api/spaces/1/")
+        .then((res) => res.json())
+        .then((data) => {
+          setSpace(data);
+          setLoading(true)
+          
+        })
+        .catch((error) => {
+          console.error("Error fetching space:", error);
+        });
+    }, []);
+    
   return (
     <div className='display-item'>
       <SpaceAndBuildingAmenities/>
     </div>
-);
-}
+);}
 
 export default SpaceDetails;
