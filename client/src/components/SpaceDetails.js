@@ -142,7 +142,24 @@ function SpaceDetails() {
           console.error("Error fetching space:", error);
         });
     }, []);
+
+    if(!loading){
+      return <div>Loading...</div>;
+      }
     
+     console.log(space)
+   
+     let reviews = [];
+     for(let i=0; i<space[0].reviews.length; i++){
+       reviews.push( space[0].reviews[i])
+     }
+     
+     let rating = 0;
+     for(let i=0; i<reviews.length; i++){
+       rating += reviews[i].rating;
+     }
+   
+
   return (
     <div className='display-item'>
       <SpaceAndBuildingAmenities/>
