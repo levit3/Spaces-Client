@@ -84,6 +84,20 @@ const services = [
   { iconSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/a0a0b1c14078ea45f22a29ce295942f304bb4a35ceccbecfe1013b1d85d3636c?apiKey=af3c8a520d554d22a850d6116441e929&&apiKey=af3c8a520d554d22a850d6116441e929", title: "Virtual Phone Numbers" }
 ];
 
+const ServiceCard = ({ iconSrc, title }) => {
+  return (
+    <article className="service-card">
+      <div className="icon-wrapper">
+        <img loading="lazy" src={iconSrc} alt="" className="icon" />
+      </div>
+      <h2 className="service-title">{title}</h2>
+    </article>
+  );
+};
+
+const handleBooking = () => {
+  // Implement booking logic here
+};
 
 function SpaceDetails() {
   return (
