@@ -171,6 +171,16 @@ function SpaceDetails() {
             ))}
           </div>
         </div>
+        <div className="space-details">
+          <section className="space">
+            <h1 className="space-name">{space[0].title}</h1>
+            <div className="space-info">
+              <LocationInfo icon="https://cdn.builder.io/api/v1/image/assets/TEMP/76d3bc63153d23a77bbfa39be3e406830363942a9c64eb8eedc38023d56159ad?apiKey=af3c8a520d554d22a850d6116441e929&&apiKey=af3c8a520d554d22a850d6116441e929" content={"Location"} text={space[0].location}/>
+              <LocationInfo icon="https://cdn.builder.io/api/v1/image/assets/TEMP/fa50eb04150a2a3afd7f072254bd1ddf09eb496c23e4ebc4e0e906958f3437a8?apiKey=af3c8a520d554d22a850d6116441e929&&apiKey=af3c8a520d554d22a850d6116441e929"  content={"Capacity"} text={space[0].price_per_hour}/>
+              <LocationInfo icon="https://cdn.builder.io/api/v1/image/assets/TEMP/fa50eb04150a2a3afd7f072254bd1ddf09eb496c23e4ebc4e0e906958f3437a8?apiKey=af3c8a520d554d22a850d6116441e929&&apiKey=af3c8a520d554d22a850d6116441e929"  content={"Price per hour"} text={space[0].price_per_hour}/>
+              </div>
+          </section>
+        </div>
         </article>
       <SpaceAndBuildingAmenities/>
     </div>
