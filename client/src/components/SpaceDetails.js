@@ -29,6 +29,22 @@ const buildingAmenities = [
     { icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/704d4666b29af8e4ebd722b224872a4bfd792056ae931cb5dcff1b8661603801?apiKey=af3c8a520d554d22a850d6116441e929&&apiKey=af3c8a520d554d22a850d6116441e929', text: 'ATMs' }
   ]
 ];
+
+const AmenityItem = ({ icon, text }) => (
+  <div className="amenityItem">
+    <img loading="lazy" src={icon} alt="" className="amenityIcon"/>
+    <div>{text}</div>
+  </div>
+);
+
+const AmenitiesColumn = ({ amenities }) => (
+  <div className="amenitiesColumn">
+    {amenities.map((item, index) => (
+      <AmenityItem key={index} icon={item.icon} text={item.text} />
+    ))}
+  </div>
+);
+
 function SpaceDetails() {
 
 }
