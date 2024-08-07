@@ -22,6 +22,18 @@ function Checkout() {
       });
   }, []);
 
+  const getCurrentDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
+
   return (
     <main className="checkout-page">
       <div className="checkout-container">
