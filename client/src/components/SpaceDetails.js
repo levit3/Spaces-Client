@@ -162,6 +162,16 @@ function SpaceDetails() {
 
   return (
     <div className='display-item'>
+      <article className="main">
+        <div className="images">
+          <img src={images.main} alt="Main view" className="main-image" />
+          <div className="thumbnail-container">
+            {images.thumbnails.map((src, index) => (
+              <img key={index} src={src} alt={`Thumbnail ${index + 1}`} className="thumbnail-image" />
+            ))}
+          </div>
+        </div>
+        </article>
       <SpaceAndBuildingAmenities/>
     </div>
 );}
