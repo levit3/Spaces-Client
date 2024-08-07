@@ -67,6 +67,24 @@ const SpaceAndBuildingAmenities = () => (
   </section>
 );
 
+const images = {
+  main: "https://cdn.builder.io/api/v1/image/assets/TEMP/92453d94cc346caf6f3c7e3a0146574833be4b8dc1aa1b9a54868b251aef24de?apiKey=af3c8a520d554d22a850d6116441e929&&apiKey=af3c8a520d554d22a850d6116441e929",
+  thumbnails: [
+    "https://cdn.builder.io/api/v1/image/assets/TEMP/719ac4be35c41674bc169e12d70bf8dce799c470893440f09521a06cc38a79c6?apiKey=af3c8a520d554d22a850d6116441e929&&apiKey=af3c8a520d554d22a850d6116441e929",
+    "https://cdn.builder.io/api/v1/image/assets/TEMP/4ce5de5fe866bc7889a2e3a966b864264c674bf45ef8b141f42a1f3469d15db4?apiKey=af3c8a520d554d22a850d6116441e929&&apiKey=af3c8a520d554d22a850d6116441e929",
+    "https://cdn.builder.io/api/v1/image/assets/TEMP/11734a50461ff7115c05ccf220b24b2c084d508f2de5f954af06b0e42d69622b?apiKey=af3c8a520d554d22a850d6116441e929&&apiKey=af3c8a520d554d22a850d6116441e929"
+  ]
+};
+
+const services = [
+  { iconSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/491d2468e904e832c55d2124f160bb699ef2c57515621c210448b21b8fd6661a?apiKey=af3c8a520d554d22a850d6116441e929&&apiKey=af3c8a520d554d22a850d6116441e929", title: "Virtual Office Address" },
+  { iconSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/245b802fa793a1dce66722f9a263dba8ef4bfd00fc83f523ab2f5ed0da35a37c?apiKey=af3c8a520d554d22a850d6116441e929&&apiKey=af3c8a520d554d22a850d6116441e929", title: "Virtual Mailbox" },
+  { iconSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/74e23d7f493c763b27621346f246c0b58b40339097fee3e8b5b96a75ed8cb837?apiKey=af3c8a520d554d22a850d6116441e929&&apiKey=af3c8a520d554d22a850d6116441e929", title: "Meeting Space and Conference Rooms" },
+  { iconSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/e2c3aed0585ae6cc459067f51596fe176919e9817df767b77d76cbcb74326604?apiKey=af3c8a520d554d22a850d6116441e929&&apiKey=af3c8a520d554d22a850d6116441e929", title: "Live Receptionist Services" },
+  { iconSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/a0a0b1c14078ea45f22a29ce295942f304bb4a35ceccbecfe1013b1d85d3636c?apiKey=af3c8a520d554d22a850d6116441e929&&apiKey=af3c8a520d554d22a850d6116441e929", title: "Virtual Phone Numbers" }
+];
+
+
 function SpaceDetails() {
   return (
     <div className='display-item'>
