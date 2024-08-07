@@ -125,42 +125,43 @@ return (
 </>
 );}
 
+
 function SpaceDetails() {
-    // const { id } = useParams();
-    const [space, setSpace] = useState([]);
-    const [loading, setLoading] = useState(false);
+  // const { id } = useParams();
+  const [space, setSpace] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    fetch("http://localhost:5555/api/spaces/1/")
+      .then((res) => res.json())
+      .then((data) => {
+        setSpace(data);
+        setLoading(true)
+        
+      })
+      .catch((error) => {
+        console.error("Error fetching space:", error);
+      });
+  }, []);
   
-    useEffect(() => {
-      fetch("http://localhost:5555/api/spaces/1/")
-        .then((res) => res.json())
-        .then((data) => {
-          setSpace(data);
-          setLoading(true)
-          
-        })
-        .catch((error) => {
-          console.error("Error fetching space:", error);
-        });
-    }, []);
+  if(!loading){
+   return <div>Loading...</div>;
+   }
+ 
+  console.log(space)
 
-    if(!loading){
-      return <div>Loading...</div>;
-      }
-    
-     console.log(space)
-   
-     let reviews = [];
-     for(let i=0; i<space[0].reviews.length; i++){
-       reviews.push( space[0].reviews[i])
-     }
-     
-     let rating = 0;
-     for(let i=0; i<reviews.length; i++){
-       rating += reviews[i].rating;
-     }
-   
+  let reviews = [];
+  for(let i=0; i<space[0].reviews.length; i++){
+    reviews.push( space[0].reviews[i])
+  }
+  
+  let rating = 0;
+  for(let i=0; i<reviews.length; i++){
+    rating += reviews[i].rating;
+  }
 
-  return (
+
+    return (
     <div className='display-item'>
       <article className="main">
         <div className="images">
@@ -179,20 +180,21 @@ function SpaceDetails() {
               <LocationInfo icon="https://cdn.builder.io/api/v1/image/assets/TEMP/fa50eb04150a2a3afd7f072254bd1ddf09eb496c23e4ebc4e0e906958f3437a8?apiKey=af3c8a520d554d22a850d6116441e929&&apiKey=af3c8a520d554d22a850d6116441e929"  content={"Capacity"} text={space[0].price_per_hour}/>
               <LocationInfo icon="https://cdn.builder.io/api/v1/image/assets/TEMP/fa50eb04150a2a3afd7f072254bd1ddf09eb496c23e4ebc4e0e906958f3437a8?apiKey=af3c8a520d554d22a850d6116441e929&&apiKey=af3c8a520d554d22a850d6116441e929"  content={"Price per hour"} text={space[0].price_per_hour}/>
               </div>
-           <hr className="divider" />
+            <hr className="divider" />
             <p className="space-description"> {space[0].description}</p>
             <div className="space-rate">Rate: {renderStars(rating)}</div>
             <button className="booking-button" onClick={handleBooking}>Book It</button>
           </section>
         </div>
-        </article>
-        <div className="service-container">
+      </article>
+      <div className="service-container">
         {services.map((service, index) => (
           <ServiceCard key={index} iconSrc={service.iconSrc} title={service.title} />
         ))}
       </div>
       <SpaceAndBuildingAmenities/>
     </div>
-);}
+  );
+}
 
 export default SpaceDetails;
