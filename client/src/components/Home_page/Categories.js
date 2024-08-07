@@ -16,11 +16,11 @@ const Categories = () => {
             talent, and network with industry peers, all from your prestigious
             address.
           </p>
-          <button className="see-more-btn">See more</button>
+          <h3 className="see-more-btn">See more</h3>
         </div>
         <div className="card-image">
           <img
-            src="/path-to-prime-locations-image.jpg"
+            src="https://images.unsplash.com/photo-1608658405784-4c3ef05ebcc3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D"
             alt="Prime office building"
           />
         </div>
@@ -37,7 +37,7 @@ const Categories = () => {
             convenience, and community. Your success is our priority, and we're
             here to provide the workspace you need to thrive.
           </p>
-          <button className="see-more-btn">See more</button>
+          <h3 className="see-more-btn">See more</h3>
         </div>
         <div className="card-image">
           <img
@@ -58,7 +58,7 @@ const Categories = () => {
             experience. From state-of-the-art conference rooms to relaxing
             breakout areas, we've got everything you need for a productive day.
           </p>
-          <button className="see-more-btn">See more</button>
+          <h3 className="see-more-btn">See more</h3>
         </div>
         <div className="card-image">
           <img src="/path-to-amenities-image.jpg" alt="Office amenities" />
@@ -76,7 +76,7 @@ const Categories = () => {
             collaborate, and grow your business in an environment that fosters
             innovation and success.
           </p>
-          <button className="see-more-btn">See more</button>
+          <h3 className="see-more-btn">See more</h3>
         </div>
         <div className="card-image">
           <img src="/path-to-community-image.jpg" alt="Office community" />
@@ -87,79 +87,3 @@ const Categories = () => {
 };
 
 export default Categories;
-
-// import React, { useEffect, useRef } from "react";
-// import "./Homepage.css";
-
-// const Categories = () => {
-//   const cardsRef = useRef([]);
-
-//   useEffect(() => {
-//     const observerOptions = {
-//       root: null,
-//       rootMargin: "0px",
-//       threshold: 0.1,
-//     };
-
-//     const observerCallback = (entries) => {
-//       entries.forEach((entry) => {
-//         if (entry.isIntersecting) {
-//           entry.target.classList.add("visible");
-//         }
-//       });
-//     };
-
-//     const observer = new IntersectionObserver(
-//       observerCallback,
-//       observerOptions
-//     );
-
-//     cardsRef.current.forEach((card) => {
-//       if (card) observer.observe(card);
-//     });
-
-//     return () => {
-//       cardsRef.current.forEach((card) => {
-//         if (card) observer.unobserve(card);
-//       });
-//     };
-//   }, []);
-
-//   const cards = [
-//     {
-//       subtitle: "CHECKOUT OUR",
-//       title: "Prime Locations",
-//       description:
-//         "Our offices are strategically located in the heart of the city, putting you right where the action is. Impress clients, attract talent, and network with industry peers, all from your prestigious address.",
-//       image: "/path-to-prime-locations-image.jpg",
-//       alt: "Prime office building",
-//     },
-//     //card 2
-//   ];
-
-//   return (
-//     <div className="office-space-showcase">
-//       {cards.map((card, index) => (
-//         <div
-//           key={index}
-//           className={`card ${index % 2 !== 0 ? "reversed" : ""}`}
-//           ref={(el) => (cardsRef.current[index] = el)}
-//         >
-//           <div className="card-content">
-//             <h2 className="card-title">
-//               <span className="subtitle">{card.subtitle}</span>
-//               {card.title}
-//             </h2>
-//             <p className="card-description">{card.description}</p>
-//             <button className="see-more-btn">See more</button>
-//           </div>
-//           <div className="card-image">
-//             <img src={card.image} alt={card.alt} />
-//           </div>
-//         </div>
-//       ))}
-//     </div>
-//   );
-// };
-
-// export default Categories;
