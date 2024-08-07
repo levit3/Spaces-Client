@@ -179,6 +179,10 @@ function SpaceDetails() {
               <LocationInfo icon="https://cdn.builder.io/api/v1/image/assets/TEMP/fa50eb04150a2a3afd7f072254bd1ddf09eb496c23e4ebc4e0e906958f3437a8?apiKey=af3c8a520d554d22a850d6116441e929&&apiKey=af3c8a520d554d22a850d6116441e929"  content={"Capacity"} text={space[0].price_per_hour}/>
               <LocationInfo icon="https://cdn.builder.io/api/v1/image/assets/TEMP/fa50eb04150a2a3afd7f072254bd1ddf09eb496c23e4ebc4e0e906958f3437a8?apiKey=af3c8a520d554d22a850d6116441e929&&apiKey=af3c8a520d554d22a850d6116441e929"  content={"Price per hour"} text={space[0].price_per_hour}/>
               </div>
+           <hr className="divider" />
+            <p className="space-description"> {space[0].description}</p>
+            <div className="space-rate">Rate: {renderStars(rating)}</div>
+            <button className="booking-button" onClick={handleBooking}>Book It</button>
           </section>
         </div>
         </article>
