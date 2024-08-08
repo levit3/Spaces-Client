@@ -73,7 +73,13 @@ useEffect(() => {
     }
   };
   fetchBookings();
+
 }, [user]);
+
+const handleSelectChange = (e) => {
+  const selectedSpaceId = e.target.value;
+  setSpaceId(selectedSpaceId);
+}
 
 const handleSubmit = async (e) => {
   e.preventDefault();
@@ -116,7 +122,12 @@ const handleSubmit = async (e) => {
     setIsModalOpen(true);
 
   }
-;
+};
+
+const closeModal = () => {
+  setIsModalOpen(false);
+};
+
 
 if (!loading) {
   return (
@@ -184,7 +195,6 @@ if (!loading) {
       </div>   
      </section>
   );
-}
 }
 
 export default EventCreation
