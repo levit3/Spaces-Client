@@ -1,6 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import './EventCreation.css';
 
+
+const Modal = ({ isOpen, onClose, message }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="modal-overlay">
+      <div className="modal-content">
+        <h2>{message}</h2>
+        <button onClick={onClose}>Close</button>
+      </div>
+    </div>
+  );
+};
+
 function EventCreation() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -24,7 +38,7 @@ function EventCreation() {
         console.error("Error fetching user:", error);
       });
   }, []);
-}
+
 
 useEffect(() => {
   const fetchBookings = async () => {
@@ -171,5 +185,6 @@ if (!loading) {
      </section>
   );
 }
+}
 
-export default EventCreation;
+export default EventCreation
