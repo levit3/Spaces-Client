@@ -59,4 +59,48 @@ useEffect(() => {
   fetchBookings();
 }, [user]);
 
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (!title || !description || !date || !spaceId) {
+    setModalMessage('All fields must be entered');
+    setIsModalOpen(true);
+    return;
+  }
+  console.log("Submitting event with date:", date); 
+  const event = {
+    title,
+    description,
+    date,
+    space_id: spaceId,
+    organizer_id: 92
+  };
+
+  try {
+    const response = await fetch('http://localhost:5555/api/events', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(event),
+    });
+
+    if (response.ok) {
+      setModalMessage('Event created successfully!');
+      setIsModalOpen(true); 
+      console.log('Event created successfully');
+      setTitle('');
+      setDescription('');
+      setSpaceId('');
+      setDate('');
+    } else {
+      const errorData = await response.json();
+      console.error(`Failed to create event: ${errorData.error}`);
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    setModalMessage('An error occurred while creating the event');
+    setIsModalOpen(true);
+
+  }
+};
+
+
 export default EventCreation;
