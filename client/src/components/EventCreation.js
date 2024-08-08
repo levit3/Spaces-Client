@@ -8,6 +8,8 @@ function EventCreation() {
   const [spaceId, setSpaceId] = useState('');
   const [user, setUser] = useState(null);
   const [bookedSpaces, setBookedSpaces] = useState([]);
+  const [loading, setLoading] = useState(false);
+
 
   const images = {
     main: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJjcsyLgOPmDPJOSVNXpaxCQlnPVLaQeHx4A&s"  };
@@ -102,5 +104,12 @@ const handleSubmit = async (e) => {
   }
 };
 
+if (!loading) {
+  return (
+    <div className='loading-container'>
+      <img className='loading' src='https://upload.wikimedia.org/wikipedia/commons/b/b9/Youtube_loading_symbol_1_(wobbly).gif' alt='Loading...' />
+    </div>
+  );
+}
 
 export default EventCreation;
