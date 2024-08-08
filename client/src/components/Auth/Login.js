@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Auth.css";
 
 const Login = () => {
@@ -21,7 +22,7 @@ const Login = () => {
       <div className="auth-login-form">
         <div>
           <button className="auth-close-btn" onClick={handleClose}>
-            Go Back
+            ≪ Go Back
           </button>
           <img
             src={process.env.PUBLIC_URL + "/logo1.png"}
@@ -30,7 +31,7 @@ const Login = () => {
           />
         </div>
         <div className="auth-signup-link">
-          Don't have an account? <a href="#">Sign up!</a>
+          Don't have an account? <Link to="/signup">Sign up!</Link>
         </div>
         <h1 className="auth-welcome-text">Welcome Back</h1>
         <form className="" onSubmit={handleSubmit}>

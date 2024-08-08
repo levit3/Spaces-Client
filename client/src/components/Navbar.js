@@ -128,6 +128,7 @@ const Navbar = () => {
         <a href="#">Home</a>
         <a href="#">Spaces</a>
         <a href="#">About</a>
+
         <li className="dropdown">
           Events
           <ul className="dropdown-menu">
@@ -141,7 +142,9 @@ const Navbar = () => {
         <Link to="/login" className="login">
           Login
         </Link>
-        <button className="signup">Signup</button>
+        <Link to="/signup" className="signup">
+          Signup
+        </Link>
         <div className="navbar__profile">
           <img
             src="path/to/avatar.jpg"
