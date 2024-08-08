@@ -155,6 +155,7 @@
   width: 24px;
   align-self: stretch;
   margin: auto 0;
+  background: #333;
 }
 
 .divider {
@@ -404,3 +405,31 @@
       white-space: nowrap;
       border: 0;
     }
+
+/* Loading container to center the content */
+.loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.1); 
+  background-color: #000;
+}
+
+.loading-container p {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.loading-container img {
+  width: 100%;
+  height: auto;
+  max-width: 400px;
+  max-height: 400px; 
+}
