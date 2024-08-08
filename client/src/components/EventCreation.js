@@ -102,13 +102,73 @@ const handleSubmit = async (e) => {
     setIsModalOpen(true);
 
   }
-};
+;
 
 if (!loading) {
   return (
     <div className='loading-container'>
       <img className='loading' src='https://upload.wikimedia.org/wikipedia/commons/b/b9/Youtube_loading_symbol_1_(wobbly).gif' alt='Loading...' />
     </div>
+  );
+}
+  return (
+    <section className='main-content'>
+      <h1 className='title'>Create Your Event</h1>
+      <div className='event-creation-container'>
+        <div className="image-container">
+          <img src={images.main} alt="Event view" className="main-image" />
+        </div>
+        <form className='event-form' onSubmit={handleSubmit}>
+          <label htmlFor='title' className='form-label'>Event Name:</label>
+          <input
+            id='title'
+            className='form-input'
+            type='text'
+            placeholder='Event Name'
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <label htmlFor='description' className='form-label'>Event Description:</label>
+          <input
+            id='description'
+            className='form-input'
+            type='text'
+            placeholder='Event Description'
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <label htmlFor='spaceId' className='form-label'>Event Location:</label>
+          <select
+            id='spaceId'
+            className='form-input'
+            value={spaceId}
+            onChange={handleSelectChange}
+          >
+            <option value="">Select Location</option>
+            {bookedSpaces.map((space) => (
+              <option key={space.id} value={space.id}>
+                {space.title}
+              </option>
+            ))}
+          </select>
+          <label htmlFor='date' className='form-label'>Event Date:</label>
+          <input
+            id='date'
+            className='form-input'
+            type='date'
+            placeholder='dd/mm/yyyy'
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
+          <input className='submit-button' type='submit' value='Create Event' />
+        </form>
+          <Modal
+            isOpen={isModalOpen}
+            onClose={closeModal}
+            message={modalMessage}
+            />
+      </div>   
+     </section>
   );
 }
 
