@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './EventCreation.css';
 
-
 const Modal = ({ isOpen, onClose, message }) => {
   if (!isOpen) return null;
 
@@ -22,7 +21,11 @@ function EventCreation() {
   const [spaceId, setSpaceId] = useState('');
   const [user, setUser] = useState(null);
   const [bookedSpaces, setBookedSpaces] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false); 
   const [loading, setLoading] = useState(false);
+  const [modalMessage, setModalMessage] = useState(''); 
+
+
 
 
   const images = {
@@ -39,103 +42,102 @@ function EventCreation() {
       });
   }, []);
 
+  useEffect(() => {
+    const fetchBookings = async () => {
+      try {
+        const response = await fetch('http://localhost:5555/api/bookings', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        const bookings = await response.json();
+        const userBookings = bookings.filter(booking => booking.user_id === 92);
+        console.log(userBookings);
+  
+        const uniqueSpacesMap = new Map();
+        userBookings.forEach(booking => {
+          if (!uniqueSpacesMap.has(booking.space_id)) {
+            uniqueSpacesMap.set(booking.space_id, booking.space_title);
+          }
+        });
+  
+        const spaces = Array.from(uniqueSpacesMap, ([id, title]) => ({
+          id,
+          title
+        }));
+  
+        console.log(spaces);
+        setBookedSpaces(spaces);
+        setLoading(true)
+      } catch (error) {
+        console.error('Error fetching bookings:', error);
+      }
+    };
+    fetchBookings();
+  }, [user]);
 
-useEffect(() => {
-  const fetchBookings = async () => {
+  const handleSelectChange = (e) => {
+    const selectedSpaceId = e.target.value;
+    setSpaceId(selectedSpaceId);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!title || !description || !date || !spaceId) {
+      setModalMessage('All fields must be entered');
+      setIsModalOpen(true);
+      return;
+    }
+    console.log("Submitting event with date:", date); 
+    const event = {
+      title,
+      description,
+      date,
+      space_id: spaceId,
+      organizer_id: 92
+    };
+
     try {
-      const response = await fetch('http://localhost:5555/api/bookings', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      const bookings = await response.json();
-      const userBookings = bookings.filter(booking => booking.user_id === 92);
-      console.log(userBookings);
-
-      const uniqueSpacesMap = new Map();
-      userBookings.forEach(booking => {
-        if (!uniqueSpacesMap.has(booking.space_id)) {
-          uniqueSpacesMap.set(booking.space_id, booking.space_title);
-        }
+      const response = await fetch('http://localhost:5555/api/events', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(event),
       });
 
-      const spaces = Array.from(uniqueSpacesMap, ([id, title]) => ({
-        id,
-        title
-      }));
-
-      console.log(spaces);
-      setBookedSpaces(spaces);
-      setLoading(true)
+      if (response.ok) {
+        setModalMessage('Event created successfully!');
+        setIsModalOpen(true); 
+        console.log('Event created successfully');
+        setTitle('');
+        setDescription('');
+        setSpaceId('');
+        setDate('');
+      } else {
+        const errorData = await response.json();
+        console.error(`Failed to create event: ${errorData.error}`);
+      }
     } catch (error) {
-      console.error('Error fetching bookings:', error);
+      console.error('Error:', error);
+      setModalMessage('An error occurred while creating the event');
+      setIsModalOpen(true);
+
     }
   };
-  fetchBookings();
 
-}, [user]);
 
-const handleSelectChange = (e) => {
-  const selectedSpaceId = e.target.value;
-  setSpaceId(selectedSpaceId);
-}
-
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  if (!title || !description || !date || !spaceId) {
-    setModalMessage('All fields must be entered');
-    setIsModalOpen(true);
-    return;
-  }
-  console.log("Submitting event with date:", date); 
-  const event = {
-    title,
-    description,
-    date,
-    space_id: spaceId,
-    organizer_id: 92
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
-  try {
-    const response = await fetch('http://localhost:5555/api/events', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(event),
-    });
-
-    if (response.ok) {
-      setModalMessage('Event created successfully!');
-      setIsModalOpen(true); 
-      console.log('Event created successfully');
-      setTitle('');
-      setDescription('');
-      setSpaceId('');
-      setDate('');
-    } else {
-      const errorData = await response.json();
-      console.error(`Failed to create event: ${errorData.error}`);
-    }
-  } catch (error) {
-    console.error('Error:', error);
-    setModalMessage('An error occurred while creating the event');
-    setIsModalOpen(true);
-
+  if (!loading) {
+    return (
+      <div className='loading-container'>
+        <img className='loading' src='https://upload.wikimedia.org/wikipedia/commons/b/b9/Youtube_loading_symbol_1_(wobbly).gif' alt='Loading...' />
+      </div>
+    );
   }
-};
 
-const closeModal = () => {
-  setIsModalOpen(false);
-};
-
-
-if (!loading) {
-  return (
-    <div className='loading-container'>
-      <img className='loading' src='https://upload.wikimedia.org/wikipedia/commons/b/b9/Youtube_loading_symbol_1_(wobbly).gif' alt='Loading...' />
-    </div>
-  );
-}
   return (
     <section className='main-content'>
       <h1 className='title'>Create Your Event</h1>
@@ -197,4 +199,4 @@ if (!loading) {
   );
 }
 
-export default EventCreation
+export default EventCreation;
