@@ -1,0 +1,110 @@
+.booking-details-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    background-color: #2d2d2d;
+    overflow: hidden;
+  }
+  
+  .booking-details-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1373px;
+  }
+  
+  .booking-details-content {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .booking-details-section {
+    flex: 1;
+  }
+  
+  .booking-details-info {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+  }
+  
+  .booking-details-header {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .booking-details-title {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    font-size: 40px;
+    font-weight: 600;
+    color: white;
+  }
+  
+  .booking-details-icon {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .booking-details-nav {
+    display: flex;
+    gap: 40px;
+    margin-top: 16px;
+    color: white;
+  }
+  
+  .booking-details-nav-item {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  
+  .booking-details-nav-icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .booking-details-divider {
+    margin-top: 16px;
+    width: 100%;
+    background-color: #444;
+    height: 1px;
+  }
+  
+  .booking-details-description {
+    margin-top: 16px;
+    color: white;
+    line-height: 1.75;
+  }
+  
+  .booking-details-aside {
+    margin-left: 20px;
+    width: 50%;
+  }
+  
+  @media (max-width: 768px) {
+    .booking-details-main {
+      padding: 24px 5px;
+    }
+  
+    .booking-details-container {
+      max-width: 100%;
+    }
+  
+    .booking-details-content {
+      flex-direction: column;
+    }
+  
+    .booking-details-section,
+    .booking-details-aside {
+      width: 100%;
+      margin-left: 0;
+    }
+  
+    .booking-details-title {
+      font-size: 32px;
+    }
+  }
+  
