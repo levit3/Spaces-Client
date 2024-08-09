@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import "./CSS/EventPage.css";
 
-function EventPage() {
+function EventDetail() {
   const { id } = useParams();
   const [event, setEvent] = useState({});
   const [loading, setLoading] = useState(true);
@@ -52,4 +53,4 @@ function EventPage() {
   );
 }
 
-export default EventPage;
+export default EventDetail;

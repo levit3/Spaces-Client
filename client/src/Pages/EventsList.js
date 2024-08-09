@@ -4,7 +4,7 @@ import "./CSS/EventList.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-function EventList() {
+function EventsList() {
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -94,4 +94,4 @@ function EventList() {
   );
 }
 
-export default EventList;
+export default EventsList;
