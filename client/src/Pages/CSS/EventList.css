@@ -192,9 +192,7 @@
   margin: 1rem 0;
 }
 
-/* Custom styles for the DatePicker input */
 .date-picker input {
-  /* width: 80%; */
   font-size: 1.5rem;
   color: #f4f4f4;
   background-color: #1b1c1e;
@@ -222,7 +220,6 @@
   text-decoration-line: underline;
 }
 
-/* Change border color and add shadow on focus */
 .date-picker input:focus {
   outline: none;
 }
