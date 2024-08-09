@@ -1,0 +1,234 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+
+.events-container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #1b1c1e;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.events-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.events-title {
+  color: #f4f4f4;
+  font-size: 30px;
+  font-family: "Open Sans", serif;
+}
+
+.events-schedule {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.events-filter {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.events-date {
+  font-size: 32px;
+  font-weight: 500;
+  font-family: "Open Sans", serif;
+  color: #ffffff;
+}
+
+.events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+}
+
+.event-card {
+  width: 100%;
+  max-width: 850px;
+  background: #2c2c2e;
+  opacity: 0.8;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  box-sizing: border-box;
+  color: #ffffff;
+}
+
+.event-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 0;
+}
+
+.event-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.event-time {
+  font-size: 20px;
+  font-family: "Open Sans", serif;
+  font-weight: 300;
+  color: #ffffffcc;
+}
+
+.event-title {
+  font-size: 28px;
+  font-family: "Open Sans", serif;
+  font-weight: 400;
+  margin: 0;
+}
+
+.event-list-location {
+  font-size: 16px;
+  font-family: "Open Sans", serif;
+  font-weight: 400;
+  color: #ffffff99;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+}
+.event-list-name {
+  font-size: 16px;
+  font-family: "Open Sans", serif;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+}
+
+.event-learn-more {
+  font-size: 16px;
+  font-family: "Open Sans", serif;
+  font-weight: 500;
+  color: #ffbe31;
+  cursor: pointer;
+  transition: color 0.3s;
+  margin-top: 0;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+
+.event-learn-more:hover {
+  color: #d49408;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .event-card {
+    max-width: 100%;
+    padding: 15px;
+  }
+
+  .events-title {
+    font-size: 24px;
+  }
+
+  .events-date {
+    font-size: 24px;
+  }
+
+  .event-title {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 0;
+  }
+  .events-container {
+    padding: 10px;
+  }
+
+  .events-header {
+    margin-bottom: 30px;
+  }
+
+  .events-title {
+    font-size: 20px;
+  }
+
+  .events-date {
+    font-size: 20px;
+  }
+
+  .events-filter {
+    margin-bottom: 15px;
+  }
+
+  .event-card {
+    padding: 10px;
+    max-width: 100%;
+    box-shadow: none;
+    background: #2c2c2e;
+  }
+
+  .event-content {
+    gap: 8px;
+  }
+
+  .event-time {
+    font-size: 16px;
+  }
+
+  .event-title {
+    font-size: 20px;
+  }
+
+  .event-list-location {
+    font-size: 14px;
+  }
+
+  .event-learn-more {
+    font-size: 14px;
+  }
+}
+.date-picker {
+  display: inline-block;
+  position: relative;
+  margin: 1rem 0;
+}
+
+/* Custom styles for the DatePicker input */
+.date-picker input {
+  /* width: 80%; */
+  font-size: 1.5rem;
+  color: #f4f4f4;
+  background-color: #1b1c1e;
+  cursor: pointer;
+  border: none;
+  text-align: center;
+  animation: bounce 2.5s infinite;
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  color: #d89b1c;
+}
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(-5px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.date-picker :hover {
+  text-decoration-line: underline;
+}
+
+/* Change border color and add shadow on focus */
+.date-picker input:focus {
+  outline: none;
+}
+
+hr {
+  margin: 0.2rem 0;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
