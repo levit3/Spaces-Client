@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "./Auth/AuthContext";
 import "./Navbar.css";
 
 const Navbar = () => {
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { isLoggedIn, logout } = useAuth();
+  const navigate = useNavigate();
 
-  const toggleProfileMenu = () => {
-    setIsProfileOpen(!isProfileOpen);
+  const handleProfile = () => {
+    navigate("/profile");
   };
 
   const toggleMenu = () => {
@@ -57,20 +59,29 @@ const Navbar = () => {
         </li>
       </ul>
       <div className="navbar__auth">
-        <Link to="/login" className="login">
-          Login
-        </Link>
-        <Link to="/signup" className="signup">
-          Signup
-        </Link>
-        <div className="navbar__profile">
-          <img
-            src="path/to/avatar.jpg"
-            alt="Profile Avatar"
-            className="profile__avatar"
-            onClick={toggleProfileMenu}
-          />
-        </div>
+        {!isLoggedIn ? (
+          <>
+            <Link to="/login" className="login">
+              Login
+            </Link>
+            <Link to="/signup" className="signup">
+              Signup
+            </Link>
+          </>
+        ) : (
+          <>
+            <button onClick={logout} className="logout">
+              Logout
+            </button>
+            <div className="navbar__profile" onClick={handleProfile}>
+              <img
+                src="path/to/avatar.jpg"
+                alt="Profile Avatar"
+                className="profile__avatar"
+              />
+            </div>
+          </>
+        )}
       </div>
       <div className="navbar__hamburger" onClick={toggleMenu}>
         <span></span>
