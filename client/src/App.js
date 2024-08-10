@@ -8,6 +8,8 @@ import Navbar from "./components/Navbar";
 import EventList from "./Pages/EventsList";
 import EventDetail from "./Pages/EventDetail";
 import SpaceDetails from "./components/SpaceDetails";
+import EventCreation from "./components/EventCreation";
+
 import About from "./aboutUs";
 import "./App.css";
 
@@ -32,6 +34,7 @@ const AppContent = () => {
         <Route path="/event/:id" element={<EventDetail />} />
         <Route path="/space/:id" element={<SpaceDetails />} />
         <Route path="/about" element={<About />} />
+        <Route path="event" element={<EventCreation />}/>
       </Routes>
     </>
   );
@@ -46,3 +49,4 @@ const App = () => (
 );
 
 export default App;
+
