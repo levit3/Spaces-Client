@@ -8,6 +8,8 @@ import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
 import About from "./aboutUs";
 import PageNotFound from "./Pages/PageNotFound";
+import SpaceForm from "./Pages/SpaceForm";
+import EventCreation from "./components/EventCreation";
 import "./App.css";
 
 function App() {
@@ -39,6 +41,14 @@ function App() {
     {
       path: "/about",
       element: <About />,
+    },
+    {
+      path: "/spaces/new",
+      element: <SpaceForm space={null} />,
+    },
+    {
+      path: "/create-event",
+      element: <EventCreation />,
     },
     {
       path: "*",
