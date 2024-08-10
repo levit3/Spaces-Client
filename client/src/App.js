@@ -16,10 +16,6 @@ import "./App.css";
 const AppContent = () => {
   const { isLoggedIn } = useAuth();
 
-  if (!isLoggedIn) {
-    return <Login />;
-  }
-
   return (
     <>
       <Routes>
@@ -27,7 +23,7 @@ const AppContent = () => {
           path="/"
           element={
             <>
-              <Navbar />
+              {/* <Navbar /> */}
               <Homepage />
             </>
           }
