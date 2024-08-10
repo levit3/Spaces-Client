@@ -33,5 +33,18 @@ const ManageUsers = () => {
           .then(() => setUsers(users.filter(user => user.id !== id)))
           .catch(error => console.error('Error deleting user:', error));
       };
+      const handleFormChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+      };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (editingUser) {
+      handleUpdateUser(editingUser.id, formData);
+    } else {
+      handleAddUser(formData);
+    }
+  };
     
   
