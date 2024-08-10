@@ -111,6 +111,10 @@ const ManageUsers = () => {
               <td>{user.email}</td>
               <td>{user.role}</td>
               <td>
+              <Button variant="info" onClick={() => handleEditClick(user)}>Edit</Button>
+                <Button variant="danger" onClick={() => handleDeleteUser(user.id)} className="ms-2">Delete</Button>
+              </td>
+            </tr>
 
 
     
