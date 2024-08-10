@@ -1,9 +1,10 @@
 import React from "react";
-import SpaceDetails from './components/SpaceDetails'
+import EventCreation from "./components/EventCreation";
+
 const App = () => {
   return (
     <div className="App">
-      <SpaceDetails />
+      <EventCreation />
     </div>
   );
 };

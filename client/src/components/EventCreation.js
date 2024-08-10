@@ -25,9 +25,6 @@ function EventCreation() {
   const [loading, setLoading] = useState(false);
   const [modalMessage, setModalMessage] = useState(''); 
 
-
-
-
   const images = {
     main: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJjcsyLgOPmDPJOSVNXpaxCQlnPVLaQeHx4A&s"  };
 
@@ -124,7 +121,6 @@ function EventCreation() {
 
     }
   };
-
 
   const closeModal = () => {
     setIsModalOpen(false);
