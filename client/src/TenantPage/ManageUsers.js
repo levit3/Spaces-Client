@@ -20,4 +20,12 @@ const ManageUsers = () => {
           })
           .catch(error => console.error('Error adding user:', error));
       };
+      const handleUpdateUser = (id, user) => {
+        axios.put(`/api/users/${id}`, user)
+          .then(response => {
+            setUsers(users.map(u => u.id === id ? response.data : u));
+            resetForm();
+          })
+          .catch(error => console.error('Error updating user:', error));
+      };
   
