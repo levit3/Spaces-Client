@@ -17,3 +17,17 @@ const SpaceForm = ({ space, onClose, onSuccess }) => {
         price_per_hour: Yup.number().required('Price per hour is required').positive('Price must be positive'),
         status: Yup.string().required('Status is required')
     });
+    const postSpace = async (values) => {
+        try {
+          const response = await fetch('http://localhost:5555/api/spaces', { // Ensure correct URL
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            const postSpace = async (values) => {
+                try {
+                  const response = await fetch('http://localhost:5555/api/spaces', { // Ensure correct URL
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
