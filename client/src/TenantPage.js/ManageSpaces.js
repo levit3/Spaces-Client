@@ -60,5 +60,13 @@ const ManageSpaces = () => {
                     </tr>
                 </thead>
                 <tbody>
+                {spaces.map(space => (
+                        <tr key={space.id}>
+                            <td>{space.title}</td>
+                            <td>{space.description}</td>
+                            <td>{space.location}</td>
+                            <td>{space.price_per_hour}</td>
+                            <td>{space.status}</td>
+                            <td>
 
 
