@@ -25,4 +25,8 @@ const ManageSpaces = () => {
             });
     };
 
+    const handleAdd = () => {
+        setSelectedSpace(null);
+    };
+
 
