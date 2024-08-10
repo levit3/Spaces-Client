@@ -79,6 +79,19 @@ const ManageUsers = () => {
             required
           />
         </Form.Group>
+        <Form.Group controlId="formRole">
+          <Form.Label>Role</Form.Label>
+          <Form.Control
+            type="text"
+            name="role"
+            value={formData.role}
+            onChange={handleFormChange}
+            required
+          />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          {editingUser ? 'Update User' : 'Add User'}
+        </Button>
 
     
   
