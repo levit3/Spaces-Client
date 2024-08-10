@@ -33,5 +33,32 @@ const ManageSpaces = () => {
         <div>
             <h1>Manage Spaces</h1>
             <button onClick={handleAdd}>Add New Space</button>
+            {spaces.map(space => (
+                <div key={space.id}>
+                    <h2>{space.title}</h2>
+                    <p>{space.location}</p>
+                    <button onClick={() => handleEdit(space)}>Edit</button>
+
+                    <SpaceForm space={selectedSpace} onClose={() => setSelectedSpace(null)} onSuccess={space => {
+                if (selectedSpace) {
+                    setSpaces(spaces.map(s => s.id === space.id ? space : s));
+                } else {
+                    setSpaces([...spaces, space]);
+                }
+                setSelectedSpace(null);
+            }} />
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Location</th>
+                        <th>Price per Hour</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
 
 
