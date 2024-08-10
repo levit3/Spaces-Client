@@ -12,3 +12,8 @@ const ManageSpaces = () => {
             .catch(error => console.error('Error fetching spaces:', error));
     }, []);
 
+    const handleEdit = (space) => {
+        setSelectedSpace(space);
+    };
+
+
