@@ -97,4 +97,12 @@ const SpaceForm = ({ space, onClose, onSuccess }) => {
                             <Field type="number" id="price_per_hour" name="price_per_hour" />
                             <ErrorMessage name="price_per_hour" component="div" />
                         </div>
+                        <div>
+                            <label htmlFor="status">Status</label>
+                            <Field as="select" id="status" name="status">
+                                <option value="available">Available</option>
+                                <option value="unavailable">Unavailable</option>
+                            </Field>
+                            <ErrorMessage name="status" component="div" />
+                        </div>
             
