@@ -16,4 +16,13 @@ const ManageSpaces = () => {
         setSelectedSpace(space);
     };
 
+    const handleDelete = (id) => {
+        axios.delete(`/api/spaces/${id}`)
+            .then(() => setSpaces(spaces.filter(space => space.id !== id)))
+            .catch(error => {
+                console.error('Error deleting space:', error);
+                alert('Failed to delete space. Please try again.');
+            });
+    };
+
 
