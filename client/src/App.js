@@ -7,6 +7,8 @@ import Homepage from "./components/Home_page/Homepage";
 import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
 import About from './aboutUs';
+import ManageSpaces from "./TenantPage/ManageSpaces";
+import TenantDashboard from "./TenantPage/TenantDashboard";
 import "./App.css";
 
 function App() {
@@ -39,7 +41,17 @@ function App() {
       path: "/about",
       element: <About />,
     },
+    {
+      path: '/manage-spaces',
+      element: <ManageSpaces />
+    },
+    
+    {
+      path: '/dashboard',
+      element: <TenantDashboard />
+    }
   ]);
+
   return <RouterProvider router={router} />;
 }
 
