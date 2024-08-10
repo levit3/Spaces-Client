@@ -46,5 +46,10 @@ const ManageUsers = () => {
       handleAddUser(formData);
     }
   };
+
+  const handleEditUser = (user) => {
+    setEditingUser(user);
+    setFormData({name:user.name, email:user.email,role:user.role});
+  };
     
   
