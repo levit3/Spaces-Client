@@ -59,5 +59,12 @@ const SpaceForm = ({ space, onClose, onSuccess }) => {
           alert('Failed to update space. Please try again.');
         }
       };
-      
+      const handleSubmit = async (values, { setSubmitting }) => {
+        if (space) {
+            await putSpace(values);
+        } else {
+            await postSpace(values);
+        }
+        setSubmitting(false);
+    };
             
