@@ -68,5 +68,18 @@ const ManageSpaces = () => {
                             <td>{space.price_per_hour}</td>
                             <td>{space.status}</td>
                             <td>
+                            <button onClick={() => handleEdit(space)}>Edit</button>
+                            <button onClick={() => handleDelete(space.id)}>Delete</button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+};
+
+export default ManageSpaces;
+
 
 
