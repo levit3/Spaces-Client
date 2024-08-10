@@ -1,61 +1,52 @@
 import React from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import EventList from "./Pages/EventsList";
-import EventDetail from "./Pages/EventDetail";
-import SpaceDetails from "./components/SpaceDetails";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { AuthProvider, useAuth } from "./components/Auth/AuthContext";
 import Homepage from "./components/Home_page/Homepage";
 import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
+import Navbar from "./components/Navbar";
+import EventList from "./Pages/EventsList";
+import EventDetail from "./Pages/EventDetail";
+import SpaceDetails from "./components/SpaceDetails";
 import About from "./aboutUs";
-import PageNotFound from "./Pages/PageNotFound";
-import SpaceForm from "./Pages/SpaceForm";
-import EventCreation from "./components/EventCreation";
 import "./App.css";
 
-function App() {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Homepage />,
-    },
-    {
-      path: "/login",
-      element: <Login />,
-    },
-    {
-      path: "/signup",
-      element: <Signup />,
-    },
-    {
-      path: "/events",
-      element: <EventList />,
-    },
-    {
-      path: "/event/:id",
-      element: <EventDetail />,
-    },
-    {
-      path: "/space/:id",
-      element: <SpaceDetails />,
-    },
-    {
-      path: "/about",
-      element: <About />,
-    },
-    {
-      path: "/spaces/new",
-      element: <SpaceForm space={null} />,
-    },
-    {
-      path: "/create-event",
-      element: <EventCreation />,
-    },
-    {
-      path: "*",
-      element: <PageNotFound />,
-    },
-  ]);
-  return <RouterProvider router={router} />;
-}
+const AppContent = () => {
+  const { isLoggedIn } = useAuth();
+
+  if (!isLoggedIn) {
+    return <Login />;
+  }
+
+  return (
+    <>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Navbar />
+              <Homepage />
+            </>
+          }
+        />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/events" element={<EventList />} />
+        <Route path="/event/:id" element={<EventDetail />} />
+        <Route path="/space/:id" element={<SpaceDetails />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </>
+  );
+};
+
+const App = () => (
+  <Router>
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
+  </Router>
+);
 
 export default App;

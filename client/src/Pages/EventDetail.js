@@ -46,7 +46,7 @@ function EventDetail() {
       <section className="event-hero">
         <section className="event-details">
           <div className="event-description">{event.description}</div>
-          <img loading="lazy" src={src} alt="image" className="event-image" />
+          <img loading="lazy" src={src} alt="imge" className="event-image" />
         </section>
       </section>
     </main>
