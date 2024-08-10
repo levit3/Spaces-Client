@@ -58,6 +58,17 @@ const ManageUsers = () => {
   <Container>
   <h2>Manage Users</h2>
   <Button variant="primary" onClick={resetForm}>Add User</Button>
+  <Form onSubmit={handleSubmit} className="mt-3">
+        <Form.Group controlId="formName">
+          <Form.Label>Name</Form.Label>
+          <Form.Control
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleFormChange}
+            required
+          />
+        </Form.Group>
 
     
   
