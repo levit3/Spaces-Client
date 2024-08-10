@@ -6,22 +6,23 @@ import SpaceDetails from "./components/SpaceDetails";
 import Homepage from "./components/Home_page/Homepage";
 import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
-import About from './aboutUs';
+import About from "./aboutUs";
+import PageNotFound from "./Pages/PageNotFound";
 import "./App.css";
 
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/", 
-      element: <Homepage />
+      path: "/",
+      element: <PageNotFound />,
     },
     {
       path: "/login",
-      element: <Login />
+      element: <Login />,
     },
     {
       path: "/signup",
-      element: <Signup />
+      element: <Signup />,
     },
     {
       path: "/events",
@@ -42,6 +43,5 @@ function App() {
   ]);
   return <RouterProvider router={router} />;
 }
-
 
 export default App;
