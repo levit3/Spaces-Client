@@ -24,10 +24,40 @@ const SpaceForm = ({ space, onClose, onSuccess }) => {
             headers: {
               'Content-Type': 'application/json',
             },
-            const postSpace = async (values) => {
-                try {
-                  const response = await fetch('http://localhost:5555/api/spaces', { // Ensure correct URL
-                    method: 'POST',
-                    headers: {
-                      'Content-Type': 'application/json',
-                    },
+            body: JSON.stringify(values),
+            credentials: "include",
+          });
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          const data = await response.json();
+          onSuccess(data);
+          onClose();
+        } catch (error) {
+          console.error('Error adding space:', error);
+          alert('Failed to add space. Please try again.');
+        }
+      };
+
+      const putSpace = async (values) => {
+        try {
+          const response = await fetch(`http://localhost:5555/api/spaces/${space.id}`, { // Ensure correct URL
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(values),
+          });
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          const data = await response.json();
+          onSuccess(data);
+          onClose();
+        } catch (error) {
+          console.error('Error updating space:', error);
+          alert('Failed to update space. Please try again.');
+        }
+      };
+      
+            
