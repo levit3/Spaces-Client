@@ -92,4 +92,9 @@ const SpaceForm = ({ space, onClose, onSuccess }) => {
                             <Field type="text" id="location" name="location" />
                             <ErrorMessage name="location" component="div" />
                         </div>
+                        <div>
+                            <label htmlFor="price_per_hour">Price per Hour</label>
+                            <Field type="number" id="price_per_hour" name="price_per_hour" />
+                            <ErrorMessage name="price_per_hour" component="div" />
+                        </div>
             
