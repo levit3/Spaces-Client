@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import { AuthProvider, useAuth } from "./components/Auth/AuthContext";
 import Homepage from "./components/Home_page/Homepage";
 import Login from "./components/Auth/Login";
@@ -23,7 +28,6 @@ const AppContent = () => {
           path="/"
           element={
             <>
-              {/* <Navbar /> */}
               <Homepage />
             </>
           }
@@ -32,9 +36,21 @@ const AppContent = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/events" element={<EventList />} />
         <Route path="/event/:id" element={<EventDetail />} />
-        <Route path="/space/:id" element={<SpaceDetails />} />
+        <Route
+          path="/space/:id"
+          element={
+            <>
+              <Navbar />
+              <SpaceDetails />
+            </>
+          }
+        />
+        {/* <Route
+          path="/space/:id"
+          element={isLoggedIn ? <SpaceDetails /> : <Navigate to="/login" />}
+        /> */}
         <Route path="/about" element={<About />} />
-        <Route path="event" element={<EventCreation />}/>
+        <Route path="event" element={<EventCreation />} />
       </Routes>
     </>
   );
@@ -49,4 +65,3 @@ const App = () => (
 );
 
 export default App;
-

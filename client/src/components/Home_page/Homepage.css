@@ -282,134 +282,132 @@ body {
 
 /* Categories styles */
 .cat-categories-showcase {
-  background-color: #1e1e1e;
-  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background-color: #2c2c2c;
   padding: 2rem;
 }
 
 .cat-card {
   display: flex;
-  flex-direction: column;
-  /* margin-bottom: 4rem; */
-
-  margin: 7rem;
-  border-radius: 15px;
-  justify-content: space-evenly;
+  background-color: #3b3b3b;
+  border-radius: 10px;
   overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out,
+    box-shadow 0.3s ease-in-out;
 }
+
+.cat-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cat-card:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.cat-card:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.cat-card.reversed {
+  flex-direction: row-reverse;
+}
+
 .cat-card-content {
-  padding: 1rem;
+  flex: 1;
+  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cat-card-title {
+  font-size: 2.7rem;
+  margin-bottom: 1rem;
+  color: #ffffff;
+  transition: color 0.3s ease-in-out;
+}
+
+.cat-card:hover .cat-card-title {
+  color: #ffd700;
+}
+
+.cat-card-description {
+  font-size: 1.3rem;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+}
+
+.cat-see-more-btn {
+  align-self: flex-start;
+  padding: 0.5rem 1rem;
+  background-color: #ffd700;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.cat-see-more-btn:hover {
+  background-color: #ffd900a8;
+  transform: translateY(-2px);
+  color: #fff;
+  font-weight: 700;
+}
+
+.cat-card-image {
+  flex: 1;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+
+.cat-card-image.hovered {
+  transform: scale(1);
 }
 
 .cat-card-image img {
   width: 100%;
-  height: auto;
-  border-radius: 15px;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
 }
 
-.cat-card-title {
-  color: white;
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  text-align: start;
-}
+/* .cat-card-image.hovered img {
+  transform: scale(1.1);
+} */
 
-.cat-card-description {
-  margin-bottom: 1rem;
-  width: 80%;
-  text-align: start;
-}
-
-.cat-see-more-btn {
-  color: #e8e7e5;
-  cursor: pointer;
-  text-align: start;
-  font-size: 0.9rem;
-}
-.cat-see-more-btn:hover {
-  color: #ffd700;
-}
-
-@media (min-width: 768px) {
-  .cat-card {
-    flex-direction: row;
-    margin: 2rem;
-  }
-
+@media (max-width: 768px) {
+  .cat-card,
   .cat-card.reversed {
-    flex-direction: row-reverse;
-    text-align: start;
+    flex-direction: column;
   }
 
-  .cat-card-content,
   .cat-card-image {
-    flex: 1;
+    height: 200px;
   }
-
   .cat-card-content {
+    flex: 1;
+    padding: 0.9rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    text-align: start;
   }
-}
-
-@media (min-width: 1024px) {
-  .cat-categories-showcase {
-    padding: 4rem;
-  }
-
-  .cat-card {
-    margin-bottom: 6rem;
-  }
-
   .cat-card-title {
-    font-size: 2.5rem;
-  }
-
-  .cat-card-description {
-    font-size: 1.1rem;
-  }
-}
-
-@media (max-width: 808px) {
-  .cat-card {
-    flex-direction: column;
-    margin: 0.5rem;
-  }
-
-  .cat-card-content,
-  .cat-card-image {
-    flex: none;
-    width: 100%;
-    text-align: start;
-  }
-
-  .cat-card-content {
-    display: block;
-    text-align: start;
-    width: 98%;
-  }
-
-  .cat-card-image {
+    font-size: 2rem;
     margin-bottom: 1rem;
-  }
-
-  .cat-card-title {
-    text-align: center;
-  }
-
-  .cat-card-description {
-    width: 97%;
-    text-align: flex-start;
-  }
-
-  .cat-see-more-btn {
-    display: block;
-    margin: 0 auto;
+    color: #ffffff;
+    transition: color 0.3s ease-in-out;
   }
 }
-
 .end_container {
   display: flex;
   flex-direction: column;
