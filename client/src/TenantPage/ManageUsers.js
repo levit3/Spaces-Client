@@ -12,4 +12,12 @@ const ManageUsers = () => {
           .then(response => setUsers(response.data))
           .catch(error => console.error('Error fetching users:', error));
       }, []);
+      const handleAddUser = (user) => {
+        axios.post('/api/users', user)
+          .then(response => {
+            setUsers([...users, response.data]);
+            resetForm();
+          })
+          .catch(error => console.error('Error adding user:', error));
+      };
   
