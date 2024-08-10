@@ -82,4 +82,9 @@ const SpaceForm = ({ space, onClose, onSuccess }) => {
                             <Field type="text" id="title" name="title" />
                             <ErrorMessage name="title" component="div" />
                         </div>
+                        <div>
+                            <label htmlFor="description">Description</label>
+                            <Field as="textarea" id="description" name="description" />
+                            <ErrorMessage name="description" component="div" />
+                        </div>
             
