@@ -105,4 +105,18 @@ const SpaceForm = ({ space, onClose, onSuccess }) => {
                             </Field>
                             <ErrorMessage name="status" component="div" />
                         </div>
+                        <button type="submit" disabled={isSubmitting}>
+                            {space ? 'Update Space' : 'Add Space'}
+                        </button>
+                        <button type="button" onClick={onClose}>
+                            Cancel
+                        </button>
+                    </Form>
+                )}
+            </Formik>
+        </div>
+    );
+};
+
+export default SpaceForm;
             
