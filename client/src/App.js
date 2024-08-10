@@ -14,7 +14,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <PageNotFound />,
+      element: <Homepage />,
     },
     {
       path: "/login",
@@ -39,6 +39,10 @@ function App() {
     {
       path: "/about",
       element: <About />,
+    },
+    {
+      path: "*",
+      element: <PageNotFound />,
     },
   ]);
   return <RouterProvider router={router} />;
