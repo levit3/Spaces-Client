@@ -32,7 +32,7 @@ function EventsList() {
   };
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5555/api/events")
+    fetch("/api/events")
       .then((response) => response.json())
       .then((data) => {
         setEvents(data);
