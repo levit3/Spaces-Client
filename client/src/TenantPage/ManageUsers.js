@@ -92,6 +92,9 @@ const ManageUsers = () => {
         <Button variant="primary" type="submit">
           {editingUser ? 'Update User' : 'Add User'}
         </Button>
+        <Button variant="secondary" onClick={resetForm} className="ms-2">Cancel</Button>
+      </Form>
+
 
     
   
