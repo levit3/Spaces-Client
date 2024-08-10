@@ -69,6 +69,16 @@ const ManageUsers = () => {
             required
           />
         </Form.Group>
+        <Form.Group controlId="formEmail">
+          <Form.Label>Email</Form.Label>
+          <Form.Control
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleFormChange}
+            required
+          />
+        </Form.Group>
 
     
   
