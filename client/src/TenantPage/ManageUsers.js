@@ -51,5 +51,13 @@ const ManageUsers = () => {
     setEditingUser(user);
     setFormData({name:user.name, email:user.email,role:user.role});
   };
+  const resetForm = () => {
+    setEditingUser(null);
+    setFormData({ name: '', email: '', role: '' });
+  };
+  <Container>
+  <h2>Manage Users</h2>
+  <Button variant="primary" onClick={resetForm}>Add User</Button>
+
     
   
