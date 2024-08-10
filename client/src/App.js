@@ -9,6 +9,7 @@ import Signup from "./components/Auth/Signup";
 import About from './aboutUs';
 import ManageSpaces from "./TenantPage/ManageSpaces";
 import TenantDashboard from "./TenantPage/TenantDashboard";
+import ManageUsers from "./TenantPage/ManageUsers";
 import "./App.css";
 
 function App() {
@@ -49,6 +50,10 @@ function App() {
     {
       path: '/dashboard',
       element: <TenantDashboard />
+    },
+    {
+      path: '/manage-users',
+      element: <ManageUsers />
     }
   ]);
 
