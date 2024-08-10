@@ -94,6 +94,17 @@ const ManageUsers = () => {
         </Button>
         <Button variant="secondary" onClick={resetForm} className="ms-2">Cancel</Button>
       </Form>
+      <Table striped bordered hover className="mt-3">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+           
+          </tr>
+        </thead>
+        <tbody>
 
 
     
