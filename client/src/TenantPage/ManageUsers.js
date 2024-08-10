@@ -28,4 +28,10 @@ const ManageUsers = () => {
           })
           .catch(error => console.error('Error updating user:', error));
       };
+      const handleDeleteUser = (id) => {
+        axios.delete(`/api/users/${id}`)
+          .then(() => setUsers(users.filter(user => user.id !== id)))
+          .catch(error => console.error('Error deleting user:', error));
+      };
+    
   
