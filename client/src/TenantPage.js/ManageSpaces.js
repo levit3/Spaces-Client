@@ -29,4 +29,9 @@ const ManageSpaces = () => {
         setSelectedSpace(null);
     };
 
+    return (
+        <div>
+            <h1>Manage Spaces</h1>
+            <button onClick={handleAdd}>Add New Space</button>
+
 
