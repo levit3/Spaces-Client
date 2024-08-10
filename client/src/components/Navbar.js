@@ -9,14 +9,22 @@ const Navbar = () => {
   const { isLoggedIn, logout } = useAuth();
   const navigate = useNavigate();
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+    document.body.classList.toggle("menu-open", !isMenuOpen);
+  };
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add("menu-open");
+    } else {
+      document.body.classList.remove("menu-open");
+    }
+  }, [isMenuOpen]);
+
   const handleProfile = () => {
     navigate("/profile");
   };
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -32,33 +40,37 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
   return (
-    <nav className={`navbar ${isScrolled ? "navbar--scrolled" : ""}`}>
-      <div className="navbar__brand">
+    <nav className={`nav-navbar ${isScrolled ? "nav-navbar--scrolled" : ""}`}>
+      {/* Navbar content */}
+      <div className="nav-navbar__brand">
         <img
           src={process.env.PUBLIC_URL + "/logo.png"}
           alt="Logo"
-          className="navbar__logo"
+          className="nav-navbar__logo"
         />
       </div>
+
       <ul
-        className={`navbar__links ${isMenuOpen ? "navbar__links--open" : ""}`}
+        className={`nav-navbar__links ${
+          isMenuOpen ? "nav-navbar__links--open" : ""
+        }`}
       >
         <a href="#">Home</a>
-        <a href="#">Spaces</a>
-        <a href="#">About</a>
+        <Link to="/space/:id">Spaces</Link>
+        <a href="#">About Us</a>
 
-        <li className="dropdown">
+        <li className="nav-dropdown">
           Events
-          <ul className="dropdown-menu">
+          <ul className="nav-dropdown-menu">
             <a href="#">View All Events</a>
             <a href="#">Upcoming Events</a>
             <a href="#">Create Event</a>
           </ul>
         </li>
       </ul>
-      <div className="navbar__auth">
+
+      <div className="nav-navbar__auth">
         {!isLoggedIn ? (
           <>
             <Link to="/login" className="login">
@@ -73,17 +85,18 @@ const Navbar = () => {
             <button onClick={logout} className="logout">
               Logout
             </button>
-            <div className="navbar__profile" onClick={handleProfile}>
+            <div className="nav-navbar__profile" onClick={handleProfile}>
               <img
                 src="path/to/avatar.jpg"
                 alt="Profile Avatar"
-                className="profile__avatar"
+                className="nav-profile__avatar"
               />
             </div>
           </>
         )}
       </div>
-      <div className="navbar__hamburger" onClick={toggleMenu}>
+
+      <div className="nav-navbar__hamburger" onClick={toggleMenu}>
         <span></span>
         <span></span>
         <span></span>
