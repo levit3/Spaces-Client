@@ -11,16 +11,19 @@ const About = () => {
     const img4 = "https://www.themealdb.com/images/media/meals/jcr46d1614763831.jpg";
     const welcomeImageUrl = "https://images.pexels.com/photos/5898313/pexels-photo-5898313.jpeg?auto=compress&cs=tinysrgb&w=800";
 
+    return (
+        <Container 
+          className="home mt-4"
+          style={{
+            minHeight: '100vh',
+            backgroundImage: 'url("https://st4.depositphotos.com/9012638/30613/i/450/depositphotos_306130638-stock-photo-herb-and-spices-cooking-background.jpg")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+          }}
+        >
+    </Container>
+  );
+}
 
-};
-   return (
-    <Container className="home mt-4"
-    style={{
-      minHeight: '100vh',
-      backgroundImage: 'url("https://st4.depositphotos.com/9012638/30613/i/450/depositphotos_306130638-stock-photo-herb-and-spices-cooking-background.jpg")',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat',
-  }}
-   )
-  export default About;
+export default About;
