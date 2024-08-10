@@ -67,4 +67,12 @@ const SpaceForm = ({ space, onClose, onSuccess }) => {
         }
         setSubmitting(false);
     };
+    return (
+        <div className="space-form">
+            <h2>{space ? 'Edit Space' : 'Add Space'}</h2>
+            <Formik
+                initialValues={initialValues}
+                validationSchema={validationSchema}
+                onSubmit={handleSubmit}
+            ></Formik>
             
