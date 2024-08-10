@@ -75,4 +75,11 @@ const SpaceForm = ({ space, onClose, onSuccess }) => {
                 validationSchema={validationSchema}
                 onSubmit={handleSubmit}
             ></Formik>
+            {({ isSubmitting }) => (
+                    <Form>
+                        <div>
+                            <label htmlFor="title">Title</label>
+                            <Field type="text" id="title" name="title" />
+                            <ErrorMessage name="title" component="div" />
+                        </div>
             
