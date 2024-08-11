@@ -49,4 +49,22 @@ function About() {
            Our mission is to connect space owners with those in need of unique environments, making it easier to find and book the perfect location for any occasion.
          </p>
        </div>
+       <div className="section container-light">
+         <h2 className="section-title text-amber">Our Values</h2>
+         <ul className="section-text">
+           <li><strong>Integrity:</strong> We operate with honesty and transparency, building trust with our users.</li>
+           <li><strong>Innovation:</strong> We continuously seek new and better ways to connect people with spaces.</li>
+           <li><strong>Customer Focus:</strong> We prioritize the needs and feedback of our users to enhance their experience.</li>
+           <li><strong>Community:</strong> We foster a sense of belonging and collaboration among space owners and renters.</li>
+         </ul>
+       </div>
+ 
+       <div className="section bg-cyan-900">
+         <h2 className="section-title text-amber">Our Team</h2>
+         <p className="section-text">
+           Our dedicated team consists of experienced professionals in both front-end and back-end development,
+           working together to build a robust and user-friendly platform.
+         </p>
+       </div>
+ 
  
