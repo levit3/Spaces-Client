@@ -43,3 +43,10 @@ function About() {
            </div>
          </div>
        </div>
+       <div className="section container-light">
+         <h2 className="section-title text-amber">Our Mission</h2>
+         <p className="section-text">
+           Our mission is to connect space owners with those in need of unique environments, making it easier to find and book the perfect location for any occasion.
+         </p>
+       </div>
+ 
