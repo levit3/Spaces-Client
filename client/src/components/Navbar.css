@@ -111,7 +111,8 @@
 }
 
 .login,
-.signup {
+.signup,
+.logout {
   padding: 0.5rem 1rem;
   cursor: pointer;
   font-size: 21px;
@@ -143,6 +144,21 @@
 }
 
 .login:hover {
+  background: #ffd700;
+  color: #fff;
+  border-radius: 10px;
+}
+
+.logout {
+  background: #fff;
+  color: #000;
+  border: none;
+  font-size: 18px;
+  border-radius: 10px;
+  transition: 300ms ease-in-out;
+}
+
+.logout:hover {
   background: #ffd700;
   color: #fff;
   border-radius: 10px;
