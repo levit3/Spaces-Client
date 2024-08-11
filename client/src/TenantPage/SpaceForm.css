@@ -49,3 +49,18 @@ label {
     font-size: 16px;
     font-family: 'Nunito', sans-serif;
 }
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+button[type="submit"], button[type="button"] {
+    width: 100%;
+    padding: 14px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Nunito', sans-serif;
+}
