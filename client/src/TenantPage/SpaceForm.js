@@ -1,6 +1,8 @@
 import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import './SpaceForm.css';
+
 const SpaceForm = ({ space, onClose, onSuccess }) => {
     const initialValues = space || {
         title: '',
@@ -74,7 +76,7 @@ const SpaceForm = ({ space, onClose, onSuccess }) => {
                 initialValues={initialValues}
                 validationSchema={validationSchema}
                 onSubmit={handleSubmit}
-            ></Formik>
+            >
             {({ isSubmitting }) => (
                     <Form>
                         <div>

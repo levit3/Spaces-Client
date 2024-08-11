@@ -42,7 +42,7 @@ const ManageSpaces = () => {
                 }
                 setSelectedSpace(null);
             }} />
-
+          <div className="table-container">
             <table>
                 <thead>
                     <tr>
@@ -70,6 +70,7 @@ const ManageSpaces = () => {
                     ))}
                 </tbody>
             </table>
+        </div>
         </div>
     );
 };
