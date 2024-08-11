@@ -1,20 +1,20 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { AuthProvider, useAuth } from "./components/Auth/AuthContext";
+import { AuthProvider,/*useAuth*/ } from "./components/Auth/AuthContext";
 import Homepage from "./components/Home_page/Homepage";
 import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
-import Navbar from "./components/Navbar";
 import EventList from "./Pages/EventsList";
 import EventDetail from "./Pages/EventDetail";
 import SpaceDetails from "./components/SpaceDetails";
 import EventCreation from "./components/EventCreation";
+import BookingDetails from "./bookingDetails/BookingDetails";
+import About from "./aboutUs.jsx";
 
-import About from "./aboutUs";
 import "./App.css";
 
 const AppContent = () => {
-  const { isLoggedIn } = useAuth();
+  // const { isLoggedIn } = useAuth();
 
   return (
     <>
@@ -34,7 +34,8 @@ const AppContent = () => {
         <Route path="/event/:id" element={<EventDetail />} />
         <Route path="/space/:id" element={<SpaceDetails />} />
         <Route path="/about" element={<About />} />
-        <Route path="event" element={<EventCreation />}/>
+        <Route path="create-event" element={<EventCreation />}/>
+        <Route path="/bookingdetails" element={<BookingDetails />} />
       </Routes>
     </>
   );

@@ -56,17 +56,17 @@ const Navbar = () => {
           isMenuOpen ? "nav-navbar__links--open" : ""
         }`}
       >
-        <a href="#">Home</a>
+        <Link to="/">Home</Link>
         <Link to="/space/:id">Spaces</Link>
-        <a href="#">About Us</a>
+        <Link to="/about">About Us</Link>
 
         <li className="nav-dropdown">
           Events
           <ul className="nav-dropdown-menu">
-            <a href="#">View All Events</a>
-            <a href="#">Upcoming Events</a>
-            <a href="#">Create Event</a>
-          </ul>
+            <a href="/event">View All Events</a>
+            <a href="/event">Upcoming Events</a>
+            <Link to="/create-event">Create Event</Link>
+            </ul>
         </li>
       </ul>
 

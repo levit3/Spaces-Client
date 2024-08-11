@@ -6,7 +6,15 @@
   border-radius: 8px;
   margin: 0 auto;
   gap: 10px;
+  margin-top: 5%;
 }
+
+/* Navbar styling */
+.navbar {
+  margin-bottom: 20px;
+}
+
+/* Event creation container styling */
 .event-creation-container {
   display: flex;
   justify-content: space-between;
@@ -14,42 +22,57 @@
   padding: 20px;
   border-radius: 8px;
   margin: 0 auto;
-  gap: 10px;
+  gap: 10px; /* Add space between image and form */
   margin-top: 10px;
 }
 
+/* Image container styling */
 .image-container {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 50vh; /* Occupy 50% of the viewport height */
+  width: 50vw; /* Occupy 50% of the viewport width */
   margin-right: 10%;
-  margin-left: 10%;
+  position: relative; /* For positioning the icon */
+  margin-top: 20px;
 
-  height: 65vh;
-  margin-top: 0px;
 }
 
+/* Main image styling */
 .main-image {
-  border-radius: 8px;
   width: 100%;
-  height: auto;
-  max-width: 1000px;
-  max-height: 50vh;
+  height: 100%;
+  object-fit: cover; /* Ensure the image covers the container without distortion */
+  border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  margin-left: 10px;
+  margin-top: 10px;
+
+}
+
+/* Icon styling */
+.icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 50px;
+  height: 50px;
+  background: url('https://img.icons8.com/ios-filled/50/ffffff/event.png') no-repeat center;
+  background-size: cover;
 }
 
 /* Form container styling */
 .event-form {
-  flex: 2;
+  flex: 1;
   display: flex;
   flex-direction: column;
   max-width: 600px;
   width: 100%;
-  margin-top: 5%;
   margin-right: 10%;
-  margin-bottom: 50%;
+  margin-bottom: 200px;
+  margin-top: 10px;
+
 }
 
 /* Title and form label styling */
@@ -57,14 +80,26 @@
   background-color: #1e1e1e;
   color: #ffa500;
   font-size: 36px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   text-align: center;
   text-transform: uppercase;
   font-weight: 700;
   font-style: oblique;
-  margin-top: 0%;
+  position: relative; /* For positioning the sticker */
 }
 
+/* Sticker styling */
+.sticker {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background: url('https://img.icons8.com/ios-filled/100/ffa500/star.png') no-repeat center;
+  background-size: cover;
+}
+
+/* Form label styling */
 .form-label {
   color: #ffa500;
   font-size: 16px;
@@ -91,11 +126,14 @@
   background-color: #ffa500;
   color: #000;
   border: none;
-  padding: 12px 24px;
+  padding: 12px 9px;
   cursor: pointer;
   font-size: 18px;
   border-radius: 8px;
   transition: background-color 0.3s;
+  border-radius: 10px;
+  margin-right: 50px;
+  margin-left: 50px;
 }
 
 .submit-button:hover {
@@ -124,6 +162,8 @@
   }
 
   .image-container {
+    width: 100%; /* Full width on small screens */
+    height: auto; /* Adjust height to maintain aspect ratio */
     margin-bottom: 20px;
   }
 
@@ -139,30 +179,35 @@
     font-size: 16px;
   }
 }
+
+/* Modal overlay and content styling */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000; /* Ensure the modal is on top */
 }
 
 .modal-content {
-  background: #fff;
+  background: #1e1e1e; /* Changed background color to match theme */
   padding: 30px;
   border-radius: 8px;
   text-align: center;
-  font-family: "Times New Roman", serif;
+  font-family: 'Times New Roman', serif;
   width: 80%;
   max-width: 600px;
+  color: whitesmoke;
 }
 
 .modal-content h2 {
   margin: 0;
+  color: whitesmoke;
 }
 
 .modal-content button {
@@ -171,8 +216,11 @@
   border: none;
   background: #007bff;
   color: #fff;
-  border-radius: 5px;
+  border-radius: 15px;
   cursor: pointer;
+  max-width: 300px;
+  margin-left: 120px;
+  margin-right: 100px;
 }
 
 .modal-content button:hover {

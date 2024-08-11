@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './EventCreation.css';
+import { useNavigate } from 'react-router-dom'; // Update this import
+import Navbar from './Navbar.js';
 
 const Modal = ({ isOpen, onClose, message }) => {
   if (!isOpen) return null;
@@ -21,12 +23,15 @@ function EventCreation() {
   const [spaceId, setSpaceId] = useState('');
   const [user, setUser] = useState(null);
   const [bookedSpaces, setBookedSpaces] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false); 
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [modalMessage, setModalMessage] = useState(''); 
+  const [modalMessage, setModalMessage] = useState('');
+  const [redirectOnClose, setRedirectOnClose] = useState(false); // New state for redirect
+  const navigate = useNavigate(); // Use useNavigate instead of useHistory
 
   const images = {
-    main: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJjcsyLgOPmDPJOSVNXpaxCQlnPVLaQeHx4A&s"  };
+    main: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJjcsyLgOPmDPJOSVNXpaxCQlnPVLaQeHx4A&s"
+  };
 
   useEffect(() => {
     fetch("http://localhost:5555/api/users/92")
@@ -51,28 +56,36 @@ function EventCreation() {
         const bookings = await response.json();
         const userBookings = bookings.filter(booking => booking.user_id === 92);
         console.log(userBookings);
-  
+
         const uniqueSpacesMap = new Map();
         userBookings.forEach(booking => {
           if (!uniqueSpacesMap.has(booking.space_id)) {
             uniqueSpacesMap.set(booking.space_id, booking.space_title);
           }
         });
-  
+
         const spaces = Array.from(uniqueSpacesMap, ([id, title]) => ({
           id,
           title
         }));
-  
+
         console.log(spaces);
         setBookedSpaces(spaces);
-        setLoading(true)
+        setLoading(true);
       } catch (error) {
         console.error('Error fetching bookings:', error);
       }
     };
     fetchBookings();
   }, [user]);
+
+  useEffect(() => {
+    if (loading && bookedSpaces.length === 0) {
+      setModalMessage('You have no booked spaces. Please book a space to create an event');
+      setIsModalOpen(true);
+      setRedirectOnClose(true); // Set redirect on close
+    }
+  }, [loading, bookedSpaces]);
 
   const handleSelectChange = (e) => {
     const selectedSpaceId = e.target.value;
@@ -86,7 +99,7 @@ function EventCreation() {
       setIsModalOpen(true);
       return;
     }
-    console.log("Submitting event with date:", date); 
+    console.log("Submitting event with date:", date);
     const event = {
       title,
       description,
@@ -104,7 +117,7 @@ function EventCreation() {
 
       if (response.ok) {
         setModalMessage('Event created successfully!');
-        setIsModalOpen(true); 
+        setIsModalOpen(true);
         console.log('Event created successfully');
         setTitle('');
         setDescription('');
@@ -118,12 +131,14 @@ function EventCreation() {
       console.error('Error:', error);
       setModalMessage('An error occurred while creating the event');
       setIsModalOpen(true);
-
     }
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
+    if (redirectOnClose) {
+      navigate('/'); // Navigate to home page
+    }
   };
 
   if (!loading) {
@@ -136,7 +151,10 @@ function EventCreation() {
 
   return (
     <section className='main-content'>
-      <h1 className='title'>Create Your Event</h1>
+      <Navbar/>
+      <h1 className='title'>
+        Create Your Event
+        </h1>
       <div className='event-creation-container'>
         <div className="image-container">
           <img src={images.main} alt="Event view" className="main-image" />
@@ -185,13 +203,13 @@ function EventCreation() {
           />
           <input className='submit-button' type='submit' value='Create Event' />
         </form>
-          <Modal
-            isOpen={isModalOpen}
-            onClose={closeModal}
-            message={modalMessage}
-            />
-      </div>   
-     </section>
+        <Modal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          message={modalMessage}
+        />
+      </div>
+    </section>
   );
 }
 
