@@ -24,3 +24,28 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     box-sizing: border-box; /* Ensures padding and border are included in total width */
 }
+h2 {
+    margin-bottom: 1rem;
+    font-size: 24px;
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #333;
+}input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: 'Nunito', sans-serif;
+}
