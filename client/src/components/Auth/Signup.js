@@ -63,17 +63,14 @@ const Signup = () => {
 
   const handleSubmit = async (values, { setSubmitting, setErrors }) => {
     try {
-      const response = await authenticatedFetch(
-        "http://127.0.0.1:5555/api/signup",
-        {
-          method: "POST",
-          body: JSON.stringify({
-            name: values.name,
-            email: values.email,
-            password: values.password,
-          }),
-        }
-      );
+      const response = await authenticatedFetch("/api/users", {
+        method: "POST",
+        body: JSON.stringify({
+          name: values.name,
+          email: values.email,
+          password: values.password,
+        }),
+      });
 
       login(response.token);
 

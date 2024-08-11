@@ -8,15 +8,18 @@ import Navbar from "./components/Navbar";
 import EventList from "./Pages/EventsList";
 import EventDetail from "./Pages/EventDetail";
 import SpaceDetails from "./components/SpaceDetails";
+import EventCreation from "./components/EventCreation";
+import SpaceForm from "./Pages/SpaceForm";
+import PageNotFound from "./Pages/PageNotFound";
 import About from "./aboutUs";
 import "./App.css";
 
 const AppContent = () => {
   const { isLoggedIn } = useAuth();
 
-  if (!isLoggedIn) {
-    return <Login />;
-  }
+  // if (!isLoggedIn) {
+  //   return <Login />;
+  // }
 
   return (
     <>
@@ -35,7 +38,10 @@ const AppContent = () => {
         <Route path="/events" element={<EventList />} />
         <Route path="/event/:id" element={<EventDetail />} />
         <Route path="/space/:id" element={<SpaceDetails />} />
+        <Route path="/events/new" element={<EventCreation />} />
+        <Route path="/spaces/new" element={<SpaceForm />} />
         <Route path="/about" element={<About />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>
   );

@@ -45,16 +45,16 @@ const Navbar = () => {
       <ul
         className={`navbar__links ${isMenuOpen ? "navbar__links--open" : ""}`}
       >
-        <a href="#">Home</a>
+        <a href="/">Home</a>
         <a href="#">Spaces</a>
         <a href="#">About</a>
 
         <li className="dropdown">
           Events
           <ul className="dropdown-menu">
-            <a href="#">View All Events</a>
-            <a href="#">Upcoming Events</a>
-            <a href="#">Create Event</a>
+            {/* <a href="#">View All Events</a> */}
+            <a href="/events">Upcoming Events</a>
+            <a href="/events/new">Create Event</a>
           </ul>
         </li>
       </ul>

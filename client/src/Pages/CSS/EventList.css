@@ -229,3 +229,14 @@ hr {
   border: none;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
+
+.back-button {
+  cursor: pointer;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.back-button-image {
+  width: 40px;
+  height: 40px;
+}

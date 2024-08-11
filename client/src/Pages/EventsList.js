@@ -22,6 +22,21 @@ function EventsList() {
     setSelectedDate(date);
   };
 
+  useEffect(() => {
+    fetch("/api/events")
+      .then((response) => response.json())
+      .then((data) => {
+        setEvents(data);
+        setLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (events.length > 0) {
+      filterEventsByDate();
+    }
+  }, [selectedDate, events]);
+
   const filterEventsByDate = () => {
     const filteredEvents = events.filter(
       (event) =>
@@ -31,22 +46,24 @@ function EventsList() {
     setFilteredEvents(filteredEvents);
   };
 
-  useEffect(() => {
-    fetch("/api/events")
-      .then((response) => response.json())
-      .then((data) => {
-        setEvents(data);
-        filterEventsByDate();
-        setLoading(false);
-      });
-  }, [selectedDate]);
-
   if (loading) {
     return <div>Loading...</div>;
   }
 
+  const handleGoBack = () => {
+    window.history.back();
+  };
+
   return (
     <div className="events-container">
+      <div className="back-button" onClick={handleGoBack}>
+        <img
+          src="https://img.icons8.com/?size=100&id=60636&format=png&color=FFFFFF"
+          alt="Back"
+          className="back-button-image"
+        />
+      </div>
+
       <header className="events-header">
         <h2 className="events-title">Upcoming Events</h2>
       </header>
@@ -68,9 +85,6 @@ function EventsList() {
             filteredEvents.map((event) => (
               <div key={event.id} className="event-card">
                 <div className="event-content">
-                  {/* <p className="event-link">
-                  <time className="event-time">{event.time}</time>
-                </p> */}
                   <h3 className="event-title">{event.title}</h3>
                   <p className="event-list-name">{event.space.title}</p>
                   <p className="event-list-location">{event.space.location}</p>
