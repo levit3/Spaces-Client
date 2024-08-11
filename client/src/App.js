@@ -47,6 +47,8 @@ const AppContent = () => {
   );
 };
 
+
+
 const App = () => (
   <Router>
     <AuthProvider>
