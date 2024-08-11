@@ -64,3 +64,46 @@ button[type="submit"], button[type="button"] {
     font-size: 16px;
     font-family: 'Nunito', sans-serif;
 }
+button[type="submit"] {
+    background-color: #007bff; /* Blue color */
+    color: white;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+button[type="submit"]:disabled {
+    background-color: #0056b3; /* Darker blue for disabled state */
+}
+
+button[type="button"] {
+    background-color: slategray;
+    color: white;
+}
+
+button[type="button"]:hover {
+    background-color: rgb(95, 107, 119);
+}.input-error {
+    border: 1px solid red;
+}
+
+p {
+    color: rgb(218, 71, 71);
+    font-size: 14px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+div {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+}
+
+
