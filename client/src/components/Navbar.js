@@ -6,6 +6,7 @@ import "./Navbar.css";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const { isLoggedIn, logout } = useAuth();
   const navigate = useNavigate();
 
@@ -14,24 +15,25 @@ const Navbar = () => {
     document.body.classList.toggle("menu-open", !isMenuOpen);
   };
 
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+    document.body.classList.toggle("dark-mode", !isDarkMode);
+    localStorage.setItem("darkMode", !isDarkMode);
+  };
+
   useEffect(() => {
+    const savedDarkMode = localStorage.getItem("darkMode") === "true";
+    setIsDarkMode(savedDarkMode);
+    document.body.classList.toggle("dark-mode", savedDarkMode);
+
     if (isMenuOpen) {
       document.body.classList.add("menu-open");
     } else {
       document.body.classList.remove("menu-open");
     }
-  }, [isMenuOpen]);
 
-  const handleProfile = () => {
-    navigate("/profile");
-  };
-  useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -39,10 +41,18 @@ const Navbar = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isMenuOpen]);
+
+  const handleProfile = () => {
+    navigate("/profile");
+  };
+
   return (
-    <nav className={`nav-navbar ${isScrolled ? "nav-navbar--scrolled" : ""}`}>
-      {/* Navbar content */}
+    <nav
+      className={`nav-navbar ${isScrolled ? "nav-navbar--scrolled" : ""} ${
+        isDarkMode ? "nav-navbar--dark" : ""
+      }`}
+    >
       <div className="nav-navbar__brand">
         <img
           src={process.env.PUBLIC_URL + "/logo.png"}
@@ -71,6 +81,14 @@ const Navbar = () => {
       </ul>
 
       <div className="nav-navbar__auth">
+        <button onClick={toggleDarkMode} className="nav-navbar__theme-toggle">
+          <span className="nav-navbar__theme-toggle-icon">
+            {isDarkMode ? "☀️" : "🌙"}
+          </span>
+          <span className="nav-navbar__theme-toggle-text">
+            {isDarkMode ? "Light" : "Night"}
+          </span>
+        </button>
         {!isLoggedIn ? (
           <>
             <Link to="/login" className="login">
@@ -95,7 +113,6 @@ const Navbar = () => {
           </>
         )}
       </div>
-
       <div className="nav-navbar__hamburger" onClick={toggleMenu}>
         <span></span>
         <span></span>

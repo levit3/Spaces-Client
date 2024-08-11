@@ -14,42 +14,6 @@ body {
 } */
 
 /* Hero Section */
-/* .hero {
-  background-image: url("https://cdn.builder.io/api/v1/image/assets/TEMP/d37749fb8a65488d31febb1719da3afc8d2c6a6579606b9b6604fe858faf38ec?apiKey=598a59b5422d492eb1a6de6a6fee0a4b");
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero__content {
-  position: absolute;
-  bottom: 40px;
-  left: 0;
-  right: 0;
-  font-family: "Pacifico", cursive;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  color: #fff;
-}
-
-.hero__content h1 {
-  font-size: 3.5rem;
-  margin-bottom: 1rem;
-}
-
-@media (max-width: 768px) {
-  .hero__content h1 {
-    font-size: 2rem;
-  }
-
-  .hero__content {
-    bottom: 100px;
-  }
-} */
 .hero {
   height: 100vh;
   display: flex;
@@ -161,7 +125,7 @@ body {
   }
 
   .hero__content {
-    margin-bottom: 3rem; /* Slightly less space on mobile */
+    margin-bottom: 3rem;
   }
 }
 
