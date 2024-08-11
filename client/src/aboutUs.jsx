@@ -17,3 +17,13 @@ import React from "react";
     </div>
   );
 }
+function About() {
+  return (
+    <>
+      <div className="container">
+        <div className="flex flex-wrap flex-1 shrink gap-12 justify-center items-center w-full max-w-[1200px] min-w-[240px]">
+          <div className="flex flex-col flex-1 shrink justify-center self-stretch my-auto text-white max-w-[720px] min-w-[280px]">
+            <div className="flex flex-col justify-center w-full">
+              <h2 className="text-7xl tracking-tighter leading-[78px] max-md:text-4xl max-md:leading-10">
+                Welcome to Spaces for Rent where your perfect venue awaits.
+              </h2>
