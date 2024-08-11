@@ -10,4 +10,58 @@
 .container-light {
   background-color: #cbd5e1;
 }
+.text-white {
+  color: white;
+}
+
+.text-black {
+  color: black;
+}
+
+.text-amber {
+  color: #fbbf24;
+}
+
+/* Mission, Vision, Values, Team sections */
+.section {
+  padding: 5rem 0;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 4rem;
+  color: #fbbf24;
+}
+
+.section-text {
+  color: rgb(22, 3, 3);
+}.navbar, .footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: #fdfbdc;
+  color: white;
+}
+
+.navbar a, .footer a {
+  color: #2e2e2e; /* Light black for the buttons */
+  text-decoration: none;
+  margin: 0 1rem;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover, .footer a:hover {
+  color: #fbbf24; /* Gold color on hover */
+}
+
+/* Nover Effect */
+.nover {
+  color: transparent; /* Initially colorless */
+  transition: color 0.3s ease;
+}
+
+.nover:hover {
+  color: #fbbf24; /* Gold color on hover */
+}
 
