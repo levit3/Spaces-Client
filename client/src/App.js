@@ -1,15 +1,10 @@
 import React from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import EventList from "./Pages/EventsList";
-import EventDetail from "./Pages/EventDetail";
-import SpaceDetails from "./components/SpaceDetails";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { AuthProvider, useAuth } from "./components/Auth/AuthContext";
 import Homepage from "./components/Home_page/Homepage";
 import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
 import About from './aboutUs';
-import ManageSpaces from "./TenantPage/ManageSpaces";
-import TenantDashboard from "./TenantPage/TenantDashboard";
-import ManageUsers from "./TenantPage/ManageUsers";
 import "./App.css";
 
 function App() {
@@ -42,21 +37,7 @@ function App() {
       path: "/about",
       element: <About />,
     },
-    {
-      path: '/manage-spaces',
-      element: <ManageSpaces />
-    },
-    
-    {
-      path: '/dashboard',
-      element: <TenantDashboard />
-    },
-    {
-      path: '/manage-users',
-      element: <ManageUsers />
-    }
   ]);
-
   return <RouterProvider router={router} />;
 }
 

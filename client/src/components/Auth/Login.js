@@ -1,16 +1,68 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "./AuthContext";
 import "./Auth.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { isLoggedIn, login } = useAuth();
 
-  const handleSubmit = (e) => {
+  if (isLoggedIn) {
+    navigate("/");
+    return null;
+  }
+
+  const authenticatedFetch = async (url, options = {}) => {
+    const token = localStorage.getItem("token");
+    const headers = {
+      "Content-Type": "application/json",
+      ...options.headers,
+    };
+
+    if (token) {
+      headers["Authorization"] = `Bearer ${token}`;
+    }
+
+    try {
+      const response = await fetch(url, {
+        ...options,
+        headers,
+      });
+
+      if (!response.ok) {
+        const errorMessage = await response.text();
+        throw new Error(`Request failed: ${response.status} ${errorMessage}`);
+      }
+
+      return response.json();
+    } catch (error) {
+      console.error("Fetch error:", error);
+      throw error;
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      const response = await authenticatedFetch(
+        "http://127.0.0.1:5555/api/login",
+        {
+          method: "POST",
+          body: JSON.stringify({ email, password }),
+        }
+      );
+
+      localStorage.setItem("token", response.token);
+      login(response.token);
+      navigate("/");
+    } catch (error) {
+      setError(error.message || "Login failed");
+    }
   };
 
   const handleClose = () => {
@@ -34,7 +86,8 @@ const Login = () => {
           Don't have an account? <Link to="/signup">Sign up!</Link>
         </div>
         <h1 className="auth-welcome-text">Welcome Back</h1>
-        <form className="" onSubmit={handleSubmit}>
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        <form onSubmit={handleSubmit}>
           <input
             className="auth-login-input"
             type="email"
