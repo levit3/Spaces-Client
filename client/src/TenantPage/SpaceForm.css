@@ -14,3 +14,13 @@ body {
     min-height: 100vh;
     background-color: #f4f6f6;
 }
+.space-form {
+    width: 100%;
+    max-width: 800px; /* Adjusted width for better layout */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; /* Ensures padding and border are included in total width */
+}
