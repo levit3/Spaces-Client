@@ -4,42 +4,56 @@ import { AuthProvider, useAuth } from "./components/Auth/AuthContext";
 import Homepage from "./components/Home_page/Homepage";
 import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
-import About from './aboutUs';
+import Navbar from "./components/Navbar";
+import EventList from "./Pages/EventsList";
+import EventDetail from "./Pages/EventDetail";
+import SpaceDetails from "./components/SpaceDetails";
+import About from "./aboutUs";
 import "./App.css";
+import ManageSpaces from "./TenantPage/ManageSpaces";
+import TenantDashboard from "./TenantPage/TenantDashboard";
+import ManageUsers from "./TenantPage/ManageUsers";
+const AppContent = () => {
+  const { isLoggedIn } = useAuth();
 
-function App() {
-  const router = createBrowserRouter([
-    {
-      path: "/", 
-      element: <Homepage />
-    },
-    {
-      path: "/login",
-      element: <Login />
-    },
-    {
-      path: "/signup",
-      element: <Signup />
-    },
-    {
-      path: "/events",
-      element: <EventList />,
-    },
-    {
-      path: "/event/:id",
-      element: <EventDetail />,
-    },
-    {
-      path: "/space/:id",
-      element: <SpaceDetails />,
-    },
-    {
-      path: "/about",
-      element: <About />,
-    },
-  ]);
-  return <RouterProvider router={router} />;
-}
+  if (!isLoggedIn) {
+    return <Login />;
+  }
 
+  return (
+    <>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Navbar />
+              <Homepage />
+            </>
+          }
+        />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/events" element={<EventList />} />
+        <Route path="/event/:id" element={<EventDetail />} />
+        <Route path="/space/:id" element={<SpaceDetails />} />
+        <Route path="/dashboard" element={<TenantDashboard />} />
+        <Route path="/manage-spaces" element={<ManageSpaces />} />
+        <Route path="/manage-users" element={<ManageUsers />} />
+        <Route path="/about-us" element={<About />} />
+      </Routes>
+    </>
+  );
+};
+
+
+
+const App = () => (
+  <Router>
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
+  </Router>
+);
 
 export default App;
