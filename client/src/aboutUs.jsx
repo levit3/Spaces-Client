@@ -66,5 +66,21 @@ function About() {
            working together to build a robust and user-friendly platform.
          </p>
        </div>
+       <div className="mt-8 flex flex-col items-center">
+            <p className="text-lg text-black">Nicholas - Front-End Developer</p>
+            <p className="text-lg text-black">Habib - Back-End Developer</p>
+            <p className="text-lg text-black">Favor - Front-End Developer</p>
+            <p className="text-lg text-black">Levite - Back-End Developer</p>
+            <p className="text-lg text-black">Benhin - Front-End Developer</p>
+          </div>
+        <div className="section bg-gray-100">
+      </div>
+      <nav className="flex justify-center items-center px-4 py-8 bg-cyan-900 text-white">
+      <div className="flex gap-4 text-lg">
+        <a href="/" className="hover:text-gold">Home</a> 
+        <a href="/login" className="hover:text-gold">Login</a>
+      </div>
+    </nav>
+
  
  
