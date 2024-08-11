@@ -81,6 +81,17 @@ function About() {
         <a href="/login" className="hover:text-gold">Login</a>
       </div>
     </nav>
+    <footer className="flex justify-center items-center px-4 py-8 bg-cyan-900 text-white">
+        <div className="flex flex-col gap-4 items-center">
+          
+          <a href="/contact" className="hover:text-gold">Contact Us</a>
+        </div>
+      </footer>
+    </>
+  );
+}
+
+export default About;
 
  
  

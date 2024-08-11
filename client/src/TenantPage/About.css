@@ -1,0 +1,13 @@
+/* General Styles */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: #2e2e2e;
+}
+
+.container-light {
+  background-color: #cbd5e1;
+}
+
