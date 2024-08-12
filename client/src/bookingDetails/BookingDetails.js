@@ -1,8 +1,6 @@
 import React from "react";
 import ImageGallery from "./ImageGallery";
 import BookingForm from "./BookingForm";
-//import AmenitiesList from "./AmenitiesList";
-//import MapView from "./MapView.js";
 import "./BookingDetails.css";
 
 function BookingDetails() {
@@ -60,11 +58,10 @@ function BookingDetails() {
             </aside>
           </div>
         </div>
-       
-        
       </div>
     </main>
   );
 }
 
 export default BookingDetails;
+
