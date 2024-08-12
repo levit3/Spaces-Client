@@ -1,0 +1,58 @@
+.user-dashboard {
+  /* max-width: 900px; */
+  margin: 0;
+  background-color: #1b1c1e;
+  color: #1b1c1e;
+  /* padding: 20px; */
+  border-radius: 8px;
+  height: 100vh;
+}
+
+.card {
+  background-color: #1b1c1e;
+  border: none;
+}
+
+.profile-picture {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border: 3px solid #d89b1c;
+}
+
+.card-title,
+.card-text {
+  color: #ffffff;
+}
+
+.btn-secondary {
+  background-color: #d89b1c;
+  border-color: #d89b1c;
+}
+
+.btn-secondary:hover {
+  background-color: #b68816;
+  border-color: #b68816;
+}
+
+.dashboard-card {
+  background-color: #1b1c1e;
+  color: #d89b1c;
+  border: 1px solid #d89b1c;
+  border-radius: 8px;
+}
+
+.dashboard-title {
+  color: #ffffff;
+}
+
+.dashboard-text {
+  color: #b8b8b8;
+}
+
+  
+  
+  
+  
+  
+  
