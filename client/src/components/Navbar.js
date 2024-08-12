@@ -45,7 +45,7 @@ const Navbar = () => {
       <ul
         className={`navbar__links ${isMenuOpen ? "navbar__links--open" : ""}`}
       >
-        <a href="#">Home</a>
+        <Link to="/home">Home</Link>
         <a href="#">Spaces</a>
         <a href="#">About</a>
 
