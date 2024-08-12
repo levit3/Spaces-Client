@@ -1,4 +1,3 @@
-
 import React from "react";
 import "./TenantPage/About.css";
 
@@ -14,7 +13,9 @@ function Feature({ imageSrcSet, title, description }) {
       />
       <div className="flex flex-col justify-center mt-4 w-full">
         <div className="text-lg text-center font-bold text-black">{title}</div>
-        <div className="mt-2 text-sm leading-relaxed text-black">{description}</div>
+        <div className="mt-2 text-sm leading-relaxed text-black">
+          {description}
+        </div>
       </div>
     </div>
   );
@@ -44,8 +45,9 @@ function About() {
               </h2>
               <br />
               <p>
-                We are a passionate team dedicated to creating a platform that brings people together
-                whether it's for meetings, celebrations, or creative collaborations.
+                We are a passionate team dedicated to creating a platform that
+                brings people together whether it's for meetings, celebrations,
+                or creative collaborations.
               </p>
             </div>
           </div>
@@ -63,32 +65,51 @@ function About() {
       <div className="section container-light">
         <h2 className="section-title text-amber">Our Mission</h2>
         <p className="section-text">
-          Our mission is to connect space owners with those in need of unique environments, making it easier to find and book the perfect location for any occasion.
+          Our mission is to connect space owners with those in need of unique
+          environments, making it easier to find and book the perfect location
+          for any occasion.
         </p>
       </div>
 
       <div className="section container-light">
         <h2 className="section-title text-amber">Our Vision</h2>
         <p className="section-text">
-          Our vision is to become the leading online marketplace for unique space rentals, where every event, meeting, or activity can find its ideal setting. We envision a world where people have access to diverse and inspiring spaces that enhance their experiences and bring their ideas to life.
+          Our vision is to become the leading online marketplace for unique
+          space rentals, where every event, meeting, or activity can find its
+          ideal setting. We envision a world where people have access to diverse
+          and inspiring spaces that enhance their experiences and bring their
+          ideas to life.
         </p>
       </div>
 
       <div className="section container-light">
         <h2 className="section-title text-amber">Our Values</h2>
         <ul className="section-text">
-          <li><strong>Integrity:</strong> We operate with honesty and transparency, building trust with our users.</li>
-          <li><strong>Innovation:</strong> We continuously seek new and better ways to connect people with spaces.</li>
-          <li><strong>Customer Focus:</strong> We prioritize the needs and feedback of our users to enhance their experience.</li>
-          <li><strong>Community:</strong> We foster a sense of belonging and collaboration among space owners and renters.</li>
+          <li>
+            <strong>Integrity:</strong> We operate with honesty and
+            transparency, building trust with our users.
+          </li>
+          <li>
+            <strong>Innovation:</strong> We continuously seek new and better
+            ways to connect people with spaces.
+          </li>
+          <li>
+            <strong>Customer Focus:</strong> We prioritize the needs and
+            feedback of our users to enhance their experience.
+          </li>
+          <li>
+            <strong>Community:</strong> We foster a sense of belonging and
+            collaboration among space owners and renters.
+          </li>
         </ul>
       </div>
 
       <div className="section bg-cyan-900">
         <h2 className="section-title text-amber">Our Team</h2>
         <p className="section-text">
-          Our dedicated team consists of experienced professionals in both front-end and back-end development,
-          working together to build a robust and user-friendly platform.
+          Our dedicated team consists of experienced professionals in both
+          front-end and back-end development, working together to build a robust
+          and user-friendly platform.
         </p>
       </div>
 
@@ -123,17 +144,21 @@ function About() {
         </div>
       </div>
 
-      <nav className="navbar">
+      {/* <nav className="navbar">
         <div className="flex gap-4 text-lg">
           <a href="/" className="hover:underline">Home</a>
           <a href="/login" className="hover:underline">Login</a>
         </div>
-      </nav>
+      </nav> */}
 
       <footer className="footer">
         <div className="flex flex-col gap-4 items-center">
-          <p className="text-sm">© 2024 Spaces for Rent. All rights reserved.</p>
-          <a href="/contact" className="hover:underline">Contact Us</a>
+          <p className="text-sm">
+            © 2024 Spaces for Rent. All rights reserved.
+          </p>
+          <a href="/contact" className="hover:underline">
+            Contact Us
+          </a>
         </div>
       </footer>
     </>
@@ -141,4 +166,3 @@ function About() {
 }
 
 export default About;
-

@@ -13,6 +13,7 @@ import SpaceForm from "./Pages/SpaceForm";
 import PageNotFound from "./Pages/PageNotFound";
 import About from "./aboutUs";
 import "./App.css";
+import Footer from "./components/Footer";
 
 const AppContent = () => {
   const { isLoggedIn } = useAuth();
@@ -30,6 +31,7 @@ const AppContent = () => {
             <>
               <Navbar />
               <Homepage />
+              <Footer />
             </>
           }
         />
@@ -47,11 +49,10 @@ const AppContent = () => {
   );
 };
 
-
-
 const App = () => (
   <Router>
     <AuthProvider>
+      {/* <Navbar /> */}
       <AppContent />
     </AuthProvider>
   </Router>

@@ -58,8 +58,7 @@
   margin-bottom: 1rem;
 }
 
-/* Navigation and Footer */
-.navbar, .footer {
+/* .navbar, .footer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -69,22 +68,22 @@
 }
 
 .navbar a, .footer a {
-  color: #2e2e2e; /* Light black for the buttons */
+  color: #2e2e2e; 
   text-decoration: none;
   margin: 0 1rem;
   transition: color 0.3s ease;
 }
 
 .navbar a:hover, .footer a:hover {
-  color: #fbbf24; /* Gold color on hover */
+  color: #fbbf24; 
 }
 
-/* Nover Effect */
+
 .nover {
-  color: transparent; /* Initially colorless */
+  color: transparent;
   transition: color 0.3s ease;
 }
 
 .nover:hover {
-  color: #fbbf24; /* Gold color on hover */
-}
+  color: #fbbf24;
+} */
