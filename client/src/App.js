@@ -12,6 +12,8 @@ import EventCreation from "./components/EventCreation";
 import SpaceForm from "./Pages/SpaceForm";
 import PageNotFound from "./Pages/PageNotFound";
 import About from "./aboutUs";
+import Checkout from "./Pages/Checkout";
+import SuccessfulPayment from "./Pages/SuccessfulPayment";
 import "./App.css";
 import Footer from "./components/Footer";
 
@@ -29,7 +31,6 @@ const AppContent = () => {
           path="/"
           element={
             <>
-              <Navbar />
               <Homepage />
               <Footer />
             </>
@@ -43,6 +44,8 @@ const AppContent = () => {
         <Route path="/events/new" element={<EventCreation />} />
         <Route path="/spaces/new" element={<SpaceForm />} />
         <Route path="/about" element={<About />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/payment-success" element={<SuccessfulPayment />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>
@@ -52,7 +55,7 @@ const AppContent = () => {
 const App = () => (
   <Router>
     <AuthProvider>
-      {/* <Navbar /> */}
+      <Navbar />
       <AppContent />
     </AuthProvider>
   </Router>

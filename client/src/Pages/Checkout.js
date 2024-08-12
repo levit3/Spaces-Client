@@ -14,7 +14,7 @@ function Checkout() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5555/api/bookings/1/")
+    fetch("/api/bookings/1/")
       .then((response) => response.json())
       .then((data) => {
         setBooking(data);
@@ -38,6 +38,21 @@ function Checkout() {
   const handleBack = () => {
     window.history.back();
   };
+
+  function processPayment() {
+    if (selectedMethod === "paypal") {
+      fetch("/api/payment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          bookingId: booking.id,
+          paymentMethod: "PayPal",
+          payerEmail: paypalEmail,
+          user_id: booking.user.id,
+        }),
+      });
+    }
+  }
 
   if (loading) {
     return <h1>Loading...</h1>;
@@ -204,7 +219,9 @@ function Checkout() {
               </div>
             </form>
           </section>
-          <button className="pay-button">Pay</button>
+          <button className="pay-button" onClick={processPayment}>
+            Pay
+          </button>
         </section>
 
         <aside className="order-summary">
