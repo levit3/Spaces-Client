@@ -1,109 +1,86 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* SpaceForm.css */
 
-html {
-    font-family: 'Nunito', sans-serif;
-    font-size: 16px;
-    color: #333;
-}
-
-body {
-    min-height: 100vh;
-    background-color: #f4f6f6;
-}
+/* General form styling */
 .space-form {
-    width: 100%;
-    max-width: 800px; /* Adjusted width for better layout */
-    margin: 0 auto;
+    background-color: #1e1e1e;
     padding: 20px;
-    background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box; /* Ensures padding and border are included in total width */
-}
-h2 {
-    margin-bottom: 1rem;
-    font-size: 24px;
-    color: #333;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-label {
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .space-form h2 {
+    color: #ffa500;
+    font-size: 36px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-style: oblique;
+    margin-bottom: 20px;
+  }
+  
+  /* Form field styling */
+  .space-form div {
+    margin-bottom: 20px;
+  }
+  
+  .space-form label {
+    display: block;
+    color: #ffa500;
     font-size: 16px;
     margin-bottom: 8px;
-    color: #333;
-}input, select, textarea {
-    width: 100%;
+  }
+  
+  .space-form input,
+  .space-form textarea,
+  .space-form select {
+    background-color: #2c2c2c;
+    border: 1px solid #333;
+    color: #fff;
+    font-size: 16px;
     padding: 12px;
-    margin-bottom: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 16px;
-    font-family: 'Nunito', sans-serif;
-}
-textarea {
-    resize: vertical;
-    min-height: 100px;
-}
-
-button[type="submit"], button[type="button"] {
+    border-radius: 8px;
     width: 100%;
-    padding: 14px;
-    margin-top: 10px;
+    box-sizing: border-box;
+  }
+  
+  .space-form textarea {
+    resize: vertical;
+    min-height: 150px;
+  }
+  
+  .space-form .error {
+    color: #ff4d4d;
+    font-size: 14px;
+    margin-top: 4px;
+  }
+  
+  .space-form button {
+    background-color: #ffa500;
+    color: #000;
     border: none;
-    border-radius: 4px;
+    padding: 12px 24px;
     cursor: pointer;
-    font-size: 16px;
-    font-family: 'Nunito', sans-serif;
-}
-button[type="submit"] {
-    background-color: #007bff; /* Blue color */
-    color: white;
-}
-
-button[type="submit"]:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-}
-
-button[type="submit"]:disabled {
-    background-color: #0056b3; /* Darker blue for disabled state */
-}
-
-button[type="button"] {
-    background-color: slategray;
-    color: white;
-}
-
-button[type="button"]:hover {
-    background-color: rgb(95, 107, 119);
-}.input-error {
-    border: 1px solid red;
-}
-
-p {
-    color: rgb(218, 71, 71);
-    font-size: 14px;
-    margin-top: -10px;
-    margin-bottom: 10px;
-}
-
-div {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
-}
-
-.error-message {
-    color: red;
-    font-size: 14px;
-}
-
-
+    font-size: 18px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+  }
+  
+  .space-form button:hover {
+    background-color: #ff8c00;
+  }
+  
+  .space-form button:disabled {
+    background-color: #666;
+    cursor: not-allowed;
+  }
+  
+  /* Cancel button styling */
+  .space-form button.cancel {
+    background-color: #ccc;
+    color: #000;
+    margin-right: 0;
+  }
+  
