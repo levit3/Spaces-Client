@@ -1,6 +1,7 @@
 import "./SpaceDetails.css";
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const spaceAmenities = [
   [
@@ -157,15 +158,11 @@ const ServiceCard = ({ iconSrc, title }) => {
   );
 };
 
-const handleBooking = () => {
-  // Implement booking logic here
-};
-
 const LocationInfo = ({ content, icon, text }) => {
   return (
     <div className="info-item">
       <img src={icon} alt="" className="info-icon" />
-      <div>
+      <div className="info-title">
         <p>
           {content}: {text}
         </p>
@@ -200,12 +197,6 @@ function SpaceDetails() {
       .then((data) => {
         setSpace(data);
         setLoading(true);
-        const reviews = data[0].reviews;
-        const totalRatings = reviews.reduce(
-          (acc, review) => acc + review.rating,
-          0
-        );
-        setRating(reviews.length > 0 ? totalRatings / reviews.length : 0);
       })
       .catch((error) => {
         console.error("Error fetching space:", error);
@@ -226,8 +217,23 @@ function SpaceDetails() {
 
   console.log(space);
 
+  let reviews = [];
+  for (let i = 0; i < space[0].reviews.length; i++) {
+    reviews.push(space[0].reviews[i]);
+  }
+
+  let rating = 0;
+  for (let i = 0; i < reviews.length; i++) {
+    rating += reviews[i].rating;
+  }
+
+  if (reviews.length === 0) {
+    rating = 3.5;
+  }
+
   return (
     <div className="display-item">
+      <Navbar />
       <article className="main">
         <div className="images">
           <img src={images.main} alt="Main view" className="main-image" />
@@ -265,9 +271,9 @@ function SpaceDetails() {
             <hr className="divider" />
             <p className="space-description"> {space[0].description}</p>
             <div className="space-rate">Rate: {renderStars(rating)}</div>
-            <button className="booking-button" onClick={handleBooking}>
-              Book It
-            </button>
+            <Link to="/bookingdetails">
+              <button className="booking-button">Book It</button>
+            </Link>
           </section>
         </div>
       </article>

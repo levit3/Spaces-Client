@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./EventCreation.css";
+import { useNavigate } from "react-router-dom"; // Update this import
+import Navbar from "./Navbar.js";
 
 const Modal = ({ isOpen, onClose, message }) => {
   if (!isOpen) return null;
@@ -24,6 +26,8 @@ function EventCreation() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
+  const [redirectOnClose, setRedirectOnClose] = useState(false); // New state for redirect
+  const navigate = useNavigate(); // Use useNavigate instead of useHistory
 
   const images = {
     main: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJjcsyLgOPmDPJOSVNXpaxCQlnPVLaQeHx4A&s",
@@ -77,6 +81,16 @@ function EventCreation() {
     fetchBookings();
   }, [user]);
 
+  useEffect(() => {
+    if (loading && bookedSpaces.length === 0) {
+      setModalMessage(
+        "You have no booked spaces. Please book a space to create an event"
+      );
+      setIsModalOpen(true);
+      setRedirectOnClose(true); // Set redirect on close
+    }
+  }, [loading, bookedSpaces]);
+
   const handleSelectChange = (e) => {
     const selectedSpaceId = e.target.value;
     setSpaceId(selectedSpaceId);
@@ -126,6 +140,9 @@ function EventCreation() {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    if (redirectOnClose) {
+      navigate("/"); // Navigate to home page
+    }
   };
 
   if (!loading) {
@@ -142,6 +159,7 @@ function EventCreation() {
 
   return (
     <section className="main-content">
+      <Navbar />
       <h1 className="title">Create Your Event</h1>
       <div className="event-creation-container">
         <div className="image-container">

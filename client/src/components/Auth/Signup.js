@@ -39,7 +39,7 @@ const authenticatedFetch = async (url, options = {}) => {
 };
 
 const validationSchema = Yup.object({
-  name: Yup.string().required("Required"),
+  name: Yup.string().required("This field is Required"),
   email: Yup.string()
     .email("Invalid email address")
     .required("This field is required"),
@@ -133,7 +133,7 @@ const Signup = () => {
                 className="auth-signup-input"
                 type="text"
                 name="name"
-                placeholder="Enter name"
+                placeholder="Enter your name"
               />
               <div className="auth-error-message">
                 <ErrorMessage
@@ -146,7 +146,7 @@ const Signup = () => {
                 className="auth-signup-input"
                 type="email"
                 name="email"
-                placeholder="Enter email"
+                placeholder="Enter your email"
               />
               <div className="auth-error-message">
                 <ErrorMessage

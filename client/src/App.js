@@ -1,10 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { AuthProvider, useAuth } from "./components/Auth/AuthContext";
+import { AuthProvider /*useAuth*/ } from "./components/Auth/AuthContext";
 import Homepage from "./components/Home_page/Homepage";
 import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
-import Navbar from "./components/Navbar";
 import EventList from "./Pages/EventsList";
 import EventDetail from "./Pages/EventDetail";
 import SpaceDetails from "./components/SpaceDetails";
