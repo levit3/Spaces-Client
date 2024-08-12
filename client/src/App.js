@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { AuthProvider, useAuth } from "./components/Auth/AuthContext";
 import Homepage from "./components/Home_page/Homepage";
@@ -10,13 +10,15 @@ import EventDetail from "./Pages/EventDetail";
 import SpaceDetails from "./components/SpaceDetails";
 import About from "./aboutUs";
 import "./App.css";
+import UserDashboard from "./UserDashboard/UserDashboard";
 
 const AppContent = () => {
   const { isLoggedIn } = useAuth();
+  const [user, setUser] = useState([])
 
-  if (!isLoggedIn) {
-    return <Login />;
-  }
+  
+
+  
 
   return (
     <>
@@ -25,7 +27,7 @@ const AppContent = () => {
           path="/"
           element={
             <>
-              <Navbar />
+              
               <Homepage />
             </>
           }
@@ -36,6 +38,17 @@ const AppContent = () => {
         <Route path="/event/:id" element={<EventDetail />} />
         <Route path="/space/:id" element={<SpaceDetails />} />
         <Route path="/about" element={<About />} />
+        
+        <Route 
+          path="/dashboard"
+          element={
+          <>
+          <Navbar/>
+          <UserDashboard user={user} />
+          </>}
+          >
+          
+          </Route>
       </Routes>
     </>
   );
