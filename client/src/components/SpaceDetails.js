@@ -1,6 +1,6 @@
 import "./SpaceDetails.css";
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 const spaceAmenities = [
   [
@@ -265,9 +265,11 @@ function SpaceDetails() {
             <hr className="divider" />
             <p className="space-description"> {space[0].description}</p>
             <div className="space-rate">Rate: {renderStars(rating)}</div>
+            <Link to={`booking/${id}`}>
             <button className="booking-button" onClick={handleBooking}>
               Book It
             </button>
+          </Link>
           </section>
         </div>
       </article>
