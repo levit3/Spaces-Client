@@ -22,3 +22,18 @@ const EditSpacePage = () => {
   const handleSuccess = (data) => { //updat UI
     console.log('Space updated successfully:', data);
   };
+
+
+  return (
+    <div>
+      <h1>Edit Space</h1>
+      {space ? (
+        <SpaceForm space={space} onSuccess={handleSuccess} onClose={() => {/* handle close */}} />
+      ) : (
+        <p>Loading...</p>
+      )}
+    </div>
+  );
+};
+
+export default EditSpacePage;
