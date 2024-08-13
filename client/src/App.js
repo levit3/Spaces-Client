@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { AuthProvider, useAuth } from "./components/Auth/AuthContext";
 import Homepage from "./components/Home_page/Homepage"
@@ -16,13 +16,17 @@ import Checkout from "./Pages/Checkout";
 import "./App.css";
 import Footer from "./components/Footer";
 import BookingDetails from "./bookingDetails/BookingDetails";
+import UserDashboard from "./UserDashboard/UserDashboard";
+
 
 const AppContent = () => {
   const { isLoggedIn } = useAuth();
+  const [user, setUser] = useState([])
 
   // if (!isLoggedIn) {
   //   return <Login />;
   // }
+
 
   return (
     <>
@@ -31,7 +35,6 @@ const AppContent = () => {
           path="/"
           element={
             <>
-              <Navbar />
               <Homepage />
               <Footer />
             </>
@@ -47,7 +50,8 @@ const AppContent = () => {
         <Route path="/booking/:id" element={<BookingDetails />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/about" element={<About />} />
-        <Route path="*" element={<PageNotFound />} />
+        <Route path="*" element={<PageNotFound />} />        
+        <Route path="/dashboard" element={<UserDashboard user={user} />} />
       </Routes>
     </>
   );
