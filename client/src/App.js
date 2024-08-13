@@ -41,7 +41,7 @@ const AppContent = () => {
         <Route path="/space/:id" element={<SpaceDetails />} />
         <Route path="/dashboard" element={<TenantDashboard />} />
         <Route path="/add-space" element={<AddSpacePage />} />
-          <Route path="/edit-space/:id" element={<EditSpacePage />} />
+        <Route path="/editspace/:id" element={<EditSpacePage />} />
         <Route path="/manage-users" element={<ManageUsers />} />
 
         <Route path="/about-us" element={<About />} />
