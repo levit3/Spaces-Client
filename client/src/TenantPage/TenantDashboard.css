@@ -14,7 +14,7 @@
     flex-wrap: wrap;
     gap: 20px;
   }
-/*   
+  
   .space-card {
     background-color: #2e2f30;
     border-radius: 8px;
@@ -31,7 +31,7 @@
   .space-card p {
     margin: 10px 0;
   }
-   */
+  
   .space-card a {
     display: block;
     margin: 10px 0;
