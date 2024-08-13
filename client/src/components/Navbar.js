@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "./Auth/AuthContext";
+import { ThemeContext } from "./ThemeContext";
 import "./Navbar.css";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+
   const { isLoggedIn, logout } = useAuth();
+  const { isDarkMode, toggleTheme } = useContext(ThemeContext);
   const navigate = useNavigate();
 
   const toggleMenu = () => {
@@ -15,17 +17,7 @@ const Navbar = () => {
     document.body.classList.toggle("menu-open", !isMenuOpen);
   };
 
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-    document.body.classList.toggle("dark-mode", !isDarkMode);
-    localStorage.setItem("darkMode", !isDarkMode);
-  };
-
   useEffect(() => {
-    const savedDarkMode = localStorage.getItem("darkMode") === "true";
-    setIsDarkMode(savedDarkMode);
-    document.body.classList.toggle("dark-mode", savedDarkMode);
-
     if (isMenuOpen) {
       document.body.classList.add("menu-open");
     } else {
@@ -67,8 +59,8 @@ const Navbar = () => {
         }`}
       >
         <Link to="/">Home</Link>
-        <Link to="/space/:id">Spaces</Link>
-        <a href="#">About Us</a>
+        <Link to="/spaces">Spaces</Link>
+        <Link to="/about">About Us</Link>
 
         <li className="nav-dropdown">
           Events
@@ -81,7 +73,7 @@ const Navbar = () => {
       </ul>
 
       <div className="nav-navbar__auth">
-        <button onClick={toggleDarkMode} className="nav-navbar__theme-toggle">
+        <button onClick={toggleTheme} className="nav-navbar__theme-toggle">
           <span className="nav-navbar__theme-toggle-icon">
             {isDarkMode ? "☀️" : "🌙"}
           </span>

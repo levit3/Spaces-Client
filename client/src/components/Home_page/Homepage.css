@@ -492,7 +492,7 @@ body {
   justify-content: center;
   padding: 40px 72px;
 
-  /* background-color: #2a2a2a; */
+  background-color: #2a2a2a;
 }
 
 @media (max-width: 768px) {

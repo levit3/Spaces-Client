@@ -5,6 +5,7 @@
   padding: 1rem;
   background-color: transparent;
   position: fixed;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   top: 0;
   left: 0;
   right: 0;
@@ -29,8 +30,8 @@
 
 .nav-navbar__links {
   display: flex;
-  gap: 1rem;
-  font-size: 1rem;
+  gap: 2rem;
+  font-size: 1.3rem;
   list-style: none;
   font-weight: 700;
   margin: 0;
@@ -44,7 +45,7 @@
 }
 
 .nav-navbar__links a:hover {
-  color: #ffd700;
+  text-decoration: underline;
 }
 
 .nav-dropdown {
@@ -55,7 +56,7 @@
   display: none;
   position: absolute;
   background: rgba(255, 255, 255, 0.9);
-  min-width: 160px;
+  min-width: 165px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   z-index: 1;
   list-style: none;
@@ -70,6 +71,7 @@
 
 .nav-dropdown-menu a {
   display: block;
+  font-size: 1rem;
   padding: 0.5rem 1rem;
 }
 
@@ -181,6 +183,7 @@
     right: 0;
     background-color: rgba(255, 255, 255, 0.95);
     padding: 1rem;
+    color: #000;
   }
 
   .nav-navbar__auth {
@@ -239,16 +242,37 @@
 
 /* Dark mode styles */
 .nav-navbar--dark {
-  background-color: #333;
+  background-color: transparent;
+  color: #fff;
+}
+.nav-navbar--dark .nav-navbar__links a {
   color: #fff;
 }
 
-.nav-navbar--dark .nav-navbar__links a,
+.nav-navbar--dark .nav-navbar__links a:hover {
+  text-decoration: underline;
+}
+
 .nav-navbar--dark .login,
 .nav-navbar--dark .signup,
 .nav-navbar--dark .logout {
-  color: #fff;
-  background: #444;
+  color: #ffffff;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(0, 0, 0, 0.693) 100%
+  );
+}
+
+.nav-navbar--dark .nav-navbar__theme-toggle:hover,
+.nav-navbar--dark .login:hover,
+.nav-navbar--dark .signup:hover,
+.nav-navbar--dark .logout:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
 }
 
 .nav-navbar--dark .nav-navbar__hamburger span {
@@ -259,10 +283,28 @@
   color: #fff;
 }
 
-.nav-navbar--dark .nav-navbar__theme-toggle:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
 .nav-navbar--dark.nav-navbar--scrolled {
   background-color: #222;
+}
+
+.nav-navbar--dark .nav-dropdown {
+  position: relative;
+}
+
+.nav-navbar--dark .nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.537);
+  min-width: 165px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+  border-radius: 0.25rem;
+}
+
+.nav-navbar--dark .nav-dropdown-menu a {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
 }
