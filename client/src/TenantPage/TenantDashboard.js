@@ -91,14 +91,14 @@ const TenantDashboard = () => {
               <p>{space.status}</p>
             </div>
 
-            {/* <div className="hover-content">
+            <div className="hover-content">
               <p>{space.description}</p>
               <button onClick={()=>handleClick(space)} > Space Details</button>
               <button onClick={()=>handleEdit(space)} > Edit Space</button>
               <button onClick={()=>handleDelete(space)} > Delete Details</button>
               <button onClick={()=>handleAdd(space)} > Add Space</button>
             
-            </div> */}
+            </div>
           </div>
         ))}
       </div>
