@@ -34,10 +34,10 @@ const TenantDashboard = () => {
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
   };
-  // const handleAdd=(space)=>{
-  //   console.log (`Space with ID ${space.id} clicked`);
-  //   navigate(`/add-space/${space.id}`)
-  // }
+  const handleAdd=(space)=>{
+    console.log (`Space with ID ${space.id} clicked`);
+    navigate(`/add-space/${space.id}`)
+  }
   
   // const handleClick = (space) => {
   //   console.log (`Space with ID ${space.id} clicked`);
