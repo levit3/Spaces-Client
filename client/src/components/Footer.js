@@ -44,7 +44,7 @@ function Footer() {
             </a>
           </li>
         </ul>
-        <p className="footer-text">&copy; 2022 Company, Inc</p>
+        <p className="footer-text">2022 Company, Inc</p>
       </footer>
     </div>
   );

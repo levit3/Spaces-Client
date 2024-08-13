@@ -234,15 +234,15 @@ function Checkout() {
               loading="lazy"
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/08487b5ee798c31a0fe63c92fd3404dd438c2823d2380ddddda58cc097e28237?apiKey=8ad21786488a40e8a18ed0f9f1e05271&&apiKey=8ad21786488a40e8a18ed0f9f1e05271"
               alt="Event image"
-              className="event-image"
+              className="space-image"
             />
-            <div className="event-details">
-              <div className="event-name">
-                <h3 className="event-title">{booking.space.title}</h3>
-                <p className="event-location">{booking.space.location}</p>
+            <div className="checkout-space-details">
+              <div className="space-name">
+                <h3 className="space-title">{booking.space.title}</h3>
+                <p className="space-location">{booking.space.location}</p>
               </div>
-              <div className="event-meta">
-                <div className="event-date">
+              <div className="space-meta">
+                <div className="space-date">
                   <img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/66b71e1bcee8b939681737dbc8d2750c4241c1ca880319c8a133c095595aec15?apiKey=8ad21786488a40e8a18ed0f9f1e05271&&apiKey=8ad21786488a40e8a18ed0f9f1e05271"
@@ -253,7 +253,7 @@ function Checkout() {
                     {booking.start_date} - {booking.end_date}
                   </span>
                 </div>
-                <div className="event-capacity">
+                <div className="space-capacity">
                   <img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/5e72e4f7cc397f1ce9ffa2a30d458e0b59b2e070ecc4d289c5d3c36cb7ebbb3f?apiKey=8ad21786488a40e8a18ed0f9f1e05271&&apiKey=8ad21786488a40e8a18ed0f9f1e05271"
