@@ -47,10 +47,10 @@ const TenantDashboard = () => {
     console.log (`Space with ID ${space.id} clicked`);
     navigate(`/edit-space/${space.id}`)
   }
-  // const handleDelete= (space) => {
-  //   console.log (`Space with ID ${space.id} clicked`);
-  //   navigate(`/delete-space/${space.id}`)
-  // }
+  const handleDelete= (space) => {
+    console.log (`Space with ID ${space.id} clicked`);
+    navigate(`/delete-space/${space.id}`)
+  }
   if (loading) {
     return <div>Loading spaces...</div>;
   }
