@@ -157,11 +157,15 @@ const ServiceCard = ({ iconSrc, title }) => {
   );
 };
 
+const handleBooking = () => {
+  // Implement booking logic here
+};
+
 const LocationInfo = ({ content, icon, text }) => {
   return (
     <div className="info-item">
       <img src={icon} alt="" className="info-icon" />
-      <div className="info-title">
+      <div>
         <p>
           {content}: {text}
         </p>
@@ -196,11 +200,18 @@ function SpaceDetails() {
       .then((data) => {
         setSpace(data);
         setLoading(true);
+        console.log(data);
+        const reviews = data[0].reviews;
+        const totalRatings = reviews.reduce(
+          (acc, review) => acc + review.rating,
+          0
+        );
+        setRating(reviews.length > 0 ? totalRatings / reviews.length : 0);
       })
       .catch((error) => {
         console.error("Error fetching space:", error);
       });
-  }, []);
+  }, [id]);
 
   if (!loading) {
     return (
@@ -216,23 +227,8 @@ function SpaceDetails() {
 
   console.log(space);
 
-  let reviews = [];
-  for (let i = 0; i < space[0].reviews.length; i++) {
-    reviews.push(space[0].reviews[i]);
-  }
-
-  let rating = 0;
-  for (let i = 0; i < reviews.length; i++) {
-    rating += reviews[i].rating;
-  }
-
-  if (reviews.length === 0) {
-    rating = 3.5;
-  }
-
   return (
     <div className="display-item">
-      <Navbar />
       <article className="main">
         <div className="images">
           <img src={images.main} alt="Main view" className="main-image" />
@@ -259,7 +255,7 @@ function SpaceDetails() {
               <LocationInfo
                 icon="https://cdn.builder.io/api/v1/image/assets/TEMP/fa50eb04150a2a3afd7f072254bd1ddf09eb496c23e4ebc4e0e906958f3437a8?apiKey=af3c8a520d554d22a850d6116441e929&&apiKey=af3c8a520d554d22a850d6116441e929"
                 content={"Capacity"}
-                text={space[0].price_per_hour}
+                text={space[0].capacity}
               />
               <LocationInfo
                 icon="data:image/png;base64,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"
@@ -270,10 +266,8 @@ function SpaceDetails() {
             <hr className="divider" />
             <p className="space-description"> {space[0].description}</p>
             <div className="space-rate">Rate: {renderStars(rating)}</div>
-            <Link to={`booking/${id}`}>
-              <button className="booking-button" onClick={handleBooking}>
-                Book It
-              </button>
+            <Link to={`/booking/${id}/`}>
+              <button className="booking-button">Book It</button>
             </Link>
           </section>
         </div>

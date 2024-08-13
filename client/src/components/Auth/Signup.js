@@ -63,7 +63,7 @@ const Signup = () => {
 
   const handleSubmit = async (values, { setSubmitting, setErrors }) => {
     try {
-      const response = await authenticatedFetch("/api/users", {
+      const response = await authenticatedFetch("/api/signup", {
         method: "POST",
         body: JSON.stringify({
           name: values.name,
@@ -73,6 +73,8 @@ const Signup = () => {
       });
 
       login(response.token);
+      localStorage.setItem("user_id", response.user.id);
+      localStorage.setItem("token", response.token);
 
       navigate("/");
     } catch (error) {

@@ -1,9 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ImageGallery from "./ImageGallery";
 import BookingForm from "./BookingForm";
 import "./BookingDetails.css";
+import { useParams } from "react-router-dom";
 
 function BookingDetails() {
+  const user = localStorage.getItem("user_id");
+  const [space, setSpace] = useState();
+  const [loading, setLoading] = useState(true);
+  const { id } = useParams;
+
+  useEffect(() => {
+    try {
+      fetch(`/spaces/${id}/`)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          setSpace(data);
+          setLoading(false);
+        });
+    } catch (err) {
+      console.error("Error fetching space data:", err);
+    }
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <main className="booking-details-main">
       <div className="booking-details-container">
@@ -64,4 +88,3 @@ function BookingDetails() {
 }
 
 export default BookingDetails;
-

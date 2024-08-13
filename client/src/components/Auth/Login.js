@@ -49,15 +49,13 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await authenticatedFetch(
-        "http://127.0.0.1:5555/api/login",
-        {
-          method: "POST",
-          body: JSON.stringify({ email, password }),
-        }
-      );
+      const response = await authenticatedFetch("/api/login", {
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+      });
 
       localStorage.setItem("token", response.token);
+      localStorage.setItem("user_id", response.user.id);
       login(response.token);
       navigate("/");
     } catch (error) {

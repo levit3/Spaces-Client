@@ -16,6 +16,8 @@ import "./App.css";
 import Footer from "./components/Footer";
 import BookingDetails from "./bookingDetails/BookingDetails";
 import UserDashboard from "./UserDashboard/UserDashboard";
+import SuccessfulPayment from "./Pages/SuccessfulPayment";
+import Navbar from "./components/Navbar";
 
 const AppContent = () => {
   const { isLoggedIn } = useAuth();
