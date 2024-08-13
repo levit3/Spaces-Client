@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./EventCreation.css";
+import { useParams, useNavigate } from "react-router-dom";
 
 const Modal = ({ isOpen, onClose, message }) => {
   if (!isOpen) return null;
@@ -24,13 +25,16 @@ function EventCreation() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
+  const [redirectOnClose, setRedirectOnClose] = useState(false); // New state for redirect
+  const navigate = useNavigate();
+  const {id} = useParams();
 
   const images = {
     main: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJjcsyLgOPmDPJOSVNXpaxCQlnPVLaQeHx4A&s",
   };
 
   useEffect(() => {
-    fetch("/api/users/92")
+    fetch(`/api/users/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setUser(data);
@@ -51,7 +55,7 @@ function EventCreation() {
         });
         const bookings = await response.json();
         const userBookings = bookings.filter(
-          (booking) => booking.user_id === 92
+          (booking) => booking.user_id === id
         );
         console.log(userBookings);
 
@@ -77,6 +81,14 @@ function EventCreation() {
     fetchBookings();
   }, [user]);
 
+  useEffect(() => {
+    if (loading && bookedSpaces.length === 0) {
+      setModalMessage('You have no booked spaces. Please book a space to create an event');
+      setIsModalOpen(true);
+      setRedirectOnClose(true); // Set redirect on close
+    }
+  }, [loading, bookedSpaces]);
+
   const handleSelectChange = (e) => {
     const selectedSpaceId = e.target.value;
     setSpaceId(selectedSpaceId);
@@ -95,7 +107,7 @@ function EventCreation() {
       description,
       date,
       space_id: spaceId,
-      organizer_id: 92,
+      organizer_id: id,
     };
 
     try {
@@ -126,6 +138,9 @@ function EventCreation() {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    if (redirectOnClose) {
+      navigate('/'); // Navigate to home page
+    }
   };
 
   if (!loading) {
