@@ -59,4 +59,24 @@
   .add-space-button {
     margin-top: 20px;
   }
+  .tenant-navbar {
+    background-color: #1b1c1e;
+    padding: 10px;
+    color: #d89b1c;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-brand {
+    color: #d89b1c;
+    text-decoration: none;
+    font-size: 1.5rem;
+    margin-right: 20px;
+  }
   
