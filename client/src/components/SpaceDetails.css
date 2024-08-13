@@ -97,7 +97,7 @@
   justify-content: flex-start;
 }
 
-.info-title{
+.info-title {
   color: var(--Color-Text-Headings, #fff);
   font-size: 19px;
   line-height: 1;
@@ -164,7 +164,6 @@
   width: 24px;
   align-self: stretch;
   margin: auto 0;
-  background: #333;
   margin-bottom: 10px;
 }
 
@@ -213,7 +212,6 @@
     width: 100%;
   }
 }
-
 
 .service-container {
   display: flex;
@@ -264,7 +262,7 @@
   justify-content: center;
   height: 56px;
   padding: 16px;
-  margin-right: 8px
+  margin-right: 8px;
 }
 
 .icon {
@@ -272,7 +270,7 @@
   object-fit: contain;
   object-position: center;
   width: 24px;
-  margin-right: 8px
+  margin-right: 8px;
 }
 
 .service-title {
@@ -280,7 +278,6 @@
   margin-top: 16px;
   font: 400 16px/26px Poppins, -apple-system, Roboto, Helvetica, sans-serif;
 }
-
 
 .amenitiesWrapper {
   align-self: stretch;
@@ -294,9 +291,6 @@
   margin-left: 12%;
   flex-direction: row;
   color: #fff;
-
-
-
 }
 
 @media (max-width: 991px) {
@@ -320,7 +314,8 @@
 
 .sectionTitle {
   letter-spacing: 0.4px;
-  font: 700 20px/1.4 Plus Jakarta Sans, -apple-system, Roboto, Helvetica, sans-serif;
+  font: 700 20px/1.4 Plus Jakarta Sans, -apple-system, Roboto, Helvetica,
+    sans-serif;
 }
 
 .amenitiesList {
@@ -386,7 +381,7 @@
   width: 100%;
   flex-direction: column;
   justify-content: start;
-  margin-left: 70%
+  margin-left: 70%;
 }
 
 @media (max-width: 991px) {
@@ -438,12 +433,12 @@
 
 .modal-content {
   background: #fff;
-  padding: 30px; 
+  padding: 30px;
   border-radius: 8px;
   text-align: center;
-  font-family: 'Times New Roman', serif; 
-  width: 80%; 
-  max-width: 600px; 
+  font-family: "Times New Roman", serif;
+  width: 80%;
+  max-width: 600px;
 }
 
 .modal-content h2 {
@@ -452,7 +447,7 @@
 
 .modal-content button {
   margin-top: 10px;
-  padding: 10px 20px; 
+  padding: 10px 20px;
   border: none;
   background: #007bff;
   color: #fff;
@@ -463,7 +458,6 @@
 .modal-content button:hover {
   background: #0056b3;
 }
-
 
 /* Loading container to center the content */
 .loading-container {

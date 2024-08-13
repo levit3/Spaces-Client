@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./CSS/Checkout.css";
+import { useLocation } from "react-router-dom";
 
 function Checkout() {
   const [selectedMethod, setSelectedMethod] = useState("paypal");
@@ -12,9 +13,12 @@ function Checkout() {
   const [date, setDate] = useState("");
   const [booking, setBooking] = useState([]);
   const [loading, setLoading] = useState(true);
+  const location = useLocation();
+  const { id, start_date, end_date, space_id, user_id, total_price } =
+    location.state || {};
 
   useEffect(() => {
-    fetch("/api/bookings/1/")
+    fetch(`/api/bookings/${id}/`)
       .then((response) => response.json())
       .then((data) => {
         setBooking(data);

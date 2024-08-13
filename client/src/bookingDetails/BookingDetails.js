@@ -2,17 +2,17 @@ import React, { useEffect, useState } from "react";
 import ImageGallery from "./ImageGallery";
 import BookingForm from "./BookingForm";
 import "./BookingDetails.css";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 function BookingDetails() {
-  const user = localStorage.getItem("user_id");
   const [space, setSpace] = useState();
   const [loading, setLoading] = useState(true);
-  const { id } = useParams;
-
+  const react_location = useLocation();
+  const { id, title, description, location, capacity, price_per_hour } =
+    react_location.state || {};
   useEffect(() => {
     try {
-      fetch(`/spaces/${id}/`)
+      fetch(`/api/spaces/${id}/`)
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
@@ -23,6 +23,10 @@ function BookingDetails() {
       console.error("Error fetching space data:", err);
     }
   }, []);
+
+  const handleBack = () => {
+    window.history.back();
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -42,9 +46,12 @@ function BookingDetails() {
                       src="https://cdn.builder.io/api/v1/image/assets/TEMP/31b658a717fde6cd8a2dc59b7fac2d81e75ebc91ef9bce56d48743e1f89d085e?apiKey=795a4821ae2d43fd8710fcb3d714d4fc"
                       alt=""
                       className="booking-details-icon"
+                      onClick={handleBack}
+                      style={{ cursor: "pointer" }}
                     />
                     <h1>Booking details</h1>
                   </header>
+                  <h1 style={{ color: "white" }}>{title}</h1>
                   <nav className="booking-details-nav">
                     <div className="booking-details-nav-item">
                       <img
@@ -53,7 +60,7 @@ function BookingDetails() {
                         alt=""
                         className="booking-details-nav-icon"
                       />
-                      <span>Location</span>
+                      <span>{location}</span>
                     </div>
                     <div className="booking-details-nav-item">
                       <img
@@ -62,23 +69,26 @@ function BookingDetails() {
                         alt=""
                         className="booking-details-nav-icon"
                       />
-                      <span>Capacity</span>
+                      <span>{capacity}</span>
+                    </div>
+                    <div className="booking-details-nav-item">
+                      <img
+                        loading="lazy"
+                        src="https://image.pngaaa.com/716/1110716-middle.png"
+                        alt=""
+                        className="booking-details-nav-icon"
+                      />
+                      <span>${price_per_hour} per hour</span>
                     </div>
                   </nav>
                   <hr className="booking-details-divider" />
-                  <p className="booking-details-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis
-                  </p>
+                  <p className="booking-details-description">{description}</p>
                 </div>
                 <ImageGallery />
               </div>
             </section>
             <aside className="booking-details-aside">
-              <BookingForm />
+              <BookingForm id={id} price_per_hour={price_per_hour} />
             </aside>
           </div>
         </div>

@@ -103,6 +103,9 @@
     padding: 0.5rem 0.5rem;
     border-radius: 0 0 0.25rem 0.25rem;
   }
+  .nav-navbar {
+    padding-left: 0;
+  }
 }
 
 .nav-navbar__auth {

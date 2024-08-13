@@ -4,13 +4,15 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./BookingForm.css";
 
-function BookingForm() {
+function BookingForm({ id, price_per_hour }) {
   const [startDate, setStartDate] = useState(new Date());
   const [startTime, setStartTime] = useState(new Date());
   const [hours, setHours] = useState(1);
   const [days, setDays] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
-  const pricePerHour = 50; // Example price per hour
+  const pricePerHour = price_per_hour;
+  const user_id = localStorage.getItem("user_id");
+  const space_id = id;
 
   const navigate = useNavigate();
 
@@ -42,19 +44,34 @@ function BookingForm() {
   };
 
   const handleBooking = () => {
-    // Navigate to the payment details page with the necessary booking data
-    navigate("/payment-details", {
-      state: {
-        startDate,
-        startTime,
-        hours,
-        days,
-        endDate: calculateEndDate(),
-        endTime: calculateEndTime(),
-        pricePerHour,
-        totalPrice,
+    const bookingData = {
+      start_date: startDate,
+      end_date: calculateEndDate(),
+      space_id,
+      user_id,
+      total_price: totalPrice,
+    };
+
+    fetch("/api/bookings", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-    });
+      body: JSON.stringify(bookingData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data && data.id) {
+          navigate("/checkout", {
+            state: data,
+          });
+        } else {
+          console.error("Booking failed, no ID returned");
+        }
+      })
+      .catch((error) => {
+        console.error("Error booking space:", error);
+      });
   };
 
   return (
@@ -116,22 +133,21 @@ function BookingForm() {
       </div>
       <div className="form-group">
         <p>End Date: {calculateEndDate().toLocaleDateString()}</p>
-        <p>End Time: {calculateEndTime().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+        <p>
+          End Time:{" "}
+          {calculateEndTime().toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+          })}
+        </p>
       </div>
       <button className="btn btn-primary mt-3" onClick={handleBooking}>
         Book Now
       </button>
-      <p className="price-per-hour mt-2">
-        Price per hour: ${pricePerHour}
-      </p>
-      <p className="total-price mt-2">
-        Total Price: ${totalPrice}
-      </p>
+      <p className="price-per-hour mt-2">Price per hour: ${pricePerHour}</p>
+      <p className="total-price mt-2">Total Price: ${totalPrice}</p>
     </div>
   );
 }
 
 export default BookingForm;
-
-
-
