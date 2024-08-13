@@ -39,10 +39,10 @@ const TenantDashboard = () => {
     navigate(`/add-space/${space.id}`)
   }
   
-  // const handleClick = (space) => {
-  //   console.log (`Space with ID ${space.id} clicked`);
-  //   navigate(`/space/${space.id}`)
-  // }
+  const handleClick = (space) => {
+    console.log (`Space with ID ${space.id} clicked`);
+    navigate(`/space/${space.id}`)
+  }
   // const handleEdit= (space) => {
   //   console.log (`Space with ID ${space.id} clicked`);
   //   navigate(`/edit-space/${space.id}`)
