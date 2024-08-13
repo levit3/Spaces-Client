@@ -34,10 +34,7 @@ const TenantDashboard = () => {
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
   };
-  const handleAdd=(space)=>{
-    console.log (`Space with ID ${space.id} clicked`);
-    navigate(`/add-space/${space.id}`)
-  }
+  
   
   const handleClick = (space) => {
     console.log (`Space with ID ${space.id} clicked`);
@@ -56,6 +53,14 @@ const TenantDashboard = () => {
   }
 
   return (
+    <div>
+    <nav className="tenant-navbar">
+      <div className="navbar-content">
+        <Link to="/" className="navbar-brand">Home</Link>
+        <Link to="/add-space" className="add-space-button">Add Space</Link>
+      </div>
+    </nav>
+    
     <div className="spaces-list">
       <div className="filter-container">
         <input
@@ -70,7 +75,7 @@ const TenantDashboard = () => {
           onChange={handleCategoryChange}
           className="category-select"
         >
-         
+          {/* Populate categories if needed */}
         </select>
       </div>
       <div className="spaces-container">
@@ -93,17 +98,17 @@ const TenantDashboard = () => {
 
             <div className="hover-content">
               <p>{space.description}</p>
-              <button onClick={()=>handleClick(space)} > Space Details</button>
-              <button onClick={()=>handleEdit(space)} > Edit Space</button>
-              <button onClick={()=>handleDelete(space)} > Delete Details</button>
-              <button onClick={()=>handleAdd(space)} > Add Space</button>
-            
+              <button onClick={() => handleClick(space)}>Space Details</button>
+              <button onClick={() => handleEdit(space)}>Edit Space</button>
+              <button onClick={() => handleDelete(space)}>Delete Details</button>
             </div>
           </div>
         ))}
       </div>
     </div>
-  );
+  </div>
+);
 };
+
 
 export default TenantDashboard;
