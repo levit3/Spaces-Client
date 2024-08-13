@@ -108,14 +108,14 @@ function About() {
     <a href="/signup" className="nav-button">Sign Up</a>
   </div>
 </nav>
-
+{/* 
 
       <footer className="footer">
         <div className="flex flex-col gap-4 items-center">
-          <p className="text-sm">© 2024 Spaces for Rent. All rights reserved.</p>
+         
           <a href="/contact" className="hover:underline">Contact Us</a>
         </div>
-      </footer>
+      </footer> */}
     </>
   );
 }
