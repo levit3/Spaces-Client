@@ -34,15 +34,16 @@ function EventCreation() {
   };
 
   useEffect(() => {
-    fetch(`/api/users/${id}`)
+    fetch("/api/users/9")
       .then((res) => res.json())
       .then((data) => {
         setUser(data);
+        console.log(user)
       })
       .catch((error) => {
         console.error("Error fetching user:", error);
       });
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     const fetchBookings = async () => {
@@ -55,7 +56,7 @@ function EventCreation() {
         });
         const bookings = await response.json();
         const userBookings = bookings.filter(
-          (booking) => booking.user_id === id
+          (booking) => booking.user_id === 9
         );
         console.log(userBookings);
 

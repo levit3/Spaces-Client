@@ -109,14 +109,6 @@ const SpaceAndBuildingAmenities = () => (
   </section>
 );
 
-const images = {
-  main: "https://cdn.builder.io/api/v1/image/assets/TEMP/92453d94cc346caf6f3c7e3a0146574833be4b8dc1aa1b9a54868b251aef24de?apiKey=af3c8a520d554d22a850d6116441e929&&apiKey=af3c8a520d554d22a850d6116441e929",
-  thumbnails: [
-    "https://cdn.builder.io/api/v1/image/assets/TEMP/719ac4be35c41674bc169e12d70bf8dce799c470893440f09521a06cc38a79c6?apiKey=af3c8a520d554d22a850d6116441e929&&apiKey=af3c8a520d554d22a850d6116441e929",
-    "https://cdn.builder.io/api/v1/image/assets/TEMP/4ce5de5fe866bc7889a2e3a966b864264c674bf45ef8b141f42a1f3469d15db4?apiKey=af3c8a520d554d22a850d6116441e929&&apiKey=af3c8a520d554d22a850d6116441e929",
-    "https://cdn.builder.io/api/v1/image/assets/TEMP/11734a50461ff7115c05ccf220b24b2c084d508f2de5f954af06b0e42d69622b?apiKey=af3c8a520d554d22a850d6116441e929&&apiKey=af3c8a520d554d22a850d6116441e929",
-  ],
-};
 
 const services = [
   {
@@ -163,7 +155,7 @@ const LocationInfo = ({ content, icon, text }) => {
     <div className="info-item">
       <img src={icon} alt="" className="info-icon" />
       <div>
-        <p>
+        <p className="icon-name">
           {content}: {text}
         </p>
       </div>
@@ -190,6 +182,7 @@ function SpaceDetails() {
   const [space, setSpace] = useState([]);
   const [loading, setLoading] = useState(false);
   const [rating, setRating] = useState(0);
+  const [img,setImg] =useState([]);
 
   useEffect(() => {
     fetch(`/api/spaces/${id}/`)
@@ -198,7 +191,10 @@ function SpaceDetails() {
         setSpace(data);
         setLoading(true);
         console.log(data);
-        const reviews = data[0].reviews;
+        setImg(data.space_images)
+        console.log(img)
+        
+        const reviews = data.reviews;
         const totalRatings = reviews.reduce(
           (acc, review) => acc + review.rating,
           0
@@ -208,7 +204,7 @@ function SpaceDetails() {
       .catch((error) => {
         console.error("Error fetching space:", error);
       });
-  }, [id]);
+  }, [id,img]);
 
   if (!loading) {
     return (
@@ -221,6 +217,14 @@ function SpaceDetails() {
       </div>
     );
   }
+  const images = {
+    main:img[0].image_url,
+    thumbnails: [
+      img[1].image_url,
+      img[2].image_url,
+      img[3].image_url,
+    ],
+  };
 
   console.log(space);
 
@@ -242,26 +246,26 @@ function SpaceDetails() {
         </div>
         <div className="space-details">
           <section className="space">
-            <h1 className="space-name">{space[0].title}</h1>
+            <h1 className="space-name">{space.title}</h1>
             <div className="space-info">
               <LocationInfo
                 icon="https://cdn.builder.io/api/v1/image/assets/TEMP/76d3bc63153d23a77bbfa39be3e406830363942a9c64eb8eedc38023d56159ad?apiKey=af3c8a520d554d22a850d6116441e929&&apiKey=af3c8a520d554d22a850d6116441e929"
                 content={"Location"}
-                text={space[0].location}
+                text={space.location}
               />
               <LocationInfo
                 icon="https://cdn.builder.io/api/v1/image/assets/TEMP/fa50eb04150a2a3afd7f072254bd1ddf09eb496c23e4ebc4e0e906958f3437a8?apiKey=af3c8a520d554d22a850d6116441e929&&apiKey=af3c8a520d554d22a850d6116441e929"
                 content={"Capacity"}
-                text={space[0].capacity}
+                text={space.capacity}
               />
               <LocationInfo
                 icon="data:image/png;base64,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"
                 content={"Price per hour"}
-                text={space[0].price_per_hour}
+                text={space.price_per_hour}
               />
             </div>
             <hr className="divider" />
-            <p className="space-description"> {space[0].description}</p>
+            <p className="space-description"> {space.description}</p>
             <div className="space-rate">Rate: {renderStars(rating)}</div>
             <Link to={`/booking/${id}/`}>
             <button className="booking-button">Book It</button>
