@@ -1,24 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { AuthProvider, useAuth } from "./components/Auth/AuthContext";
-import Homepage from "./components/Home_page/Homepage";
+import Homepage from "./components/Home_page/Homepage"
 import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
 import Navbar from "./components/Navbar";
 import EventList from "./Pages/EventsList";
 import EventDetail from "./Pages/EventDetail";
 import SpaceDetails from "./components/SpaceDetails";
+import EventCreation from "./components/EventCreation";
+import SpaceForm from "./Pages/SpaceForm";
+import PageNotFound from "./Pages/PageNotFound";
 import About from "./aboutUs";
+import Checkout from "./Pages/Checkout";
 import "./App.css";
+import Footer from "./components/Footer";
+import BookingDetails from "./bookingDetails/BookingDetails";
 import UserDashboard from "./UserDashboard/UserDashboard";
+
 
 const AppContent = () => {
   const { isLoggedIn } = useAuth();
   const [user, setUser] = useState([])
 
-  
+  // if (!isLoggedIn) {
+  //   return <Login />;
+  // }
 
-  
 
   return (
     <>
@@ -27,8 +35,8 @@ const AppContent = () => {
           path="/"
           element={
             <>
-              
               <Homepage />
+              <Footer />
             </>
           }
         />
@@ -37,28 +45,22 @@ const AppContent = () => {
         <Route path="/events" element={<EventList />} />
         <Route path="/event/:id" element={<EventDetail />} />
         <Route path="/space/:id" element={<SpaceDetails />} />
+        <Route path="/events/new" element={<EventCreation />} />
+        <Route path="/spaces/new" element={<SpaceForm />} />
+        <Route path="/booking/:id" element={<BookingDetails />} />
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="/about" element={<About />} />
-        
-        <Route 
-          path="/dashboard"
-          element={
-          <>
-          <Navbar/>
-          <UserDashboard user={user} />
-          </>}
-          >
-          
-          </Route>
+        <Route path="*" element={<PageNotFound />} />        
+        <Route path="/dashboard" element={<UserDashboard user={user} />} />
       </Routes>
     </>
   );
 };
 
-
-
 const App = () => (
   <Router>
     <AuthProvider>
+      {/* <Navbar /> */}
       <AppContent />
     </AuthProvider>
   </Router>

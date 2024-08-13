@@ -11,7 +11,7 @@ function EventDetail() {
     "https://cdn.builder.io/api/v1/image/assets/TEMP/dfe3240009fd425ddb9fe0e226d9444abbf3e86a4d8c9e87b75a5e5e7efef0f6?apiKey=8ad21786488a40e8a18ed0f9f1e05271&&apiKey=8ad21786488a40e8a18ed0f9f1e05271";
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:5555/api/events/${id}/`)
+    fetch(`/api/events/${id}/`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
