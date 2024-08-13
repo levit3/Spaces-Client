@@ -11,6 +11,7 @@ const SpaceForm = ({ space, onClose, onSuccess }) => {
         price_per_hour: '',
         status: 'available'
     };
+  
 
     const validationSchema = Yup.object({
         title: Yup.string().required('Title is required'),
@@ -45,7 +46,7 @@ const SpaceForm = ({ space, onClose, onSuccess }) => {
 
       const putSpace = async (values) => {
         try {
-          const response = await fetch(`/api/spaces/${space.id}`, { // Ensure correct URL
+          const response = await fetch(`/api/spaces/${space.id}`, { 
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
@@ -75,6 +76,7 @@ const SpaceForm = ({ space, onClose, onSuccess }) => {
     return (
         <div className="space-form">
             <h2>{space ? 'Edit Space' : 'Add Space'}</h2>
+            <img src={`${process.env.PUBLIC_URL}/logo1.png`} alt="Logo" className="space-form-logo" />
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}

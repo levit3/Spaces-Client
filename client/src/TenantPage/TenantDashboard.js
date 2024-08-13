@@ -4,8 +4,8 @@ import "./TenantDashboard.css";
 
 const TenantDashboard = () => {
   const [spaces, setSpaces] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  // const [searchTerm, setSearchTerm] = useState("");
+  // const [selectedCategory, setSelectedCategory] = useState("All");
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
@@ -13,19 +13,20 @@ const TenantDashboard = () => {
     fetch("/api/users/46")
       .then((response) => response.json())
       .then((data) => {
+         console.log('Space updated successfully:', data);
         setSpaces(data.spaces);
         setLoading(false);
       })
       .catch((error) => console.error("Error fetching spaces:", error));
   }, []);
 
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
+  // const handleSearchChange = (event) => {
+  //   setSearchTerm(event.target.value);
+  // };
 
-  const handleCategoryChange = (event) => {
-    setSelectedCategory(event.target.value);
-  };
+  // const handleCategoryChange = (event) => {
+  //   setSelectedCategory(event.target.value);
+  // };
 
   const handleClick = (space) => {
     navigate(`/space/${space.id}`);
@@ -64,20 +65,20 @@ const TenantDashboard = () => {
 
       <div className="spaces-list">
         <div className="filter-container">
-          <input
+          {/* <input
             type="text"
             placeholder="Search spaces..."
             value={searchTerm}
             onChange={handleSearchChange}
             className="search-input"
-          />
-          <select
+          /> */}
+          {/* <select
             value={selectedCategory}
             onChange={handleCategoryChange}
             className="category-select"
           >
-            {/* Populate categories if needed */}
-          </select>
+            Populate categories if needed */}
+          {/* </select> */}
         </div>
         <div className="spaces-container">
           {spaces.map((space) => (
