@@ -144,4 +144,18 @@
   .spaces-list {
     padding: 20px;
   }
+  .delete-button {
+    background-color: #d89b1c;
+    color: #1b1c1e;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 10px; /* Adjust this value as needed */
+    display: block; /* Ensure it takes up its own line */
+  }
+  
+  .delete-button:hover {
+    background-color: #b77e1e;
+  }
   

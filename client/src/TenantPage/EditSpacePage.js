@@ -19,7 +19,7 @@ const EditSpacePage = () => {
     };
     fetchSpace();
   },[id]);
-  const handleSuccess = (data) => { //updat UI
+  const handleSuccess = (data) => { 
     console.log('Space updated successfully:', data);
   };
 
