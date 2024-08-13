@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Homepage.css";
 
 const Categories = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
   const cardRefs = useRef([]);
+  const navigate = useNavigate();
+  const [hideFilter, setHideFilter] = useState(false);
 
   useEffect(() => {
     const observerOptions = {
@@ -88,6 +91,11 @@ const Categories = () => {
     },
   ];
 
+  const handleSeeMoreClick = (category) => {
+    setHideFilter(true);
+    navigate("/spaces", { state: { category } });
+  };
+
   return (
     <div className="cat-categories-showcase">
       {categories.map((category, index) => (
@@ -101,7 +109,12 @@ const Categories = () => {
           <div className="cat-card-content">
             <h2 className="cat-card-title">{category.title}</h2>
             <p className="cat-card-description">{category.description}</p>
-            <button className="cat-see-more-btn">See more</button>
+            <button
+              className="cat-see-more-btn"
+              onClick={() => handleSeeMoreClick(category.title)}
+            >
+              See more
+            </button>
           </div>
           <div
             className={`cat-card-image ${
