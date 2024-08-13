@@ -90,45 +90,25 @@ function About() {
           Our dedicated team consists of experienced professionals in both front-end and back-end development,
           working together to build a robust and user-friendly platform.
         </p>
+        <li>
+        <ol>Levi Mwendwa - Scrum Master</ol>
+        <ol>Nicholas - Back/Front end Developer</ol>
+        <ol>Favor - Back/Front end Developer</ol>
+        <ol>Habib Mohammed - Back/Front end Developer</ol>
+        <ol>Benhin - Back/Front end Developer</ol>
+
+        </li>
       </div>
 
-      <div className="section bg-cyan-900">
-        <h2 className="section-title text-amber">Meet the Team</h2>
-        <div className="mt-8 grid grid-cols-2 gap-8 justify-center">
-          <TeamMemberCard
-            name="Nicholas"
-            role="Front-End Developer"
-            imageSrc="https://via.placeholder.com/96"
-          />
-          <TeamMemberCard
-            name="Habib"
-            role="Back-End Developer"
-            imageSrc="https://via.placeholder.com/96"
-          />
-          <TeamMemberCard
-            name="Favor"
-            role="Front-End Developer"
-            imageSrc="https://via.placeholder.com/96"
-          />
-          <TeamMemberCard
-            name="Levite"
-            role="Back-End Developer"
-            imageSrc="https://via.placeholder.com/96"
-          />
-          <TeamMemberCard
-            name="Benhin"
-            role="Front-End Developer"
-            imageSrc="https://via.placeholder.com/96"
-          />
-        </div>
-      </div>
 
-      <nav className="navbar">
-        <div className="flex gap-4 text-lg">
-          <a href="/" className="hover:underline">Home</a>
-          <a href="/login" className="hover:underline">Login</a>
-        </div>
-      </nav>
+      <nav className="manage-spaces-navbar">
+  <div className="manage-spaces-nav-links">
+    <a href="/" className="nav-link">Home</a>
+    <a href="/login" className="nav-link">Login</a>
+    <a href="/signup" className="nav-button">Sign Up</a>
+  </div>
+</nav>
+
 
       <footer className="footer">
         <div className="flex flex-col gap-4 items-center">

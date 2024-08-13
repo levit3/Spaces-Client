@@ -21,7 +21,7 @@ const SpaceForm = ({ space, onClose, onSuccess }) => {
     });
     const postSpace = async (values) => {
         try {
-          const response = await fetch('http://localhost:5555/api/spaces', { // Ensure correct URL
+          const response = await fetch('http://localhost:5555/spaces', { 
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ const SpaceForm = ({ space, onClose, onSuccess }) => {
 
       const putSpace = async (values) => {
         try {
-          const response = await fetch(`http://localhost:5555/api/spaces/${space.id}`, { // Ensure correct URL
+          const response = await fetch(`http://localhost:5555/spaces/${space.id}`, { // Ensure correct URL
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
@@ -54,6 +54,7 @@ const SpaceForm = ({ space, onClose, onSuccess }) => {
             throw new Error(`HTTP error! Status: ${response.status}`);
           }
           const data = await response.json();
+          console.log('Space updated successfully:', data);
           onSuccess(data);
           onClose();
         } catch (error) {

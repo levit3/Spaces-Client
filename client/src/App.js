@@ -10,9 +10,11 @@ import EventDetail from "./Pages/EventDetail";
 import SpaceDetails from "./components/SpaceDetails";
 import About from "./aboutUs";
 import "./App.css";
-import ManageSpaces from "./TenantPage/ManageSpaces";
+import AddSpacePage from './TenantPage/AddSpacePage';
+import EditSpacePage from './TenantPage/EditSpacePage';
 import TenantDashboard from "./TenantPage/TenantDashboard";
 import ManageUsers from "./TenantPage/ManageUsers";
+
 const AppContent = () => {
   const { isLoggedIn } = useAuth();
 
@@ -38,9 +40,13 @@ const AppContent = () => {
         <Route path="/event/:id" element={<EventDetail />} />
         <Route path="/space/:id" element={<SpaceDetails />} />
         <Route path="/dashboard" element={<TenantDashboard />} />
-        <Route path="/manage-spaces" element={<ManageSpaces />} />
+        <Route path="/add-space" element={<AddSpacePage />} />
+          <Route path="/edit-space/:id" element={<EditSpacePage />} />
         <Route path="/manage-users" element={<ManageUsers />} />
+
         <Route path="/about-us" element={<About />} />
+ 
+
       </Routes>
     </>
   );
