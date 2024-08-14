@@ -64,6 +64,44 @@ const StarRating = ({ rating, onRatingChange }) => {
 //         setLoading(false);
 //       });
 //   }, []); 
+
+const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!rating || !comment || !date) {
+      setModalMessage("All fields must be entered");
+      setIsModalOpen(true);
+      return;
+    }
+  
+    const formData = new FormData();
+    formData.append("rating", rating);
+    formData.append("comment", comment);
+    formData.append("date", date);
+    formData.append("space_id", id);
+    formData.append("user_id", user.id);
+  
+    try {
+      const response = await fetch("/api/reviews", {
+        method: "POST",
+        body: formData,
+      });
+  
+      if (response.ok) {
+        setModalMessage("Review created successfully!");
+        setIsModalOpen(true);
+        setRating(null);
+        setComment("");
+        setDate("");
+      } else {
+        const errorData = await response.json();
+        console.error(`Failed to create review: ${errorData.error}`);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setModalMessage(`Failed to create review: ${error.message || error.toString()}`);
+      setIsModalOpen(true);
+    }
+  };
     
     }
 
