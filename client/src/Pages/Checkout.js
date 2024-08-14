@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./CSS/Checkout.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import PageNotFound from "./PageNotFound";
 
 function Checkout() {
   const [selectedMethod, setSelectedMethod] = useState("paypal");
@@ -14,6 +15,8 @@ function Checkout() {
   const [booking, setBooking] = useState([]);
   const [loading, setLoading] = useState(true);
   const location = useLocation();
+  const navigate = useNavigate();
+
   const { id, start_date, end_date, space_id, user_id, total_price } =
     location.state || {};
 
@@ -45,17 +48,84 @@ function Checkout() {
 
   function processPayment() {
     if (selectedMethod === "paypal") {
-      fetch("/api/payment", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          bookingId: booking.id,
-          paymentMethod: "PayPal",
-          payerEmail: paypalEmail,
-          user_id: booking.user.id,
-        }),
-      });
+      try {
+        fetch("/api/payments", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            booking_id: booking.id,
+            payment_method: "paypal",
+            user_id: booking.user.id,
+            amount: booking.total_price,
+          }),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok.");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            const url = data.approval_url;
+            const width = 400;
+            const height = 600;
+            const left = (window.innerWidth - width) / 2;
+            const top = (window.innerHeight - height) / 2;
+
+            window.open(
+              url,
+              "Login",
+              `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes`
+            );
+            navigate("/payment-success", { state: id });
+          })
+          .catch((error) => {
+            console.error("Error processing PayPal payment:", error);
+          });
+      } catch (error) {
+        console.error("Error processing PayPal payment:", error);
+      }
+    } else if (selectedMethod === "mpesa") {
+      try {
+        fetch("/api/payments", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            booking_id: booking.id,
+            payment_method: "mpesa",
+            phone_number: mpesaPhone,
+            user_id: booking.user.id,
+            amount: booking.total_price,
+          }),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(response.json().message);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            navigate("/payment-success", { state: id });
+          })
+          .catch((error) => {
+            console.error("Error processing M-PESA payment:", error);
+          });
+      } catch (error) {
+        console.error("Error processing M-PESA payment:", error);
+      }
     }
+  }
+
+  if (
+    !location.state ||
+    !id ||
+    !start_date ||
+    !end_date ||
+    !space_id ||
+    !user_id ||
+    !total_price
+  ) {
+    return <PageNotFound />;
   }
 
   if (loading) {

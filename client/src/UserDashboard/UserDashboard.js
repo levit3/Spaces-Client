@@ -13,7 +13,9 @@ const UserDashboard = () => {
   const [selectedSection, setSelectedSection] = useState("events");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [profilePicture, setProfilePicture] = useState("");
+  const [profilePicture, setProfilePicture] = useState(
+    "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
+  );
 
   useEffect(() => {
     if (user_id !== undefined) {
@@ -44,7 +46,7 @@ const UserDashboard = () => {
         <div className="card-body d-flex align-items-center justify-content-between">
           <div className="d-flex align-items-center">
             <img
-              src={profilePicture}
+              src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
               alt={`${name}'s Profile`}
               className="profile-picture rounded-circle me-3"
             />

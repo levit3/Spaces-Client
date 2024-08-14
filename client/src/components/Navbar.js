@@ -23,7 +23,7 @@ const Navbar = () => {
   }, [isMenuOpen]);
 
   const handleProfile = () => {
-    navigate("/profile");
+    navigate("/dashboard");
   };
   useEffect(() => {
     const handleScroll = () => {
@@ -63,8 +63,7 @@ const Navbar = () => {
         <li className="nav-dropdown">
           Events
           <ul className="nav-dropdown-menu">
-            <a href="/event">View All Events</a>
-            <a href="/event">Upcoming Events</a>
+            <a href="/events">Upcoming Events</a>
             <Link to="/create-event">Create Event</Link>
           </ul>
         </li>
@@ -87,7 +86,7 @@ const Navbar = () => {
             </button>
             <div className="nav-navbar__profile" onClick={handleProfile}>
               <img
-                src="path/to/avatar.jpg"
+                src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
                 alt="Profile Avatar"
                 className="nav-profile__avatar"
               />

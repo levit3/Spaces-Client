@@ -3,13 +3,15 @@ import ImageGallery from "./ImageGallery";
 import BookingForm from "./BookingForm";
 import "./BookingDetails.css";
 import { useLocation, useParams } from "react-router-dom";
+import PageNotFound from "../Pages/PageNotFound";
 
 function BookingDetails() {
-  const [space, setSpace] = useState();
+  const [space, setSpace] = useState([]);
   const [loading, setLoading] = useState(true);
   const react_location = useLocation();
   const { id, title, description, location, capacity, price_per_hour } =
     react_location.state || {};
+
   useEffect(() => {
     try {
       fetch(`/api/spaces/${id}/`)
@@ -27,6 +29,10 @@ function BookingDetails() {
   const handleBack = () => {
     window.history.back();
   };
+
+  if (!react_location.state) {
+    return <PageNotFound />;
+  }
 
   if (loading) {
     return <div>Loading...</div>;
