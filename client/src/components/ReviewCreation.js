@@ -157,9 +157,7 @@ const handleSubmit = async (e) => {
         <Modal isOpen={isModalOpen} onClose={closeModal} message={modalMessage} />
       </div>
     </section>
-  );
-
-    
+  );    
     }
 
 export default ReviewCreation;
