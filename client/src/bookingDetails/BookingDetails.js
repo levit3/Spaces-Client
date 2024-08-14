@@ -9,8 +9,10 @@ function BookingDetails() {
   const [space, setSpace] = useState([]);
   const [loading, setLoading] = useState(true);
   const react_location = useLocation();
+  const { spaceData, spaceImages } = react_location.state || {};
+  const { main, thumbnails } = spaceImages;
   const { id, title, description, location, capacity, price_per_hour } =
-    react_location.state || {};
+    spaceData || {};
 
   useEffect(() => {
     try {
@@ -30,7 +32,7 @@ function BookingDetails() {
     window.history.back();
   };
 
-  if (!react_location.state) {
+  if (!spaceData || !spaceImages) {
     return <PageNotFound />;
   }
 
@@ -90,7 +92,7 @@ function BookingDetails() {
                   <hr className="booking-details-divider" />
                   <p className="booking-details-description">{description}</p>
                 </div>
-                <ImageGallery />
+                <ImageGallery main={main} thumbnails={thumbnails} />
               </div>
             </section>
             <aside className="booking-details-aside">

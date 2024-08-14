@@ -12,6 +12,7 @@ function BookingForm({ id, price_per_hour }) {
   const [totalPrice, setTotalPrice] = useState(0);
   const pricePerHour = price_per_hour;
   const user_id = localStorage.getItem("user_id");
+  console.log(user_id);
   const space_id = id;
 
   const navigate = useNavigate();
@@ -44,6 +45,9 @@ function BookingForm({ id, price_per_hour }) {
   };
 
   const handleBooking = () => {
+    if (!user_id) {
+      navigate("/login");
+    }
     const bookingData = {
       start_date: startDate,
       end_date: calculateEndDate(),

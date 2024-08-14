@@ -109,15 +109,6 @@ const SpaceAndBuildingAmenities = () => (
   </section>
 );
 
-const images = {
-  main: "https://cdn.builder.io/api/v1/image/assets/TEMP/92453d94cc346caf6f3c7e3a0146574833be4b8dc1aa1b9a54868b251aef24de?apiKey=af3c8a520d554d22a850d6116441e929&&apiKey=af3c8a520d554d22a850d6116441e929",
-  thumbnails: [
-    "https://cdn.builder.io/api/v1/image/assets/TEMP/719ac4be35c41674bc169e12d70bf8dce799c470893440f09521a06cc38a79c6?apiKey=af3c8a520d554d22a850d6116441e929&&apiKey=af3c8a520d554d22a850d6116441e929",
-    "https://cdn.builder.io/api/v1/image/assets/TEMP/4ce5de5fe866bc7889a2e3a966b864264c674bf45ef8b141f42a1f3469d15db4?apiKey=af3c8a520d554d22a850d6116441e929&&apiKey=af3c8a520d554d22a850d6116441e929",
-    "https://cdn.builder.io/api/v1/image/assets/TEMP/11734a50461ff7115c05ccf220b24b2c084d508f2de5f954af06b0e42d69622b?apiKey=af3c8a520d554d22a850d6116441e929&&apiKey=af3c8a520d554d22a850d6116441e929",
-  ],
-};
-
 const services = [
   {
     iconSrc:
@@ -187,6 +178,7 @@ function SpaceDetails() {
   const [space, setSpace] = useState([]);
   const [loading, setLoading] = useState(false);
   const [rating, setRating] = useState(0);
+  const [images, setImages] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -194,8 +186,17 @@ function SpaceDetails() {
       .then((res) => res.json())
       .then((data) => {
         setSpace(data);
-        setLoading(true);
-        console.log(data);
+        fetch(`/api/space-images/${id}`)
+          .then((response) => response.json())
+          .then((data) => {
+            console.log({ thumbnails: data.image_urls.slice(1) });
+            setImages({
+              main: data.image_urls[0],
+              thumbnails: data.image_urls.slice(1),
+            });
+            setLoading(true);
+          });
+
         const reviews = data[0].reviews;
         const totalRatings = reviews.reduce(
           (acc, review) => acc + review.rating,
@@ -203,7 +204,7 @@ function SpaceDetails() {
         );
         setRating(reviews.length > 0 ? totalRatings / reviews.length : 0);
       })
-      
+
       .catch((error) => {
         console.error("Error fetching space:", error);
       });
@@ -211,7 +212,7 @@ function SpaceDetails() {
   console.log(space);
 
   const handleBooking = () => {
-    navigate("/booking", { state: space });
+    navigate("/booking", { state: { spaceData: space, spaceImages: images } });
   };
 
   if (!loading) {
@@ -225,6 +226,7 @@ function SpaceDetails() {
       </div>
     );
   }
+  console.log(images);
 
   return (
     <div className="display-item">
