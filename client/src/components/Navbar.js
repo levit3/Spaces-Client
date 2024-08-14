@@ -36,7 +36,7 @@ const Navbar = () => {
   }, [isMenuOpen]);
 
   const handleProfile = () => {
-    navigate("/profile");
+    navigate("/dashboard/user");
   };
 
   return (

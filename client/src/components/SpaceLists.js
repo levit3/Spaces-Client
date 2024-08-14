@@ -85,7 +85,7 @@ const SpacesList = () => {
       </div>
 
       {loading ? (
-        <div className="spinner">Fetching</div>
+        <div className="spinner"></div>
       ) : (
         <div className="spaces-container">
           {filteredSpaces.length > 0 ? (

@@ -16,6 +16,8 @@ import EventDetail from "./Pages/EventDetail";
 import SpaceDetails from "./components/SpaceDetails";
 import EventCreation from "./components/EventCreation";
 import SpacesList from "./components/SpaceLists";
+import UserDashboard from "./components1/UserDashboard";
+import AdminDashboard from "./components1/AdminDashboard";
 import About from "./aboutUs";
 import "./App.css";
 
@@ -64,6 +66,8 @@ const AppContent = () => {
         /> */}
         <Route path="/about" element={<About />} />
         <Route path="event" element={<EventCreation />} />
+        <Route path="/dashboard/user" element={<UserDashboard />} />
+        <Route path="/dashboard/admin" element={<AdminDashboard />} />
       </Routes>
     </div>
   );
