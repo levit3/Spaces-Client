@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./EventCreation.css";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 const Modal = ({ isOpen, onClose, message }) => {
@@ -28,23 +28,12 @@ function EventCreation() {
   const [modalMessage, setModalMessage] = useState("");
   const [redirectOnClose, setRedirectOnClose] = useState(false); // New state for redirect
   const navigate = useNavigate();
-  const {id} = useParams();
 
   const images = {
     main: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJjcsyLgOPmDPJOSVNXpaxCQlnPVLaQeHx4A&s",
   };
 
-  useEffect(() => {
-    fetch(`/api/users/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setUser(data);
-        console.log(user)
-      })
-      .catch((error) => {
-        console.error("Error fetching user:", error);
-      });
-  }, [id,user]);
+  setUser(session.get('user_id'))
 
   useEffect(() => {
     const fetchBookings = async () => {
@@ -57,7 +46,7 @@ function EventCreation() {
         });
         const bookings = await response.json();
         const userBookings = bookings.filter(
-          (booking) => booking.user_id === id
+          (booking) => booking.user_id === user
         );
         console.log(userBookings);
 
@@ -109,7 +98,7 @@ function EventCreation() {
       description,
       date,
       space_id: spaceId,
-      organizer_id: id,
+      organizer_id: user,
     };
 
     try {

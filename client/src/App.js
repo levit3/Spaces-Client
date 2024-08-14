@@ -50,6 +50,7 @@ const AppContent = () => {
         <Route path="/booking/:id" element={<BookingDetails />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/about" element={<About />} />
+        <Route path="/review/:id" element={<ReviewCreation/>} />  
         <Route path="*" element={<PageNotFound />} />        
         <Route path="/dashboard" element={<UserDashboard user={user} />} />
       </Routes>

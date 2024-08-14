@@ -270,6 +270,9 @@ function SpaceDetails() {
             <Link to={`/booking/${id}/`}>
             <button className="booking-button">Book It</button>
             </Link>
+            <Link to={`/review/${id}/`}>
+            <button className="booking-button">Add Review</button>
+            </Link>
           </section>
         </div>
       </article>

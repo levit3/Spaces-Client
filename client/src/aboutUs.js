@@ -64,7 +64,6 @@ function About() {
             />
           </div>
         </div>
-      </div>
 
       <div className="cards-section">
         <Card title="Our Mission">
@@ -112,36 +111,36 @@ function About() {
           <TeamMemberCard
             name="Nicholas"
             role="Front-end and back-end Developer"
-            imageSrc="https://via.placeholder.com/96"
             description="The developer played a crucial role in the space rental platform project by excelling in both frontend and backend development. They designed a polished and responsive user interface using React, featuring space listings, customizable search options, and a straightforward booking mechanism. On the backend, they built and refined APIs with Flask to handle data management, user authentication, and booking functionalities. Their ability to harmonize frontend features with backend operations resulted in an intuitive platform that enhanced user interaction and operational efficiency."
+            imageSrc="https://i.pinimg.com/236x/46/22/59/46225951d3e23497bf932f77f072383a.jpg"
           />
           <TeamMemberCard
             name="Habib"
             role="Front-end and back-end Developer"
-            imageSrc="https://via.placeholder.com/96"
+            imageSrc="https://i.pinimg.com/236x/46/22/59/46225951d3e23497bf932f77f072383a.jpg"
             description="In the project to develop a comprehensive space rental platform, the developer excelled in both frontend and backend tasks, ensuring a cohesive and functional application. On the frontend, they designed and implemented a sleek user interface using React, which included features such as space listings, dynamic search filters, and an intuitive booking system. On the backend, they configured and optimized APIs with Flask to handle space data, manage user accounts, and process bookings. By seamlessly integrating frontend components with backend services, they ensured that users could effortlessly navigate the platform and complete transactions, effectively bridging the gap between user experience and server-side functionality."
           />
           <TeamMemberCard
             name="Favor"
             role="Front-end and back-end Developer"
-            imageSrc="https://via.placeholder.com/96"
+            imageSrc="https://i.pinimg.com/236x/46/22/59/46225951d3e23497bf932f77f072383a.jpg"
             description="For the space rental platform project, the developer skillfully handled both frontend and backend responsibilities, delivering a well-integrated and functional application. They created a visually appealing interface in React, with space listings, real-time search filters, and a streamlined booking system. On the backend, they developed and optimized Flask APIs to manage space data, user interactions, and booking transactions. Their effective integration of frontend design with backend processing provided a seamless user experience and reliable platform performance."
           />
           <TeamMemberCard
             name="Levi"
             role="Team Leader"
-            imageSrc="https://via.placeholder.com/96"
+            imageSrc="https://i.pinimg.com/236x/46/22/59/46225951d3e23497bf932f77f072383a.jpg"
             description="As the project leader for the space rental platform, they played a pivotal role in guiding the development process from conception to launch. They coordinated cross-functional teams, including frontend and backend developers, designers, and testers, to ensure timely delivery of key milestones. Their strategic vision drove the creation of a user-friendly interface and a robust backend infrastructure. By making critical decisions on technology stack, design principles, and project management methodologies, they ensured that the platform met both user needs and business objectives, while also fostering a collaborative and productive team environment."
           />
           <TeamMemberCard
             name="Benhin"
             role="Front-end and back-end Developer"
-            imageSrc="https://via.placeholder.com/96"
+            imageSrc="https://i.pinimg.com/236x/46/22/59/46225951d3e23497bf932f77f072383a.jpg"
             description="In the space rental platform project, the developer excelled across both frontend and backend domains, ensuring a cohesive and operational application. They implemented a refined user interface with React, featuring space listings, dynamic search capabilities, and an efficient booking system. On the backend, they set up and fine-tuned APIs using Flask to oversee space information, user management, and booking workflows. Their successful integration of frontend and backend elements facilitated a user-friendly experience and smooth transactional operations."
           />
         </div>
       </div>
-
+    </div>
       <footer className="footer">
         <div className="footer-content">
           <p className="footer-text">
