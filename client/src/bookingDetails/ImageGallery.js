@@ -1,7 +1,7 @@
 import React from "react";
 import "./ImageGallery.css";
 
-function ImageGallery() {
+function ImageGallery({ main, thumbnails }) {
   const images = [
     {
       src: "https://cdn.builder.io/api/v1/image/assets/TEMP/b28a2f7c149fb63957c31d3b90f106c597d7626fa561380ed82b42b19d87d5b1?apiKey=795a4821ae2d43fd8710fcb3d714d4fc",
@@ -29,17 +29,17 @@ function ImageGallery() {
     <div className="image-gallery">
       <img
         loading="lazy"
-        src={images[0].src}
-        alt={images[0].alt}
+        src={main}
+        alt="main"
         className={`image-gallery-image ${images[0].className}`}
       />
       <div className="image-gallery-thumbnails">
-        {images.slice(1).map((image, index) => (
+        {thumbnails.map((image, index) => (
           <img
             key={index}
             loading="lazy"
-            src={image.src}
-            alt={image.alt}
+            src={image}
+            alt="image"
             className={`image-gallery-thumbnail ${image.className}`}
           />
         ))}
