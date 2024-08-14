@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./TenantDashboard.css";
 
+
+
 const TenantDashboard = () => {
   const [spaces, setSpaces] = useState([]);
   // const [searchTerm, setSearchTerm] = useState("");
   // const [selectedCategory, setSelectedCategory] = useState("All");
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+ 
 
   useEffect(() => {
     fetch("/api/users/46")
@@ -97,12 +100,13 @@ const TenantDashboard = () => {
                 <p>{space.location}</p>
                 <p>{space.status}</p>
               </div>
-
+              
               <div className="hover-content">
                 <p>{space.description}</p>
                 <button onClick={() => handleClick(space)}>Space Details</button>
                 <button onClick={() => handleEdit(space)}>Edit Space</button>
                 <button className="delete-button" onClick={() => handleDelete(space)}>Delete Details</button>
+           
               </div>
             </div>
           ))}
