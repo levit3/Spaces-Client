@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./EventCreation.css";
 import { useParams, useNavigate } from "react-router-dom";
 
+
 const Modal = ({ isOpen, onClose, message }) => {
   if (!isOpen) return null;
 
@@ -34,7 +35,7 @@ function EventCreation() {
   };
 
   useEffect(() => {
-    fetch("/api/users/9")
+    fetch(`/api/users/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setUser(data);
@@ -43,7 +44,7 @@ function EventCreation() {
       .catch((error) => {
         console.error("Error fetching user:", error);
       });
-  }, [user]);
+  }, [id,user]);
 
   useEffect(() => {
     const fetchBookings = async () => {
@@ -56,7 +57,7 @@ function EventCreation() {
         });
         const bookings = await response.json();
         const userBookings = bookings.filter(
-          (booking) => booking.user_id === 9
+          (booking) => booking.user_id === id
         );
         console.log(userBookings);
 
@@ -80,13 +81,13 @@ function EventCreation() {
       }
     };
     fetchBookings();
-  }, [user]);
+  }, [id,user]);
 
   useEffect(() => {
     if (loading && bookedSpaces.length === 0) {
       setModalMessage('You have no booked spaces. Please book a space to create an event');
       setIsModalOpen(true);
-      setRedirectOnClose(true); // Set redirect on close
+      setRedirectOnClose(true); 
     }
   }, [loading, bookedSpaces]);
 
@@ -132,7 +133,7 @@ function EventCreation() {
       }
     } catch (error) {
       console.error("Error:", error);
-      setModalMessage("An error occurred while creating the event");
+      setModalMessage(`Failed to create event: ${error.message || error.toString()}`);
       setIsModalOpen(true);
     }
   };
@@ -140,7 +141,7 @@ function EventCreation() {
   const closeModal = () => {
     setIsModalOpen(false);
     if (redirectOnClose) {
-      navigate('/'); // Navigate to home page
+      navigate('/'); 
     }
   };
 

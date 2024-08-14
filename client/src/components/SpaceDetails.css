@@ -1,10 +1,8 @@
 .main {
   display: flex;
-  align-items: center;
-  padding: 40px 20px;
-  background-color: #2d2d2d;
-  overflow: hidden;
-  gap:60px
+  max-width: 100%;
+  justify-content: space-evenly;
+  background-color: rgba(33, 33, 33, 1);
 }
 
 .display-item{
@@ -72,14 +70,19 @@
   display: flex;
   max-width: 70%;
   flex-direction: column;
-  font-size: 20px;
+  font-size: 19px;
   justify-content: flex-start;
   width: 601px;
   margin-right: 10%;
 }
 
+.icon-name{
+  margin-top: 20px;
+  font-size: 18px;
+  flex-direction: column;
+}
 @media (max-width: 991px) {
-  .property-content {
+  .space-details {
     max-width: 100%;
   }
 }
@@ -92,23 +95,23 @@
   flex-direction: column;
   font-family: Plus Jakarta Sans, -apple-system, Roboto, Helvetica, sans-serif;
   color: var(--Color-Text-Body, #fff);
-  font-weight: 400;
+  font-weight: 200;
   justify-content: flex-start;
 }
 
 @media (max-width: 991px) {
-  .property-details {
+  .space {
     max-width: 100%;
   }
 }
 
 .space-name {
   color: var(--Color-Text-Headings, #fff);
-  font-size: 60px;
-  font-weight: 800;
+  font-size: 35px;
+  font-weight: 700;
   line-height: 1;
   z-index: 0;
-  margin-top: 60px;
+  margin-top: 70px;
 }
 
 @media (max-width: 991px) {
@@ -129,7 +132,6 @@
   white-space: nowrap;
   line-height: 2;
   justify-content: flex-start;
-  font-size: 20px;
 }
 
 @media (max-width: 991px) {
@@ -185,7 +187,7 @@
 }
 
 .space-rate {
-  font-size: 34px;
+  font-size: 29px;
   font-weight: bold;
   margin-top: 16px;
 }
@@ -201,11 +203,6 @@
   border-radius: 10%;
   max-width: 50%;
 }
-
-.booking-button:hover {
-  background: #d4dfeb;
-}
-
 
 @media (max-width: 901px) {
   .booking-button {
@@ -265,10 +262,6 @@
       object-position: center;
       width: 24px;
       margin-right: 8px
-    }
-
-    .icon-name{
-      margin-top: 15px;
     }
     .service-title {
       color: var(--Color-Text-Headings, #fff);

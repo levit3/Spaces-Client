@@ -1,0 +1,88 @@
+/* card.css */
+#root {
+    background-color: #555;
+    color: #fff;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    /* Fixed width for each card */
+    text-align: center;
+    margin: 0 10px;
+    /* Margin between cards */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #002a45;
+}
+
+.card-content {
+    font-size: 1.1rem;
+    color: white;
+}
+
+
+/* aboutUs.css */
+.cards-section {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.section-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.section-list li {
+    margin-bottom: 10px;
+}
+
+.section-container {
+    margin: 20px;
+}
+
+.section-container.bg-dark {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+}
+
+.team-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer {
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
