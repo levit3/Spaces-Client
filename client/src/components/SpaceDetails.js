@@ -157,18 +157,16 @@ const ServiceCard = ({ iconSrc, title }) => {
   );
 };
 
-const LocationInfo = ({ content, icon, text }) => {
-  return (
-    <div className="info-item">
-      <img src={icon} alt="" className="info-icon" />
-      <div>
-        <p>
-          {content}: {text}
-        </p>
-      </div>
+const LocationInfo = ({ content, icon, text }) => (
+  <div className="info-item">
+    <img src={icon} alt="" className="info-icon" />
+    <div>
+      <p>
+        {content}: {text}
+      </p>
     </div>
-  );
-};
+  </div>
+);
 
 const renderStars = (rating) => {
   const fullStars = Math.floor(rating);
@@ -205,6 +203,7 @@ function SpaceDetails() {
         );
         setRating(reviews.length > 0 ? totalRatings / reviews.length : 0);
       })
+      
       .catch((error) => {
         console.error("Error fetching space:", error);
       });

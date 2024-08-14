@@ -1,0 +1,47 @@
+/* src/AvailableSpaces.css */
+
+.available-spaces {
+    padding: 20px;
+    background-color: #1b1c1e;
+    color: #ffffff;
+    border-radius: 8px;
+  }
+  
+  .available-spaces h2 {
+    color: #d89b1c;
+  }
+  
+  .available-spaces input {
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #d89b1c;
+    border-radius: 4px;
+    background-color: #2c2c2c;
+    color: #ffffff;
+  }
+  
+  .space-card {
+    background-color: #2c2c2c;
+    border: 1px solid #d89b1c;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .space-card h3 {
+    color: #d89b1c;
+  }
+  
+  .space-card p {
+    color: #b8b8b8;
+  }
+  
+  .space-card a {
+    color: #d89b1c;
+  }
+  
+  .space-card a:hover {
+    color: #b68816;
+  }
+  

@@ -1,0 +1,30 @@
+/* src/DeleteSpace.css */
+
+.delete-space {
+    padding: 20px;
+    background-color: #1b1c1e;
+    color: #ffffff;
+    border-radius: 8px;
+  }
+  
+  .delete-space h2 {
+    color: #d89b1c;
+  }
+  
+  .delete-space p {
+    color: #b8b8b8;
+  }
+  
+  .delete-space button {
+    background-color: #d89b1c;
+    border: none;
+    padding: 10px 20px;
+    color: #ffffff;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .delete-space button:hover {
+    background-color: #b68816;
+  }
+  

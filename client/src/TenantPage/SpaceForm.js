@@ -1,9 +1,24 @@
-import React from 'react';
+import React , { useState, useEffect } from "react";
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import './SpaceForm.css';
 
-const SpaceForm = ({ space, onClose, onSuccess }) => {
+
+const Modal = ({ isOpen, onClose, message }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="modal-overlay">
+      <div className="modal-content">
+        <h2>{message}</h2>
+        <button onClick={onClose}>Close</button>
+      </div>
+    </div>
+  );
+};
+
+
+const SpaceForm = ({ space }) => {
     const initialValues = space || {
         title: '',
         description: '',
@@ -11,6 +26,9 @@ const SpaceForm = ({ space, onClose, onSuccess }) => {
         price_per_hour: '',
         status: 'available'
     };
+    const [isModalOpen, setIsModalOpen] = useState(false);
+ 
+    const [modalMessage, setModalMessage] = useState("");
 
     const validationSchema = Yup.object({
         title: Yup.string().required('Title is required'),
@@ -21,7 +39,7 @@ const SpaceForm = ({ space, onClose, onSuccess }) => {
     });
     const postSpace = async (values) => {
         try {
-          const response = await fetch('http://localhost:5555/api/spaces', { // Ensure correct URL
+          const response = await fetch('/api/spaces', { 
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -33,17 +51,22 @@ const SpaceForm = ({ space, onClose, onSuccess }) => {
             throw new Error(`HTTP error! Status: ${response.status}`);
           }
           const data = await response.json();
-          onSuccess(data);
-          onClose();
+          console.log('Space created successfully:', data);
+          
+          
+        
+          setModalMessage("Space Created successfully!");
+          setIsModalOpen(true);
         } catch (error) {
           console.error('Error adding space:', error);
           alert('Failed to add space. Please try again.');
+          
         }
       };
 
       const putSpace = async (values) => {
         try {
-          const response = await fetch(`http://localhost:5555/api/spaces/${space.id}`, { // Ensure correct URL
+          const response = await fetch(`/api/spaces/${space.id}`, { 
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
@@ -54,8 +77,8 @@ const SpaceForm = ({ space, onClose, onSuccess }) => {
             throw new Error(`HTTP error! Status: ${response.status}`);
           }
           const data = await response.json();
-          onSuccess(data);
-          onClose();
+          console.log('Space updated successfully:', data);
+         
         } catch (error) {
           console.error('Error updating space:', error);
           alert('Failed to update space. Please try again.');
@@ -69,9 +92,14 @@ const SpaceForm = ({ space, onClose, onSuccess }) => {
         }
         setSubmitting(false);
     };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
     return (
         <div className="space-form">
             <h2>{space ? 'Edit Space' : 'Add Space'}</h2>
+            <img src={`${process.env.PUBLIC_URL}/logo1.png`} alt="Logo" className="space-form-logo" />
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
@@ -110,12 +138,15 @@ const SpaceForm = ({ space, onClose, onSuccess }) => {
                         <button type="submit" disabled={isSubmitting}>
                             {space ? 'Update Space' : 'Add Space'}
                         </button>
-                        <button type="button" onClick={onClose}>
-                            Cancel
-                        </button>
+                       
                     </Form>
                 )}
             </Formik>
+            <Modal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          message={modalMessage}
+        />
         </div>
     );
 };

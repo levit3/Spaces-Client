@@ -7,9 +7,6 @@
   background-color: #2e2e2e;
 }
 
-.container-light {
-  background-color: #cbd5e1;
-}
 
 .text-white {
   color: white;
@@ -43,7 +40,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: white;
+  background: rgb(238, 155, 155);
   padding: 1.5rem;
   border-radius: 0.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -58,25 +55,6 @@
   margin-bottom: 1rem;
 }
 
-/* .navbar, .footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-  background-color: #fade92;
-  color: white;
-}
-
-.navbar a, .footer a {
-  color: #2e2e2e; 
-  text-decoration: none;
-  margin: 0 1rem;
-  transition: color 0.3s ease;
-}
-
-.navbar a:hover, .footer a:hover {
-  color: #fbbf24; 
-}
 
 
 .nover {
@@ -85,5 +63,58 @@
 }
 
 .nover:hover {
-  color: #fbbf24;
-} */
+  color: #fbbf24; /* Gold color on hover */
+}
+/* Navbar styling */
+.manage-spaces-navbar {
+  position: fixed; /* Fixes the navbar at the top of the page */
+  top: 0; /* Aligns the navbar to the top of the viewport */
+  left: 0;
+  width: 100%; /* Ensures the navbar spans the full width of the viewport */
+  background-color: #1e1e1e;
+  padding: 10px 20px;
+  border-radius: 0 0 8px 8px; /* Rounded corners at the bottom of the navbar */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center; /* Centers the content horizontally */
+  align-items: center; /* Centers the content vertically */
+  z-index: 1000; /* Ensures the navbar is above other content */
+}
+
+/* Link styling */
+.manage-spaces-nav-links {
+  display: flex;
+  gap: 20px; /* Space between links */
+}
+
+.nav-link, .nav-button {
+  color: #ffa500;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: background-color 0.3s, color 0.3s;
+}
+.container {
+  padding-top: 80px; /* Adjust this value based on the height of your navbar */
+}
+
+
+.nav-link:hover, .nav-button:hover {
+  background-color: #ffa500;
+  color: #1e1e1e;
+}
+
+/* Button styling */
+.nav-button {
+  background-color: #ffa500;
+  color: #1e1e1e;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+}
+
+.nav-button:hover {
+  background-color: #ff8c00;
+}

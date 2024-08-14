@@ -18,6 +18,10 @@ import BookingDetails from "./bookingDetails/BookingDetails";
 import UserDashboard from "./UserDashboard/UserDashboard";
 import SuccessfulPayment from "./Pages/SuccessfulPayment";
 import Navbar from "./components/Navbar";
+import AddSpacePage from './TenantPage/AddSpacePage';
+import EditSpacePage from './TenantPage/EditSpacePage';
+import TenantDashboard from "./TenantPage/TenantDashboard";
+import ManageUsers from "./TenantPage/ManageUsers";
 
 const AppContent = () => {
   const { isLoggedIn } = useAuth();
@@ -52,6 +56,14 @@ const AppContent = () => {
         <Route path="*" element={<PageNotFound />} />
         <Route path="/dashboard" element={<UserDashboard user={user} />} />
         <Route path="/payment-success" element={<SuccessfulPayment />} />
+        <Route path="/dashboard" element={<TenantDashboard />} />
+        <Route path="/add-space" element={<AddSpacePage />} />
+        <Route path="/edit-space/:id" element={<EditSpacePage />} />
+        <Route path="/manage-users" element={<ManageUsers />} />
+
+        <Route path="/about-us" element={<About />} />
+ 
+
       </Routes>
     </>
   );
