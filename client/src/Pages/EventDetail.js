@@ -4,7 +4,7 @@ import "./CSS/EventDetail.css";
 
 function EventDetail() {
   const { id } = useParams();
-  const [event, setEvent] = useState({});
+  const [event, setEvent] = useState();
   const [loading, setLoading] = useState(true);
   const time = "8AM - 4PM";
   const src =

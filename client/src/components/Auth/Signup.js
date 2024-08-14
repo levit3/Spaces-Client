@@ -39,7 +39,7 @@ const authenticatedFetch = async (url, options = {}) => {
 };
 
 const validationSchema = Yup.object({
-  name: Yup.string().required("Required"),
+  name: Yup.string().required("This field is Required"),
   email: Yup.string()
     .email("Invalid email address")
     .required("This field is required"),
@@ -63,7 +63,7 @@ const Signup = () => {
 
   const handleSubmit = async (values, { setSubmitting, setErrors }) => {
     try {
-      const response = await authenticatedFetch("/api/users", {
+      const response = await authenticatedFetch("/api/signup", {
         method: "POST",
         body: JSON.stringify({
           name: values.name,
@@ -73,6 +73,8 @@ const Signup = () => {
       });
 
       login(response.token);
+      localStorage.setItem("user_id", response.user.id);
+      localStorage.setItem("token", response.token);
 
       navigate("/");
     } catch (error) {
@@ -133,7 +135,7 @@ const Signup = () => {
                 className="auth-signup-input"
                 type="text"
                 name="name"
-                placeholder="Enter name"
+                placeholder="Enter your name"
               />
               <div className="auth-error-message">
                 <ErrorMessage
@@ -146,7 +148,7 @@ const Signup = () => {
                 className="auth-signup-input"
                 type="email"
                 name="email"
-                placeholder="Enter email"
+                placeholder="Enter your email"
               />
               <div className="auth-error-message">
                 <ErrorMessage

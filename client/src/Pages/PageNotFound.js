@@ -2,6 +2,14 @@ import React from "react";
 import "./CSS/PageNotFound.css";
 
 function PageNotFound() {
+  const goBack = () => {
+    window.history.back();
+  };
+
+  const goHome = () => {
+    window.location.href = "/";
+  };
+
   return (
     <main className="not-found-page">
       <img
@@ -15,12 +23,16 @@ function PageNotFound() {
           <h1>Page not found</h1>
           <p>
             Sorry, the page you are looking for doesn't exist or has been moved.
-            Here are some helpful links:
+            Also ensure that you have followed the correct order of navigation.
           </p>
         </div>
         <div className="button-container">
-          <button className="button outline">Go back</button>
-          <button className="button solid">Take me home</button>
+          <button className="button outline" onClick={goBack}>
+            Go back
+          </button>
+          <button className="button solid" onClick={goHome}>
+            Take me home
+          </button>
         </div>
       </section>
     </main>
