@@ -15,4 +15,23 @@ const Modal = ({ isOpen, onClose, message }) => {
   );
 };
 
-
+const StarRating = ({ rating, onRatingChange }) => {
+    const handleClick = (value) => {
+      onRatingChange(value);
+    };
+  
+    return (
+      <div className="star-rating">
+        {[1, 2, 3, 4, 5].map((value) => (
+          <span
+            key={value}
+            className={`star ${value <= rating ? "filled" : ""}`}
+            onClick={() => handleClick(value)}
+          >
+            &#9733;
+          </span>
+        ))}
+      </div>
+    );
+  };
+  
