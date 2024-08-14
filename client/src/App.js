@@ -17,6 +17,7 @@ import "./App.css";
 import Footer from "./components/Footer";
 import BookingDetails from "./bookingDetails/BookingDetails";
 import UserDashboard from "./UserDashboard/UserDashboard";
+import ReviewCreation from "./components/ReviewCreation";
 
 
 const AppContent = () => {
@@ -45,7 +46,7 @@ const AppContent = () => {
         <Route path="/events" element={<EventList />} />
         <Route path="/event/:id" element={<EventDetail />} />
         <Route path="/space/:id" element={<SpaceDetails />} />
-        <Route path="/events/new" element={<EventCreation />} />
+        <Route path="/events/:id" element={<EventCreation />} />
         <Route path="/spaces/new" element={<SpaceForm />} />
         <Route path="/booking/:id" element={<BookingDetails />} />
         <Route path="/checkout" element={<Checkout />} />

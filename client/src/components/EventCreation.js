@@ -33,8 +33,21 @@ function EventCreation() {
     main: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJjcsyLgOPmDPJOSVNXpaxCQlnPVLaQeHx4A&s",
   };
 
-  setUser(session.get('user_id'))
-
+  useEffect(() => {
+    fetch("/api/checksession")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.error) {
+          console.error("Error fetching user:", data.error);
+        } else {
+          setUser(data);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching user:", error);
+      });
+    })
+    
   useEffect(() => {
     const fetchBookings = async () => {
       try {
@@ -46,7 +59,7 @@ function EventCreation() {
         });
         const bookings = await response.json();
         const userBookings = bookings.filter(
-          (booking) => booking.user_id === user
+          (booking) => booking.user_id === user.id
         );
         console.log(userBookings);
 
@@ -70,7 +83,7 @@ function EventCreation() {
       }
     };
     fetchBookings();
-  }, [id,user]);
+  }, [user]);
 
   useEffect(() => {
     if (loading && bookedSpaces.length === 0) {
@@ -98,7 +111,7 @@ function EventCreation() {
       description,
       date,
       space_id: spaceId,
-      organizer_id: user,
+      organizer_id: user.id,
     };
 
     try {
