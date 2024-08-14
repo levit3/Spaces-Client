@@ -119,6 +119,46 @@ const handleSubmit = async (e) => {
     );
   }
 
+  return (
+    <section className="main-content">
+      <h1 className="title">Add Your Review</h1>
+      <div className="review-creation-container">
+        <div className="review-photo">
+          <img src={images.main} alt="Event view" className="main-image" />
+        </div>
+        <form className="review-form" onSubmit={handleSubmit}>
+          <label htmlFor="comment" className="form-label">
+            Comment:
+          </label>
+          <input
+            id="comment"
+            className="form-input"
+            type="text"
+            placeholder="Enter your comment"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+          />
+          <label htmlFor="rating" className="form-label">
+            Rate:
+          </label>
+          <StarRating rating={rating} onRatingChange={setRating} />
+          <label htmlFor="date" className="form-label">
+            Date:
+          </label>
+          <input
+            id="date"
+            className="form-input"
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
+          <input className="submit-button" type="submit" value="Create Review" />
+        </form>
+        <Modal isOpen={isModalOpen} onClose={closeModal} message={modalMessage} />
+      </div>
+    </section>
+  );
+
     
     }
 
