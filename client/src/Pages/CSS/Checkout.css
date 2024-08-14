@@ -250,7 +250,6 @@ body {
   padding-right: 35px;
   padding-left: 35px;
   margin-top: 80px;
-  width: 20vw;
   white-space: nowrap;
   border-radius: 24px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
@@ -263,7 +262,7 @@ body {
   align-self: flex-start;
 }
 
-.event-image {
+.space-image {
   object-fit: contain;
   flex-shrink: 0;
   border-radius: 8px;
@@ -271,19 +270,19 @@ body {
   width: 193px;
 }
 
-.event-details {
+.checkout-space-details {
   display: flex;
   flex-direction: column;
   align-self: flex-start;
 }
 
-.event-name {
+.space-name {
   display: flex;
   flex-direction: column;
   align-self: flex-start;
 }
 
-.event-title {
+.space-title {
   font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: 0.05rem;
@@ -292,14 +291,15 @@ body {
   margin-bottom: 10px;
 }
 
-.event-location {
+.space-location {
   margin-top: 0;
   font-size: 1rem;
   color: #ffffff;
   font-weight: 300;
+  text-align: left;
 }
 
-.event-meta {
+.space-meta {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
@@ -308,13 +308,13 @@ body {
   color: #ffffff;
 }
 
-.event-date {
+.space-date {
   display: flex;
   gap: 8px;
   align-items: center;
 }
 
-.event-capacity {
+.space-capacity {
   display: flex;
   gap: 8px;
   align-items: center;
@@ -360,9 +360,11 @@ body {
   font-weight: 600;
 }
 
-/* @media (max-width: 768px) {
+@media (max-width: 768px) {
   .checkout-container {
     flex-direction: column;
+    padding: 0;
+    padding-top: 70px;
   }
 
   .checkout-section,
@@ -386,7 +388,13 @@ body {
   .order-summary {
     margin-top: 0;
   }
-} */
+  .order-item {
+    gap: 0;
+  }
+  .space-location {
+    text-align: left;
+  }
+}
 
 @media (max-width: 480px) {
   .checkout-page {
@@ -412,9 +420,8 @@ body {
     padding: 10px;
   }
 
-  .event-image {
-    width: 70px;
-    height: 70px;
+  .space-image {
+    display: none;
   }
 
   .pay-button {
@@ -423,7 +430,7 @@ body {
   }
 
   .order-summary {
-    width: 85%;
+    width: 100%;
     margin-top: 0;
     gap: 10px;
   }

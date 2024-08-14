@@ -261,17 +261,14 @@ const Signup = () => {
 
   const handleSubmit = async (values, { setSubmitting, setErrors }) => {
     try {
-      const response = await authenticatedFetch(
-        "http://127.0.0.1:5555/api/signup",
-        {
-          method: "POST",
-          body: JSON.stringify({
-            name: values.name,
-            email: values.email,
-            password: values.password,
-          }),
-        }
-      );
+      const response = await authenticatedFetch("/api/signup", {
+        method: "POST",
+        body: JSON.stringify({
+          name: values.name,
+          email: values.email,
+          password: values.password,
+        }),
+      });
 
       localStorage.setItem("token", response.token);
       localStorage.setItem(
@@ -284,6 +281,8 @@ const Signup = () => {
       );
 
       login(response.token);
+      localStorage.setItem("user_id", response.user.id);
+      localStorage.setItem("token", response.token);
 
       navigate("/");
     } catch (error) {

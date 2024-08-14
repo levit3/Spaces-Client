@@ -24,6 +24,13 @@ const Navbar = () => {
       document.body.classList.remove("menu-open");
     }
 
+<<<<<<< HEAD
+=======
+  const handleProfile = () => {
+    navigate("/dashboard");
+  };
+  useEffect(() => {
+>>>>>>> d4ef11f35b7384e3e7d9a6b19c327af7a64f1d0e
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
@@ -59,15 +66,18 @@ const Navbar = () => {
         }`}
       >
         <Link to="/">Home</Link>
+<<<<<<< HEAD
         <Link to="/spaces">Spaces</Link>
+=======
+        <Link to="/space/:id">Spaces</Link>
+>>>>>>> d4ef11f35b7384e3e7d9a6b19c327af7a64f1d0e
         <Link to="/about">About Us</Link>
 
         <li className="nav-dropdown">
           Events
           <ul className="nav-dropdown-menu">
-            <a href="#">View All Events</a>
-            <a href="#">Upcoming Events</a>
-            <a href="#">Create Event</a>
+            <a href="/events">Upcoming Events</a>
+            <Link to="/create-event">Create Event</Link>
           </ul>
         </li>
       </ul>
@@ -97,7 +107,7 @@ const Navbar = () => {
             </button>
             <div className="nav-navbar__profile" onClick={handleProfile}>
               <img
-                src="path/to/avatar.jpg"
+                src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
                 alt="Profile Avatar"
                 className="nav-profile__avatar"
               />

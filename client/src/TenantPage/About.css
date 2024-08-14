@@ -1,0 +1,120 @@
+/* General Styles */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: #2e2e2e;
+}
+
+
+.text-white {
+  color: white;
+}
+
+.text-black {
+  color: black;
+}
+
+.text-amber {
+  color: #fbbf24;
+}
+
+/* Mission, Vision, Values, Team sections */
+.section {
+  padding: 5rem 0;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 4rem;
+  color: #fbbf24;
+}
+
+.section-text {
+  color: white;
+}
+
+/* Team Member Card */
+.team-member-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgb(238, 155, 155);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 15rem;
+}
+
+.team-member-card img {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+
+
+.nover {
+  color: transparent;
+  transition: color 0.3s ease;
+}
+
+.nover:hover {
+  color: #fbbf24; /* Gold color on hover */
+}
+/* Navbar styling */
+.manage-spaces-navbar {
+  position: fixed; /* Fixes the navbar at the top of the page */
+  top: 0; /* Aligns the navbar to the top of the viewport */
+  left: 0;
+  width: 100%; /* Ensures the navbar spans the full width of the viewport */
+  background-color: #1e1e1e;
+  padding: 10px 20px;
+  border-radius: 0 0 8px 8px; /* Rounded corners at the bottom of the navbar */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center; /* Centers the content horizontally */
+  align-items: center; /* Centers the content vertically */
+  z-index: 1000; /* Ensures the navbar is above other content */
+}
+
+/* Link styling */
+.manage-spaces-nav-links {
+  display: flex;
+  gap: 20px; /* Space between links */
+}
+
+.nav-link, .nav-button {
+  color: #ffa500;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: background-color 0.3s, color 0.3s;
+}
+.container {
+  padding-top: 80px; /* Adjust this value based on the height of your navbar */
+}
+
+
+.nav-link:hover, .nav-button:hover {
+  background-color: #ffa500;
+  color: #1e1e1e;
+}
+
+/* Button styling */
+.nav-button {
+  background-color: #ffa500;
+  color: #1e1e1e;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+}
+
+.nav-button:hover {
+  background-color: #ff8c00;
+}

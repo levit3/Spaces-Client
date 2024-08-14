@@ -180,17 +180,18 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await authenticatedFetch(
-        "http://127.0.0.1:5555/api/login",
-        {
-          method: "POST",
-          body: JSON.stringify({ email, password }),
-        }
-      );
+      const response = await authenticatedFetch("/api/login", {
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+      });
 
       localStorage.setItem("token", response.token);
+<<<<<<< HEAD
       localStorage.setItem("user", JSON.stringify(response.user));
 
+=======
+      localStorage.setItem("user_id", response.user.id);
+>>>>>>> d4ef11f35b7384e3e7d9a6b19c327af7a64f1d0e
       login(response.token);
       navigate("/");
     } catch (error) {
