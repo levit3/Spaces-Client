@@ -7,7 +7,6 @@
   background-color: #2e2e2e;
 }
 
-
 .text-white {
   color: white;
 }
@@ -55,8 +54,6 @@
   margin-bottom: 1rem;
 }
 
-
-
 .nover {
   color: transparent;
   transition: color 0.3s ease;
@@ -87,7 +84,8 @@
   gap: 20px; /* Space between links */
 }
 
-.nav-link, .nav-button {
+.nav-link,
+.nav-button {
   color: #ffa500;
   text-decoration: none;
   font-size: 18px;
@@ -99,8 +97,8 @@
   padding-top: 80px; /* Adjust this value based on the height of your navbar */
 }
 
-
-.nav-link:hover, .nav-button:hover {
+.nav-link:hover,
+.nav-button:hover {
   background-color: #ffa500;
   color: #1e1e1e;
 }

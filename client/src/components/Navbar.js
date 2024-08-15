@@ -64,10 +64,9 @@ const Navbar = () => {
 
         <li className="nav-dropdown">
           Events
-          <ul className="nav-dropdown-menu">
-            <a href="#">View All Events</a>
-            <a href="#">Upcoming Events</a>
-            <a href="#">Create Event</a>
+          <ul className="dropdown-menu">
+            <a href="/events">Upcoming Events</a>
+            <a href="/events/new">Create Event</a>
           </ul>
         </li>
       </ul>

@@ -1,6 +1,7 @@
 import "./SpaceDetails.css";
 import React, { useState, useEffect } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const spaceAmenities = [
   [
@@ -148,16 +149,18 @@ const ServiceCard = ({ iconSrc, title }) => {
   );
 };
 
-const LocationInfo = ({ content, icon, text }) => (
-  <div className="info-item">
-    <img src={icon} alt="" className="info-icon" />
-    <div>
-      <p>
-        {content}: {text}
-      </p>
+const LocationInfo = ({ content, icon, text }) => {
+  return (
+    <div className="info-item">
+      <img src={icon} alt="" className="info-icon" />
+      <div>
+        <p className="icon-name">
+          {content}: {text}
+        </p>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const renderStars = (rating) => {
   const fullStars = Math.floor(rating);
@@ -178,26 +181,19 @@ function SpaceDetails() {
   const [space, setSpace] = useState([]);
   const [loading, setLoading] = useState(false);
   const [rating, setRating] = useState(0);
-  const [images, setImages] = useState({});
-  const navigate = useNavigate();
+  const [img, setImg] = useState([]);
 
   useEffect(() => {
     fetch(`/api/spaces/${id}/`)
       .then((res) => res.json())
       .then((data) => {
         setSpace(data);
-        fetch(`/api/space-images/${id}`)
-          .then((response) => response.json())
-          .then((data) => {
-            console.log({ thumbnails: data.image_urls.slice(1) });
-            setImages({
-              main: data.image_urls[0],
-              thumbnails: data.image_urls.slice(1),
-            });
-            setLoading(true);
-          });
+        setLoading(true);
+        console.log(data);
+        setImg(data.space_images);
+        console.log(img);
 
-        const reviews = data[0].reviews;
+        const reviews = data.reviews;
         const totalRatings = reviews.reduce(
           (acc, review) => acc + review.rating,
           0
@@ -208,12 +204,7 @@ function SpaceDetails() {
       .catch((error) => {
         console.error("Error fetching space:", error);
       });
-  }, [id]);
-  console.log(space);
-
-  const handleBooking = () => {
-    navigate("/booking", { state: { spaceData: space, spaceImages: images } });
-  };
+  }, [id, img]);
 
   if (!loading) {
     return (
@@ -226,10 +217,16 @@ function SpaceDetails() {
       </div>
     );
   }
-  console.log(images);
+  const images = {
+    main: img[0].image_url,
+    thumbnails: [img[1].image_url, img[2].image_url, img[3].image_url],
+  };
+
+  console.log(space);
 
   return (
     <div className="display-item">
+      <Navbar />
       <article className="main">
         <div className="images">
           <img src={images.main} alt="Main view" className="main-image" />
@@ -267,9 +264,12 @@ function SpaceDetails() {
             <hr className="divider" />
             <p className="space-description"> {space.description}</p>
             <div className="space-rate">Rate: {renderStars(rating)}</div>
-            <button className="booking-button" onClick={handleBooking}>
-              Book It
-            </button>
+            <Link to={`/booking/${id}/`}>
+              <button className="booking-button">Book It</button>
+            </Link>
+            <Link to={`/review/${id}/`}>
+              <button className="booking-button">Add Review</button>
+            </Link>
           </section>
         </div>
       </article>

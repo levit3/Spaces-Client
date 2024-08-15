@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./EventCreation.css";
-import { useNavigate } from "react-router-dom"; // Update this import
-import Navbar from "./Navbar.js";
+import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const Modal = ({ isOpen, onClose, message }) => {
   if (!isOpen) return null;
@@ -27,22 +27,26 @@ function EventCreation() {
   const [loading, setLoading] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
   const [redirectOnClose, setRedirectOnClose] = useState(false); // New state for redirect
-  const navigate = useNavigate(); // Use useNavigate instead of useHistory
+  const navigate = useNavigate();
 
   const images = {
     main: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJjcsyLgOPmDPJOSVNXpaxCQlnPVLaQeHx4A&s",
   };
 
   useEffect(() => {
-    fetch("/api/users/92")
+    fetch("/api/checksession")
       .then((res) => res.json())
       .then((data) => {
-        setUser(data);
+        if (data.error) {
+          console.error("Error fetching user:", data.error);
+        } else {
+          setUser(data);
+        }
       })
       .catch((error) => {
         console.error("Error fetching user:", error);
       });
-  }, []);
+  });
 
   useEffect(() => {
     const fetchBookings = async () => {
@@ -55,7 +59,7 @@ function EventCreation() {
         });
         const bookings = await response.json();
         const userBookings = bookings.filter(
-          (booking) => booking.user_id === 92
+          (booking) => booking.user_id === user.id
         );
         console.log(userBookings);
 
@@ -87,7 +91,7 @@ function EventCreation() {
         "You have no booked spaces. Please book a space to create an event"
       );
       setIsModalOpen(true);
-      setRedirectOnClose(true); // Set redirect on close
+      setRedirectOnClose(true);
     }
   }, [loading, bookedSpaces]);
 
@@ -109,7 +113,7 @@ function EventCreation() {
       description,
       date,
       space_id: spaceId,
-      organizer_id: 92,
+      organizer_id: user.id,
     };
 
     try {
@@ -133,7 +137,9 @@ function EventCreation() {
       }
     } catch (error) {
       console.error("Error:", error);
-      setModalMessage("An error occurred while creating the event");
+      setModalMessage(
+        `Failed to create event: ${error.message || error.toString()}`
+      );
       setIsModalOpen(true);
     }
   };
@@ -141,7 +147,7 @@ function EventCreation() {
   const closeModal = () => {
     setIsModalOpen(false);
     if (redirectOnClose) {
-      navigate("/"); // Navigate to home page
+      navigate("/");
     }
   };
 
