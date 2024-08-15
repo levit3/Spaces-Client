@@ -78,18 +78,24 @@ const TenantDashboard = () => {
   if (!isTenant) {
     return null; // This will be handled by the redirect
   }
+   <Link to="/add-space" className="add-space-button">Add Space</Link>
 
   return (
-    <div>
-      
-      <Link to="/add-space" className="add-space-button">Add Space</Link>
+    
+  <div>
       <div className="spaces-list">
         <div className="filter-container">
+          
           {/* Add search and category filters here if needed */}
-        </div>
+        </div>  <Link to="/add-space" className="add-space-button">Add Space</Link>
+      
         <div className="spaces-container">
+      
           {spaces.map((space) => (
+            
             <div key={space.id} className="space-card">
+              
+              
               <div className="price-tag">${space.price_per_hour}/hour</div>
               <img
                 src={
@@ -98,7 +104,9 @@ const TenantDashboard = () => {
                     : "https://via.placeholder.com/400x300?text=No+Image+Available"
                 }
                 alt={space.title || "Space Image"}
+                
               />
+              
               <div className="space-info">
                 <h3>{space.title}</h3>
                 <p>{space.location}</p>
@@ -106,13 +114,17 @@ const TenantDashboard = () => {
               </div>
               <div className="hover-content">
                 <p>{space.description}</p>
+            
                 <button onClick={() => handleClick(space)}>Space Details</button>
                 <button onClick={() => handleEdit(space)}>Edit Space</button>
                 <button className="delete-button" onClick={() => handleDelete(space)}>
                   Delete Details
                 </button>
+                
               </div>
+              
             </div>
+            
           ))}
         </div>
       </div>

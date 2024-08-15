@@ -1,7 +1,8 @@
 .tenant-dashboard {
-  padding: 20px;
+  padding: 30px;
   background-color: #1b1c1e;
   color: #d89b1c;
+  margin-top: 70px; /* Adjust based on navbar height */
 }
 
 .tenant-navbar {
@@ -11,6 +12,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed; /* Ensure navbar stays at the top */
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Ensure navbar is above other content */
 }
 
 .navbar-content {
@@ -18,21 +24,33 @@
   align-items: center;
 }
 
+
 .navbar-brand {
   color: #d89b1c;
   text-decoration: none;
   font-size: 1.5rem;
   margin-right: 20px;
 }
+.hover-content {
+  margin-top: 10px;
+  display: flex; /* Use flexbox for button layout */
+  flex-direction: column; /* Stack buttons vertically */
+  gap: 10px; /* Space between buttons */
+}
 
 .add-space-button {
   background-color: #d89b1c;
   color: #1b1c1e;
-  padding: 10px 20px;
+  padding: 10px 40px;
   text-decoration: none;
+  margin: 20px;
   border-radius: 5px;
   font-size: 1rem;
   font-weight: bold;
+  margin-top: 70px; /* Space below the button */
+/* margin-left: 200px; */
+  margin-bottom: 20px;
+  display: inline-block; /* To ensure it's aligned correctly */
 }
 
 .add-space-button:hover {
@@ -41,7 +59,13 @@
 
 .spaces-list {
   padding: 20px;
+  margin-left: 20px; 
+  position: relative;
 }
+.filter-container {
+  margin-bottom: 20px; 
+}
+
 
 .spaces-container {
   display: flex;
