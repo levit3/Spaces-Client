@@ -1,6 +1,6 @@
 import "./SpaceDetails.css";
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 
 const spaceAmenities = [
@@ -182,17 +182,15 @@ function SpaceDetails() {
   const [loading, setLoading] = useState(false);
   const [rating, setRating] = useState(0);
   const [img, setImg] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`/api/spaces/${id}/`)
       .then((res) => res.json())
       .then((data) => {
         setSpace(data);
-        setLoading(true);
-        console.log(data);
         setImg(data.space_images);
-        console.log(img);
-
+        setLoading(true);
         const reviews = data.reviews;
         const totalRatings = reviews.reduce(
           (acc, review) => acc + review.rating,
@@ -206,6 +204,10 @@ function SpaceDetails() {
       });
   }, [id, img]);
 
+  const handleBooking = () => {
+    navigate("/booking", { state: { spaceData: space, spaceImages: images } });
+  };
+
   if (!loading) {
     return (
       <div className="loading-container">
@@ -217,12 +219,11 @@ function SpaceDetails() {
       </div>
     );
   }
+
   const images = {
     main: img[0].image_url,
     thumbnails: [img[1].image_url, img[2].image_url, img[3].image_url],
   };
-
-  console.log(space);
 
   return (
     <div className="display-item">
@@ -264,9 +265,9 @@ function SpaceDetails() {
             <hr className="divider" />
             <p className="space-description"> {space.description}</p>
             <div className="space-rate">Rate: {renderStars(rating)}</div>
-            <Link to={`/booking/${id}/`}>
-              <button className="booking-button">Book It</button>
-            </Link>
+            <button className="booking-button" onClick={handleBooking}>
+              Book It
+            </button>
             <Link to={`/review/${id}/`}>
               <button className="booking-button">Add Review</button>
             </Link>
