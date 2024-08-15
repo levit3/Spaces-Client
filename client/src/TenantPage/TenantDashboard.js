@@ -4,32 +4,38 @@ import "./TenantDashboard.css";
 
 const TenantDashboard = () => {
   const [spaces, setSpaces] = useState([]);
-  // const [searchTerm, setSearchTerm] = useState("");
-  // const [selectedCategory, setSelectedCategory] = useState("All");
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-  const user_id = localStorage.getItem("user_id")
-    ? localStorage.getItem("user_id")
-    : null;
+  const [isTenant, setIsTenant] = useState(false);
+  const navigate = useNavigate();
+  const userId = localStorage.getItem("user_id");
 
   useEffect(() => {
-    fetch(`/api/users/${user_id}`)
+    // Fetch user information to determine if it's a tenant
+    fetch(`/api/users/${userId}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log("Space updated successfully:", data);
-        setSpaces(data.spaces);
-        setLoading(false);
+        if (data.role === "tenant") {
+          setIsTenant(true);
+          fetch(`/api/users/${userId}/spaces`)
+            .then((response) => response.json())
+            .then((spacesData) => {
+              console.log("Spaces fetched successfully:", spacesData);
+              setSpaces(spacesData);
+              setLoading(false);
+            })
+            .catch((error) => {
+              console.error("Error fetching spaces:", error);
+            });
+        } else {
+          // Redirect to 404 page if the user is not a tenant
+          navigate("/404");
+        }
       })
-      .catch((error) => console.error("Error fetching spaces:", error));
-  }, []);
-
-  // const handleSearchChange = (event) => {
-  //   setSearchTerm(event.target.value);
-  // };
-
-  // const handleCategoryChange = (event) => {
-  //   setSelectedCategory(event.target.value);
-  // };
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
+        navigate("/404");
+      });
+  }, [userId, navigate]);
 
   const handleClick = (space) => {
     navigate(`/space/${space.id}`);
@@ -59,28 +65,30 @@ const TenantDashboard = () => {
     return <div>Loading spaces...</div>;
   }
 
+  if (!isTenant) {
+    return null;
+  }
+
   return (
     <div>
+      <nav className="tenant-navbar">
+        <div className="navbar-content">
+          <Link to="/" className="navbar-brand">
+            Home
+          </Link>
+          <Link to="/add-space" className="add-space-button">
+            Add Space
+          </Link>
+        </div>
+      </nav>
+
       <div className="spaces-list">
         <div className="filter-container">
-          {/* <input
-            type="text"
-            placeholder="Search spaces..."
-            value={searchTerm}
-            onChange={handleSearchChange}
-            className="search-input"
-          /> */}
-          {/* <select
-            value={selectedCategory}
-            onChange={handleCategoryChange}
-            className="category-select"
-          >
-            Populate categories if needed */}
-          {/* </select> */}
+          {/* Add search and category filters here if needed */}
         </div>
         <div className="spaces-container">
           {spaces.map((space) => (
-            <div key={space.id} className="tenant-space-card">
+            <div key={space.id} className="space-card">
               <div className="price-tag">${space.price_per_hour}/hour</div>
               <img
                 src={
@@ -88,22 +96,19 @@ const TenantDashboard = () => {
                     ? space.space_images[0].image_url
                     : "https://via.placeholder.com/400x300?text=No+Image+Available"
                 }
-                alt={space.title}
+                alt={space.title || "Space Image"}
               />
               <div className="space-info">
                 <h3>{space.title}</h3>
                 <p>{space.location}</p>
                 <p>{space.status}</p>
               </div>
-
               <div className="hover-content">
                 <p>{space.description}</p>
-                <button className="button" onClick={() => handleClick(space)}>
+                <button onClick={() => handleClick(space)}>
                   Space Details
                 </button>
-                <button className="button" onClick={() => handleEdit(space)}>
-                  Edit Space
-                </button>
+                <button onClick={() => handleEdit(space)}>Edit Space</button>
                 <button
                   className="delete-button"
                   onClick={() => handleDelete(space)}
