@@ -486,3 +486,186 @@
   max-width: 400px;
   max-height: 400px;
 }
+
+/*SpaceLists styles*/
+.spacess-list-container {
+  background-color: #2a2a2a;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.spinnerr {
+  width: 100px;
+  height: 100px;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle fill="%23FFF9D9" stroke="%23FFF9D9" stroke-width="15" r="15" cx="40" cy="65"><animate attributeName="cy" calcMode="spline" dur="2" values="65;135;65;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.4"></animate></circle><circle fill="%23FFF9D9" stroke="%23FFF9D9" stroke-width="15" r="15" cx="100" cy="65"><animate attributeName="cy" calcMode="spline" dur="2" values="65;135;65;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.2"></animate></circle><circle fill="%23FFF9D9" stroke="%23FFF9D9" stroke-width="15" r="15" cx="160" cy="65"><animate attributeName="cy" calcMode="spline" dur="2" values="65;135;65;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="0"></animate></circle></svg>');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 200px auto;
+}
+
+.filterr-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 5px;
+  transition: opacity 0.3s ease, max-height 0.3s ease;
+}
+.filterr-container.hidden {
+  opacity: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+.searchh-input {
+  flex: 1;
+  max-width: 400px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.categoryy-select {
+  padding: 10px;
+  max-width: 150px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+@media (max-width: 900px) {
+  .filterr-container {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+  }
+
+  .searchh-input {
+    max-width: 100%;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .categoryy-select {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .filterr-container {
+    margin-top: 60px;
+  }
+
+  .searchh-input,
+  .categoryy-select {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+.spacess-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+  gap: 20px;
+  font-family: "Roboto", sans-serif;
+  background-color: #2a2a2a;
+}
+
+.spacee-card {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 22rem;
+  height: 28rem;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  color: white;
+  box-shadow: 0 10px 30px 5px rgba(0, 0, 0, 0.2);
+  margin: 5px;
+}
+
+.spacee-card:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 6px 12px #ffd700;
+}
+
+.pricee-tag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+.spacee-image {
+  position: absolute;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.9;
+  transition: transform 0.5s ease-out, opacity 0.2s ease-out;
+}
+
+.spacee-info h3 {
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.spacee-info p {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  color: white;
+}
+
+.hoverr-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #2a2a2ad0;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  padding: 20px;
+  text-align: center;
+}
+
+.spacee-card:hover .hoverr-content {
+  opacity: 1;
+}
+
+.learn-moree-button {
+  display: inline-block;
+  background-color: #ffd700;
+  color: #010101;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.learn-moree-button:hover {
+  background-color: #ffd900bd;
+}
