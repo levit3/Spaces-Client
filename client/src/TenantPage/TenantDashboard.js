@@ -8,7 +8,9 @@ const TenantDashboard = () => {
   // const [selectedCategory, setSelectedCategory] = useState("All");
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-  const user_id = localStorage.getItem("user_id");
+  const user_id = localStorage.getItem("user_id")
+    ? localStorage.getItem("user_id")
+    : null;
 
   useEffect(() => {
     fetch(`/api/users/${user_id}`)
@@ -78,7 +80,7 @@ const TenantDashboard = () => {
         </div>
         <div className="spaces-container">
           {spaces.map((space) => (
-            <div key={space.id} className="space-card">
+            <div key={space.id} className="tenant-space-card">
               <div className="price-tag">${space.price_per_hour}/hour</div>
               <img
                 src={
@@ -96,10 +98,12 @@ const TenantDashboard = () => {
 
               <div className="hover-content">
                 <p>{space.description}</p>
-                <button onClick={() => handleClick(space)}>
+                <button className="button" onClick={() => handleClick(space)}>
                   Space Details
                 </button>
-                <button onClick={() => handleEdit(space)}>Edit Space</button>
+                <button className="button" onClick={() => handleEdit(space)}>
+                  Edit Space
+                </button>
                 <button
                   className="delete-button"
                   onClick={() => handleDelete(space)}

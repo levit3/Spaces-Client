@@ -3,17 +3,6 @@ import "./Footer.css";
 import { Link } from "react-router-dom";
 
 function Footer() {
-  const [locations, setLocations] = useState([]);
-
-  useEffect(() => {
-    fetch("/api/spaces")
-      .then((response) => response.json())
-      .then((data) => {
-        const fetchedLocations = data.slice(0, 5).map((space) => space);
-        setLocations(fetchedLocations);
-      });
-  }, []);
-
   return (
     <div className="footer-container">
       <footer className="footer">

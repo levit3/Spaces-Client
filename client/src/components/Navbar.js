@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "./Auth/AuthContext";
+import { ThemeContext } from "./ThemeContext";
 import "./Navbar.css";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+
   const { isLoggedIn, logout } = useAuth();
+  const { isDarkMode, toggleTheme } = useContext(ThemeContext);
   const navigate = useNavigate();
 
   const toggleMenu = () => {
@@ -20,18 +23,9 @@ const Navbar = () => {
     } else {
       document.body.classList.remove("menu-open");
     }
-  }, [isMenuOpen]);
 
-  const handleProfile = () => {
-    navigate("/dashboard");
-  };
-  useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -39,10 +33,18 @@ const Navbar = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isMenuOpen]);
+
+  const handleProfile = () => {
+    navigate("/dashboard");
+  };
+
   return (
-    <nav className={`nav-navbar ${isScrolled ? "nav-navbar--scrolled" : ""}`}>
-      {/* Navbar content */}
+    <nav
+      className={`nav-navbar ${isScrolled ? "nav-navbar--scrolled" : ""} ${
+        isDarkMode ? "nav-navbar--dark" : ""
+      }`}
+    >
       <div className="nav-navbar__brand">
         <img
           src={process.env.PUBLIC_URL + "/logo.png"}
@@ -57,19 +59,28 @@ const Navbar = () => {
         }`}
       >
         <Link to="/">Home</Link>
-        <Link to="/space/:id">Spaces</Link>
+        <Link to="/spaces">Spaces</Link>
         <Link to="/about">About Us</Link>
 
         <li className="nav-dropdown">
           Events
           <ul className="nav-dropdown-menu">
-            <a href="/events">Upcoming Events</a>
-            <Link to="/create-event">Create Event</Link>
+            <a href="#">View All Events</a>
+            <a href="#">Upcoming Events</a>
+            <a href="#">Create Event</a>
           </ul>
         </li>
       </ul>
 
       <div className="nav-navbar__auth">
+        <button onClick={toggleTheme} className="nav-navbar__theme-toggle">
+          <span className="nav-navbar__theme-toggle-icon">
+            {isDarkMode ? "☀️" : "🌙"}
+          </span>
+          <span className="nav-navbar__theme-toggle-text">
+            {isDarkMode ? "Light" : "Night"}
+          </span>
+        </button>
         {!isLoggedIn ? (
           <>
             <Link to="/login" className="login">
@@ -94,7 +105,6 @@ const Navbar = () => {
           </>
         )}
       </div>
-
       <div className="nav-navbar__hamburger" onClick={toggleMenu}>
         <span></span>
         <span></span>

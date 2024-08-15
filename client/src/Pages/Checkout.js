@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./CSS/Checkout.css";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import { useLocation, useNavigate } from "react-router-dom";
 import PageNotFound from "./PageNotFound";
 
@@ -19,14 +21,37 @@ function Checkout() {
 
   const { id, start_date, end_date, space_id, user_id, total_price } =
     location.state || {};
+  const [image, setImage] = useState("");
+
+  const validationSchema = Yup.object().shape({
+    firstName: Yup.string().required("First Name is required"),
+    lastName: Yup.string().required("Last Name is required"),
+    email: Yup.string()
+      .email("Invalid email format")
+      .required("Email is required"),
+    phoneNumber: Yup.string().required("Phone Number is required"),
+    ...(selectedMethod === "paypal"
+      ? {
+          paypalEmail: Yup.string()
+            .email("Invalid email format")
+            .required("PayPal Email is required"),
+        }
+      : {
+          mpesaPhone: Yup.string().required("Mpesa Phone Number is required"),
+        }),
+  });
 
   useEffect(() => {
     fetch(`/api/bookings/${id}/`)
       .then((response) => response.json())
       .then((data) => {
         setBooking(data);
-        console.log(data);
-        setLoading(false);
+        fetch(`/api/space-images/${space_id}`)
+          .then((response) => response.json())
+          .then((data) => {
+            setImage(data.image_urls[0]);
+            setLoading(false);
+          });
       });
   }, []);
 
@@ -46,75 +71,118 @@ function Checkout() {
     window.history.back();
   };
 
-  function processPayment() {
-    if (selectedMethod === "paypal") {
-      try {
-        fetch("/api/payments", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            booking_id: booking.id,
-            payment_method: "paypal",
-            user_id: booking.user.id,
-            amount: booking.total_price,
-          }),
-        })
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error("Network response was not ok.");
-            }
-            return response.json();
-          })
-          .then((data) => {
-            const url = data.approval_url;
-            const width = 400;
-            const height = 600;
-            const left = (window.innerWidth - width) / 2;
-            const top = (window.innerHeight - height) / 2;
+  // function processPayment() {
+  //   if (selectedMethod === "paypal") {
+  //     try {
+  //       fetch("/api/payments", {
+  //         method: "POST",
+  //         headers: { "Content-Type": "application/json" },
+  //         body: JSON.stringify({
+  //           booking_id: booking.id,
+  //           payment_method: "paypal",
+  //           user_id: booking.user.id,
+  //           amount: booking.total_price,
+  //         }),
+  //       })
+  //         .then((response) => {
+  //           if (!response.ok) {
+  //             throw new Error("Network response was not ok.");
+  //           }
+  //           return response.json();
+  //         })
+  //         .then((data) => {
+  //           const url = data.approval_url;
+  //           const width = 400;
+  //           const height = 600;
+  //           const left = (window.innerWidth - width) / 2;
+  //           const top = (window.innerHeight - height) / 2;
 
-            window.open(
-              url,
-              "Login",
-              `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes`
-            );
-            navigate("/payment-success", { state: id });
-          })
-          .catch((error) => {
-            console.error("Error processing PayPal payment:", error);
-          });
-      } catch (error) {
-        console.error("Error processing PayPal payment:", error);
-      }
-    } else if (selectedMethod === "mpesa") {
-      try {
-        fetch("/api/payments", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            booking_id: booking.id,
-            payment_method: "mpesa",
-            phone_number: mpesaPhone,
-            user_id: booking.user.id,
-            amount: booking.total_price,
-          }),
-        })
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error(response.json().message);
-            }
-            return response.json();
-          })
-          .then((data) => {
-            navigate("/payment-success", { state: id });
-          })
-          .catch((error) => {
-            console.error("Error processing M-PESA payment:", error);
-          });
-      } catch (error) {
-        console.error("Error processing M-PESA payment:", error);
-      }
-    }
-  }
+  //           window.open(
+  //             url,
+  //             "Login",
+  //             `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes`
+  //           );
+  //           navigate("/payment-success", { state: id });
+  //         })
+  //         .catch((error) => {
+  //           console.error("Error processing PayPal payment:", error);
+  //         });
+  //     } catch (error) {
+  //       console.error("Error processing PayPal payment:", error);
+  //     }
+  //   } else if (selectedMethod === "mpesa") {
+  //     try {
+  //       fetch("/api/payments", {
+  //         method: "POST",
+  //         headers: { "Content-Type": "application/json" },
+  //         body: JSON.stringify({
+  //           booking_id: booking.id,
+  //           payment_method: "mpesa",
+  //           phone_number: mpesaPhone,
+  //           user_id: booking.user.id,
+  //           amount: booking.total_price,
+  //         }),
+  //       })
+  //         .then((response) => {
+  //           if (!response.ok) {
+  //             throw new Error(response.json().message);
+  //           }
+  //           return response.json();
+  //         })
+  //         .then((data) => {
+  //           navigate("/payment-success", { state: id });
+  //         })
+  //         .catch((error) => {
+  //           console.error("Error processing M-PESA payment:", error);
+  //         });
+  //     } catch (error) {
+  //       console.error("Error processing M-PESA payment:", error);
+  //     }
+  //   }
+  // }
+
+  const processPayment = (values) => {
+    const paymentData = {
+      booking_id: booking.id,
+      payment_method: selectedMethod,
+      user_id: booking.user.id,
+      amount: booking.total_price,
+      ...(selectedMethod === "mpesa" && { phone_number: values.mpesaPhone }),
+      ...(selectedMethod === "paypal" && { paypalEmail: values.paypalEmail }),
+    };
+
+    fetch("/api/payments", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(paymentData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok.");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (selectedMethod === "paypal") {
+          const url = data.approval_url;
+          const width = 400;
+          const height = 600;
+          const left = (window.innerWidth - width) / 2;
+          const top = (window.innerHeight - height) / 2;
+
+          window.open(
+            url,
+            "Login",
+            `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes`
+          );
+        } else {
+          navigate("/payment-success", { state: id });
+        }
+      })
+      .catch((error) => {
+        console.error("Error processing payment:", error);
+      });
+  };
 
   if (
     !location.state ||
@@ -151,160 +219,216 @@ function Checkout() {
             <div className="contact-header">
               <h2 className="contact-title">Contact Information</h2>
             </div>
-            <form className="contact-form">
-              <div className="form-group">
-                <div className="form-field">
-                  <label htmlFor="firstName" className="field-label">
-                    First Name
-                  </label>
-                  <input
-                    type="text"
-                    id="firstName"
-                    className="text-input"
-                    placeholder="First Name"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                  />
-                </div>
-                <div className="form-field">
-                  <label htmlFor="lastName" className="field-label">
-                    Last Name
-                  </label>
-                  <input
-                    type="text"
-                    id="lastName"
-                    className="text-input"
-                    placeholder="Last Name"
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                  />
-                </div>
-              </div>
-              <div className="form-group">
-                <div className="form-field">
-                  <label htmlFor="phoneNumber" className="field-label">
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    id="phoneNumber"
-                    className="text-input"
-                    placeholder="Phone Number"
-                    value={phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value)}
-                  />
-                </div>
-                <div className="form-field">
-                  <label htmlFor="email" className="field-label">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    className="text-input"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </div>
-              </div>
-              <div className="form-group">
-                <div className="form-field">
-                  <label htmlFor="dateInput" className="field-label">
-                    Date
-                  </label>
-                  <input
-                    type="date"
-                    id="dateInput"
-                    className="date-input"
-                    defaultValue={getCurrentDate()}
-                    onChange={(e) => setDate(e.target.value)}
-                  />
-                </div>
-              </div>
-            </form>
           </section>
-
-          <section className="payment-info">
-            <h2 className="payment-title">Payment Information</h2>
-            <div className="payment-methods">
-              <button
-                className={`method ${
-                  selectedMethod === "paypal" ? "selected" : ""
-                }`}
-                onClick={() => handleClick("paypal")}
-              >
-                <img
-                  loading="lazy"
-                  src="https://cdn.iconscout.com/icon/free/png-256/free-paypal-54-675727.png?f=webp&w=256"
-                  alt="Paypal"
-                  id="paypal"
-                  className="payment-icon"
-                  style={{ color: "#a1a4b2" }}
-                />
-              </button>
-              <button
-                className={`method ${
-                  selectedMethod === "mpesa" ? "selected" : ""
-                }`}
-                onClick={() => handleClick("mpesa")}
-              >
-                <img
-                  loading="lazy"
-                  src="https://pbs.twimg.com/ext_tw_video_thumb/1181852139011936256/pu/img/1UCUl2bSj2RCyq6H.jpg"
-                  alt="Mpesa"
-                  id="mpesa"
-                  className="payment-icon"
-                  style={{ color: "#a1a4b2" }}
-                />
-              </button>
-            </div>
-            <form className="payment-form">
-              <div className="form-group">
-                {selectedMethod === "paypal" ? (
-                  <div className="form-field">
-                    <label htmlFor="paypalEmail" className="field-label">
-                      PayPal Email Address
-                    </label>
-                    <input
-                      type="email"
-                      className="text-input"
-                      placeholder="Email Address"
-                      id="paypalEmail"
-                      value={paypalEmail}
-                      onChange={(e) => setPaypalEmail(e.target.value)}
-                    />
+          <Formik
+            enableReinitialize={true}
+            initialValues={{
+              firstName: "",
+              lastName: "",
+              email: "",
+              phoneNumber: "",
+              paypalEmail: "",
+              mpesaPhone: "",
+              date: getCurrentDate(),
+            }}
+            validationSchema={validationSchema}
+            onSubmit={(values, { setSubmitting }) => {
+              setSubmitting(true);
+              processPayment(values);
+              setSubmitting(false);
+            }}
+          >
+            {({ isSubmitting }) => (
+              <Form className="contact-form">
+                <section className="contact-info">
+                  <div className="form-group">
+                    <div className="form-field">
+                      <label htmlFor="firstName" className="field-label">
+                        First Name
+                      </label>
+                      <Field
+                        type="text"
+                        id="firstName"
+                        name="firstName"
+                        className="text-input"
+                        placeholder="First Name"
+                      />
+                      <ErrorMessage
+                        name="firstName"
+                        component="div"
+                        className="error"
+                        style={{ color: "#a70000", fontSize: "13px" }}
+                      />
+                    </div>
+                    <div className="form-field">
+                      <label htmlFor="lastName" className="field-label">
+                        Last Name
+                      </label>
+                      <Field
+                        type="text"
+                        id="lastName"
+                        name="lastName"
+                        className="text-input"
+                        placeholder="Last Name"
+                      />
+                      <ErrorMessage
+                        name="lastName"
+                        component="div"
+                        className="error"
+                        style={{ color: "#a70000", fontSize: "13px" }}
+                      />
+                    </div>
                   </div>
-                ) : (
-                  <div className="form-field">
-                    <label htmlFor="mpesaPhoneNumber" className="field-label">
-                      Mpesa Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      className="text-input"
-                      placeholder="Phone Number"
-                      id="mpesaPhoneNumber"
-                      value={mpesaPhone}
-                      onChange={(e) => setMpesaPhone(e.target.value)}
-                    />
+                  <div className="form-group">
+                    <div className="form-field">
+                      <label htmlFor="phoneNumber" className="field-label">
+                        Phone Number
+                      </label>
+                      <Field
+                        type="tel"
+                        id="phoneNumber"
+                        name="phoneNumber"
+                        className="text-input"
+                        placeholder="Phone Number"
+                      />
+                      <ErrorMessage
+                        name="phoneNumber"
+                        component="div"
+                        className="error"
+                        style={{ color: "#a70000", fontSize: "13px" }}
+                      />
+                    </div>
+                    <div className="form-field">
+                      <label htmlFor="email" className="field-label">
+                        Email
+                      </label>
+                      <Field
+                        type="email"
+                        id="email"
+                        name="email"
+                        className="text-input"
+                        placeholder="Email"
+                      />
+                      <ErrorMessage
+                        name="email"
+                        component="div"
+                        className="error"
+                        style={{ color: "#a70000", fontSize: "13px" }}
+                      />
+                    </div>
                   </div>
-                )}
-              </div>
-            </form>
-          </section>
-          <button className="pay-button" onClick={processPayment}>
-            Pay
-          </button>
+                  <div className="form-group">
+                    <div className="form-field">
+                      <label htmlFor="dateInput" className="field-label">
+                        Date
+                      </label>
+                      <Field
+                        type="date"
+                        id="dateInput"
+                        name="date"
+                        className="date-input"
+                        disabled="true"
+                      />
+                    </div>
+                  </div>
+                </section>
+                <section className="payment-info">
+                  <h2 className="payment-title">Payment Information</h2>
+                  <div className="payment-methods">
+                    <button
+                      type="button"
+                      className={`method ${
+                        selectedMethod === "paypal" ? "selected" : ""
+                      }`}
+                      onClick={() => handleClick("paypal")}
+                    >
+                      <img
+                        loading="lazy"
+                        src="https://cdn.iconscout.com/icon/free/png-256/free-paypal-54-675727.png?f=webp&w=256"
+                        alt="Paypal"
+                        id="paypal"
+                        className="payment-icon"
+                        style={{ color: "#a1a4b2" }}
+                      />
+                    </button>
+                    <button
+                      type="button"
+                      className={`method ${
+                        selectedMethod === "mpesa" ? "selected" : ""
+                      }`}
+                      onClick={() => handleClick("mpesa")}
+                    >
+                      <img
+                        loading="lazy"
+                        src="https://pbs.twimg.com/ext_tw_video_thumb/1181852139011936256/pu/img/1UCUl2bSj2RCyq6H.jpg"
+                        alt="Mpesa"
+                        id="mpesa"
+                        className="payment-icon"
+                        style={{ color: "#a1a4b2" }}
+                      />
+                    </button>
+                  </div>
+                  <div className="form-group">
+                    {selectedMethod === "paypal" ? (
+                      <div className="form-field">
+                        <label htmlFor="paypalEmail" className="field-label">
+                          PayPal Email Address
+                        </label>
+                        <Field
+                          type="email"
+                          className="text-input"
+                          placeholder="Email Address"
+                          id="paypalEmail"
+                          name="paypalEmail"
+                        />
+                        <ErrorMessage
+                          name="paypalEmail"
+                          component="div"
+                          className="error"
+                          style={{ color: "#a70000", fontSize: "13px" }}
+                        />
+                      </div>
+                    ) : (
+                      <div className="form-field">
+                        <label htmlFor="mpesaPhone" className="field-label">
+                          Mpesa Phone Number
+                        </label>
+                        <Field
+                          type="tel"
+                          className="text-input"
+                          placeholder="07xxxxxxx"
+                          id="mpesaPhoneNumber"
+                          name="mpesaPhone"
+                        />
+                        <ErrorMessage
+                          name="mpesaPhone"
+                          component="div"
+                          className="error"
+                          style={{ color: "#a70000", fontSize: "13px" }}
+                        />
+                      </div>
+                    )}
+                  </div>
+                </section>
+                <button
+                  type="submit"
+                  className="pay-button"
+                  disabled={isSubmitting}
+                >
+                  Proceed to Pay
+                </button>
+              </Form>
+            )}
+          </Formik>
         </section>
 
         <aside className="order-summary">
           <div className="order-item">
             <img
               loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/08487b5ee798c31a0fe63c92fd3404dd438c2823d2380ddddda58cc097e28237?apiKey=8ad21786488a40e8a18ed0f9f1e05271&&apiKey=8ad21786488a40e8a18ed0f9f1e05271"
+              src={image}
               alt="Event image"
-              className="space-image"
+              className="checkout-space-image"
             />
             <div className="checkout-space-details">
               <div className="space-name">

@@ -101,9 +101,10 @@ body {
 .form-group {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 15px;
   align-items: flex-start;
   width: 100%;
+  margin-top: 0.5rem;
 }
 
 .form-field {
@@ -262,7 +263,7 @@ body {
   align-self: flex-start;
 }
 
-.space-image {
+.checkout-space-image {
   object-fit: contain;
   flex-shrink: 0;
   border-radius: 8px;
@@ -420,7 +421,7 @@ body {
     padding: 10px;
   }
 
-  .space-image {
+  .checkout-space-image {
     display: none;
   }
 

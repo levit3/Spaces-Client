@@ -6,6 +6,7 @@ import PageNotFound from "./PageNotFound";
 function SuccessfulPayment() {
   const [booking, setBooking] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [image, setImage] = useState("");
   const location = useLocation();
   const id = location.state;
 
@@ -15,6 +16,11 @@ function SuccessfulPayment() {
       .then((data) => {
         const sign = data.payment.payment_method === "mpesa" ? "Ksh" : "$";
         setBooking(data);
+        fetch(`/api/space-images/${data.space.id}`)
+          .then((response) => response.json())
+          .then((data) => {
+            setImage(data.image_urls[0]);
+          });
         fetch("/api/send-email", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -189,7 +195,7 @@ function SuccessfulPayment() {
         <section className="booking-images">
           <img
             loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/0bf8eda7cd26c569c8602c6461bceba6d573ac444cc8fc3034a127d82df3beec?apiKey=8ad21786488a40e8a18ed0f9f1e05271&&apiKey=8ad21786488a40e8a18ed0f9f1e05271"
+            src={image}
             className="booking-location-image"
             alt="Location overview"
           />
@@ -223,9 +229,6 @@ function SuccessfulPayment() {
             </div>
           </div>
         </section>
-        {/* <button className="button solid" onClick={(window.location.href = "/")}>
-          Go back home
-        </button> */}
       </section>
     </main>
   );
