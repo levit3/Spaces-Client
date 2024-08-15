@@ -21,9 +21,9 @@ import "./aboutUs.css";
 
 function Card({ title, children }) {
   return (
-    <div className="card">
-      <h2 className="card-title">{title}</h2>
-      <div className="card-content">{children}</div>
+    <div className="in-card">
+      <h2 className="card-heading">{title}</h2>
+      <div className="list">{children}</div>
     </div>
   );
 }
@@ -31,11 +31,11 @@ function Card({ title, children }) {
 
 function TeamMemberCard({ name, role, description, imageSrc }) {
   return (
-    <div className="team-member-card">
-      <img src={imageSrc} alt={name} className="team-member-image"/>
-      <div className="team-member-name">{name}</div>
-      <div className="team-member-role">{role}</div>
-      <p className="team-member-description">{description}</p>
+    <div className="team-card">
+      <img src={imageSrc} alt={name} className="team-image"/>
+      <div className="team-name">{name}</div>
+      <div className="team-role">{role}</div>
+      <p className="team-description">{description}</p>
     </div>
   );
 }
@@ -43,27 +43,26 @@ function TeamMemberCard({ name, role, description, imageSrc }) {
 function About() {
   return (
     <>
-      <div className="container">
-        <div className="main-content">
-          <div className="welcome-section">
-            <h2 className="welcome-title">
+      <div className="wrapper">
+        <div className="content-area">
+          <div className="intro-section">
+            <h2 className="section-heading">
               Welcome to Spaces for Rent where your perfect venue awaits.
             </h2>
-            <p className="welcome-description">
+            <p className="intro-text">
               We are a passionate team dedicated to creating a platform that
               brings people together whether it's for meetings, celebrations,
               or creative collaborations.
             </p>
           </div>
-          <div className="image-section">
+          <div className="photo-section">
             <img
               loading="lazy"
               srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/c5e1c64ed6c1cbe29822378f293c88098b47a8416f6a79f7b00e2b782d5f09e0?apiKey=0988173251834f22a133e9af594396d1&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/c5e1c64ed6c1cbe29822378f293c88098b47a8416f6a79f7b00e2b782d5f09e0?apiKey=0988173251834f22a133e9af594396d1&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/c5e1c64ed6c1cbe29822378f293c88098b47a8416f6a79f7b00e2b782d5f09e0?apiKey=0988173251834f22a133e9af594396d1&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/c5e1c64ed6c1cbe29822378f293c88098b47a8416f6a79f7b00e2b782d5f09e0?apiKey=0988173251834f22a133e9af594396d1&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/c5e1c64ed6c1cbe29822378f293c88098b47a8416f6a79f7b00e2b782d5f09e0?apiKey=0988173251834f22a133e9af594396d1&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/c5e1c64ed6c1cbe29822378f293c88098b47a8416f6a79f7b00e2b782d5f09e0?apiKey=0988173251834f22a133e9af594396d1&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/c5e1c64ed6c1cbe29822378f293c88098b47a8416f6a79f7b00e2b782d5f09e0?apiKey=0988173251834f22a133e9af594396d1&width=2000 2000w"
-              className="main-image"
+              className="photo"
               alt="Space"
             />
           </div>
-        </div>
 
       <div className="cards-section">
         <Card title="Our Mission">
@@ -99,15 +98,15 @@ function About() {
           </ul>
         </Card>
       </div>
-
-      <div className="section-container bg-dark">
+   </div>
+      <div className="info-card">
         <h2 className="section-title">Our Team</h2>
         <p className="section-text">
           Our dedicated team consists of experienced professionals in both
           front-end and back-end development, working together to build a robust
           and user-friendly platform.
         </p>
-        <div className="team-grid">
+        <div className="team-container">
           <TeamMemberCard
             name="Nicholas"
             role="Front-end and back-end Developer"

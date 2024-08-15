@@ -54,7 +54,7 @@ const Navbar = () => {
           <ul className="dropdown-menu">
             {/* <a href="#">View All Events</a> */}
             <a href="/events">Upcoming Events</a>
-            <a href="/events/new">Create Event</a>
+            <a href="/events/:id">Create Event</a>
           </ul>
         </li>
       </ul>

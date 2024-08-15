@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./EventCreation.css";
 import { useNavigate } from "react-router-dom";
-
+import Navbar from "./Navbar"
 
 const Modal = ({ isOpen, onClose, message }) => {
   if (!isOpen) return null;
@@ -33,20 +33,20 @@ function EventCreation() {
     main: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJjcsyLgOPmDPJOSVNXpaxCQlnPVLaQeHx4A&s",
   };
 
-  useEffect(() => {
-    fetch("/api/checksession")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.error) {
-          console.error("Error fetching user:", data.error);
-        } else {
-          setUser(data);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching user:", error);
-      });
-    })
+  // useEffect(() => {
+  //   fetch("/api/checksession")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       if (data.error) {
+  //         console.error("Error fetching user:", data.error);
+  //       } else {
+  //         setUser(data);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching user:", error);
+  //     });
+  //   })
     
   useEffect(() => {
     const fetchBookings = async () => {
@@ -59,7 +59,7 @@ function EventCreation() {
         });
         const bookings = await response.json();
         const userBookings = bookings.filter(
-          (booking) => booking.user_id === user.id
+          (booking) => booking.user_id === 15
         );
         console.log(userBookings);
 
@@ -161,6 +161,7 @@ function EventCreation() {
 
   return (
     <section className="main-content">
+      <Navbar/>
       <h1 className="title">Create Your Event</h1>
       <div className="event-creation-container">
         <div className="image-container">

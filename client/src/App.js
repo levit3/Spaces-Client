@@ -46,7 +46,7 @@ const AppContent = () => {
         <Route path="/events" element={<EventList />} />
         <Route path="/event/:id" element={<EventDetail />} />
         <Route path="/space/:id" element={<SpaceDetails />} />
-        <Route path="/events/:id" element={<EventCreation />} />
+        <Route path="/events/new" element={<EventCreation />} />
         <Route path="/spaces/new" element={<SpaceForm />} />
         <Route path="/booking/:id" element={<BookingDetails />} />
         <Route path="/checkout" element={<Checkout />} />

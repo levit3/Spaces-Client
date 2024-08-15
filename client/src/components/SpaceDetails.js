@@ -1,6 +1,7 @@
 import "./SpaceDetails.css";
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const spaceAmenities = [
   [
@@ -230,6 +231,7 @@ function SpaceDetails() {
 
   return (
     <div className="display-item">
+        <Navbar/>
       <article className="main">
         <div className="images">
           <img src={images.main} alt="Main view" className="main-image" />
