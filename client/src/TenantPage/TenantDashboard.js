@@ -4,30 +4,24 @@ import "./TenantDashboard.css";
 
 const TenantDashboard = () => {
   const [spaces, setSpaces] = useState([]);
-  // const [searchTerm, setSearchTerm] = useState("");
-  // const [selectedCategory, setSelectedCategory] = useState("All");
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-  const user_id = localStorage.getItem("user_id");
+  const[isTenant,setIsTenant] = useState(false); 
+  const navigate = useNavigate();
+  const userId=localStorage.getItem("user_id");
 
   useEffect(() => {
-    fetch(`/api/users/${user_id}`)
+    fetch(`/api/users/`)
       .then((response) => response.json())
       .then((data) => {
-        console.log("Space updated successfully:", data);
+        console.log("Spaces fetched successfully:", data);
         setSpaces(data.spaces);
         setLoading(false);
       })
-      .catch((error) => console.error("Error fetching spaces:", error));
+      .catch((error) => {
+        console.error("Error fetching spaces:", error);
+        setLoading(false);
+      });
   }, []);
-
-  // const handleSearchChange = (event) => {
-  //   setSearchTerm(event.target.value);
-  // };
-
-  // const handleCategoryChange = (event) => {
-  //   setSelectedCategory(event.target.value);
-  // };
 
   const handleClick = (space) => {
     navigate(`/space/${space.id}`);
@@ -58,35 +52,19 @@ const TenantDashboard = () => {
   }
 
   return (
-    <div>
-      <nav className="tenant-navbar">
-        <div className="navbar-content">
-          <Link to="/" className="navbar-brand">
-            Home
-          </Link>
-          <Link to="/add-space" className="add-space-button">
-            Add Space
-          </Link>
-        </div>
-      </nav>
+    // <div className="tenant-dashboard">
+    //   <nav className="tenant-navbar">
+    //     <div className="navbar-content">
+    //       <Link to="/" className="navbar-brand">
+    //         Home
+    //       </Link>
+    //       <Link to="/add-space" className="add-space-button">
+    //         Add Space
+    //       </Link>
+    //     </div>
+    //   </nav>
 
       <div className="spaces-list">
-        <div className="filter-container">
-          {/* <input
-            type="text"
-            placeholder="Search spaces..."
-            value={searchTerm}
-            onChange={handleSearchChange}
-            className="search-input"
-          /> */}
-          {/* <select
-            value={selectedCategory}
-            onChange={handleCategoryChange}
-            className="category-select"
-          >
-            Populate categories if needed */}
-          {/* </select> */}
-        </div>
         <div className="spaces-container">
           {spaces.map((space) => (
             <div key={space.id} className="space-card">
@@ -97,7 +75,7 @@ const TenantDashboard = () => {
                     ? space.space_images[0].image_url
                     : "https://via.placeholder.com/400x300?text=No+Image+Available"
                 }
-                alt={space.title}
+                alt={space.title || "Space Image"}
               />
               <div className="space-info">
                 <h3>{space.title}</h3>
@@ -122,7 +100,7 @@ const TenantDashboard = () => {
           ))}
         </div>
       </div>
-    </div>
+    
   );
 };
 
