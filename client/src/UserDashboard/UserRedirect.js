@@ -1,12 +1,14 @@
 // src/components/UserDashboard.js
 import React, { useEffect, useState } from "react";
 import styles from "./UserDashboard.module.css";
-import AdminDashboard from "./AdminDashboard";
+
+// import AdminDashboard from "./AdminDashboard";
 
 const UserDashboard = () => {
   const [user, setUser] = useState(null);
   const [requestStatus, setRequestStatus] = useState(null);
   const [error, setError] = useState(null);
+  const [notification, setNotification] = useState(null);
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
@@ -22,7 +24,6 @@ const UserDashboard = () => {
       setError("No user data found in localStorage");
     }
   }, []);
-
   const handleRequestTenantRole = () => {
     fetch("http://127.0.0.1:5555/api/request-tenant-role", {
       method: "POST",
@@ -36,7 +37,13 @@ const UserDashboard = () => {
         }
         return response.json();
       })
-      .then((data) => setRequestStatus(data.message))
+      .then((data) => {
+        setRequestStatus(data.message);
+        setNotification({
+          type: "success",
+          message: "Request sent successfully! Please check your email.",
+        });
+      })
       .catch((error) =>
         setRequestStatus(`Failed to send request: ${error.message}`)
       );
@@ -44,7 +51,7 @@ const UserDashboard = () => {
 
   return (
     <>
-      <AdminDashboard />
+      {/* <AdminDashboard /> */}
       <div className={styles.container}>
         {error && <div className={styles.error}>Error: {error}</div>}
         {user && (
@@ -58,20 +65,35 @@ const UserDashboard = () => {
             <p>Email: {user.email}</p>
 
             {user.role === "user" && (
-              <button
-                onClick={handleRequestTenantRole}
-                className={styles.button}
-              >
-                Request Tenant Role
-              </button>
+              <>
+                <p>
+                  If you're interested in becoming a tenant and gaining access
+                  to more features, you can request a tenant role. Once your
+                  request is approved, your role will be upgraded, allowing you
+                  to manage your spaces and access tenant-specific features.
+                </p>
+                <button
+                  onClick={handleRequestTenantRole}
+                  className={styles.button}
+                >
+                  Request Tenant Role
+                </button>
+              </>
             )}
-
             {requestStatus && <p>{requestStatus}</p>}
+          </div>
+        )}
+        {notification && (
+          <div
+            className={`${styles.notification} ${
+              notification.type === "success" ? styles.success : styles.error
+            }`}
+          >
+            {notification.message}
           </div>
         )}
       </div>
     </>
   );
 };
-
 export default UserDashboard;
