@@ -5,37 +5,23 @@ import "./TenantDashboard.css";
 const TenantDashboard = () => {
   const [spaces, setSpaces] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [isTenant, setIsTenant] = useState(false);
+  const[isTenant,setIsTenant] = useState(false); 
   const navigate = useNavigate();
-  const userId = localStorage.getItem("user_id");
+  const userId=localStorage.getItem("user_id");
 
   useEffect(() => {
-    // Fetch user information to determine if it's a tenant
-    fetch(`/api/users/${userId}`)
+    fetch(`/api/users/`)
       .then((response) => response.json())
       .then((data) => {
-        if (data.role === "tenant") {
-          setIsTenant(true);
-          fetch(`/api/users/${userId}/spaces`)
-            .then((response) => response.json())
-            .then((spacesData) => {
-              console.log("Spaces fetched successfully:", spacesData);
-              setSpaces(spacesData);
-              setLoading(false);
-            })
-            .catch((error) => {
-              console.error("Error fetching spaces:", error);
-            });
-        } else {
-          // Redirect to 404 page if the user is not a tenant
-          navigate("/404");
-        }
+        console.log("Spaces fetched successfully:", data);
+        setSpaces(data.spaces);
+        setLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching user data:", error);
-        navigate("/404");
+        console.error("Error fetching spaces:", error);
+        setLoading(false);
       });
-  }, [userId, navigate]);
+  }, []);
 
   const handleClick = (space) => {
     navigate(`/space/${space.id}`);
@@ -70,22 +56,19 @@ const TenantDashboard = () => {
   }
 
   return (
-    <div>
-      <nav className="tenant-navbar">
-        <div className="navbar-content">
-          <Link to="/" className="navbar-brand">
-            Home
-          </Link>
-          <Link to="/add-space" className="add-space-button">
-            Add Space
-          </Link>
-        </div>
-      </nav>
+    // <div className="tenant-dashboard">
+    //   <nav className="tenant-navbar">
+    //     <div className="navbar-content">
+    //       <Link to="/" className="navbar-brand">
+    //         Home
+    //       </Link>
+    //       <Link to="/add-space" className="add-space-button">
+    //         Add Space
+    //       </Link>
+    //     </div>
+    //   </nav>
 
       <div className="spaces-list">
-        <div className="filter-container">
-          {/* Add search and category filters here if needed */}
-        </div>
         <div className="spaces-container">
           {spaces.map((space) => (
             <div key={space.id} className="space-card">
@@ -120,7 +103,7 @@ const TenantDashboard = () => {
           ))}
         </div>
       </div>
-    </div>
+    
   );
 };
 
