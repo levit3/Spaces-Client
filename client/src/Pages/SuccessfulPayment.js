@@ -223,9 +223,9 @@ function SuccessfulPayment() {
             </div>
           </div>
         </section>
-        <button className="button solid" onClick={(window.location.href = "/")}>
+        {/* <button className="button solid" onClick={(window.location.href = "/")}>
           Go back home
-        </button>
+        </button> */}
       </section>
     </main>
   );

@@ -19,27 +19,18 @@ function Footer() {
       <footer className="footer">
         <ul className="footer-nav">
           <li className="footer-nav-item">
-            <a href="#" className="footer-nav-link">
+            <a href="/" className="footer-nav-link">
               Home
             </a>
           </li>
           <li className="footer-nav-item">
-            <a href="#" className="footer-nav-link">
-              Features
+            <a href="/spaces" className="footer-nav-link">
+              Spaces
             </a>
           </li>
+
           <li className="footer-nav-item">
-            <a href="#" className="footer-nav-link">
-              Pricing
-            </a>
-          </li>
-          <li className="footer-nav-item">
-            <a href="#" className="footer-nav-link">
-              FAQs
-            </a>
-          </li>
-          <li className="footer-nav-item">
-            <a href="#" className="footer-nav-link">
+            <a href="/about" className="footer-nav-link">
               About
             </a>
           </li>

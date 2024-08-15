@@ -59,17 +59,6 @@ const TenantDashboard = () => {
 
   return (
     <div>
-      <nav className="tenant-navbar">
-        <div className="navbar-content">
-          <Link to="/" className="navbar-brand">
-            Home
-          </Link>
-          <Link to="/add-space" className="add-space-button">
-            Add Space
-          </Link>
-        </div>
-      </nav>
-
       <div className="spaces-list">
         <div className="filter-container">
           {/* <input
