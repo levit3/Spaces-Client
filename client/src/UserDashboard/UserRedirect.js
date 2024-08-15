@@ -9,7 +9,6 @@ const UserDashboard = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Fetch user data from localStorage
     const userData = localStorage.getItem("user");
     if (userData) {
       try {
@@ -50,9 +49,13 @@ const UserDashboard = () => {
         {error && <div className={styles.error}>Error: {error}</div>}
         {user && (
           <div className={styles.card}>
-            <h1>Welcome, {user.name}</h1>
+            <h1>
+              Hello {user.name}, If you're interested in becoming a tenant you
+              can request a tenant role. Once your request is approved, your
+              role will be upgraded allowing you to manage your spaces and
+              access tenant-specific features.
+            </h1>
             <p>Email: {user.email}</p>
-            <p>Role: {user.role}</p>
 
             {user.role === "user" && (
               <button
