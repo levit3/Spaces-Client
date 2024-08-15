@@ -12,6 +12,7 @@
 .card {
   background-color: #1b1c1e;
   border: none;
+  /* max-width: 80rem; */
 }
 
 .profile-picture {
@@ -49,4 +50,9 @@
 
 .dashboard-text {
   color: #b8b8b8;
+}
+
+.custom-btn {
+  width: 90%;
+  margin: 0 auto;
 }

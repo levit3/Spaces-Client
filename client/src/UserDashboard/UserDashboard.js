@@ -42,7 +42,7 @@ const UserDashboard = () => {
     <div className="container-fluid user-dashboard mt-5">
       {" "}
       {/* Use container-fluid for full-width */}
-      <div className="card bg-dark text-white mb-4 shadow-lg">
+      <div className="card bg-dark  text-white mb-4 shadow-lg mx-5">
         <div className="card-body d-flex align-items-center justify-content-between">
           <div className="d-flex align-items-center">
             <img
@@ -62,10 +62,10 @@ const UserDashboard = () => {
           </div>
         </div>
       </div>
-      <div className="row">
-        <div className="col-md-6 mb-3">
+      <div className="row justify-content-center">
+        <div className="col-md-4 mb-3">
           <button
-            className={`btn w-100 py-3 shadow-sm ${
+            className={`btn custom-btn py-3 shadow-sm ${
               selectedSection === "spaces"
                 ? "btn-primary active"
                 : "btn-secondary"
@@ -75,9 +75,9 @@ const UserDashboard = () => {
             View Booked Spaces
           </button>
         </div>
-        <div className="col-md-6 mb-3">
+        <div className="col-md-4 mb-3">
           <button
-            className={`btn w-100 py-3 shadow-sm ${
+            className={`btn custom-btn py-3 shadow-sm ${
               selectedSection === "events"
                 ? "btn-primary active"
                 : "btn-secondary"

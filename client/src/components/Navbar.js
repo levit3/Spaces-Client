@@ -23,12 +23,7 @@ const Navbar = () => {
     } else {
       document.body.classList.remove("menu-open");
     }
-  }, [isMenuOpen]);
 
-  // const handleProfile = () => {
-  //   navigate("/dashboard");
-  // };
-  useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
@@ -41,7 +36,7 @@ const Navbar = () => {
   }, [isMenuOpen]);
 
   const handleProfile = () => {
-    navigate("/dashboard/user");
+    navigate("/dashboard");
   };
 
   return (
@@ -64,16 +59,15 @@ const Navbar = () => {
         }`}
       >
         <Link to="/">Home</Link>
-
         <Link to="/spaces">Spaces</Link>
-
         <Link to="/about">About Us</Link>
 
         <li className="nav-dropdown">
           Events
           <ul className="nav-dropdown-menu">
-            <a href="/events">Upcoming Events</a>
-            <Link to="/create-event">Create Event</Link>
+            <a href="#">View All Events</a>
+            <a href="#">Upcoming Events</a>
+            <a href="#">Create Event</a>
           </ul>
         </li>
       </ul>

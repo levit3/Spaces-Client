@@ -21,7 +21,7 @@ const SpacesList = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch("http://127.0.0.1:5555/api/spaces")
+    fetch("/api/spaces")
       .then((response) => response.json())
       .then((data) => {
         // console.log("Fetched spaces data:", data);

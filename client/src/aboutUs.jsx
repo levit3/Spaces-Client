@@ -112,24 +112,15 @@ function About() {
           and user-friendly platform.
         </p>
         <li>
-        <ol>Levi Mwendwa - Scrum Master</ol>
-        <ol>Nicholas - Back/Front end Developer</ol>
-        <ol>Favor - Back/Front end Developer</ol>
-        <ol>Habib Mohammed - Back/Front end Developer</ol>
-        <ol>Benhin - Back/Front end Developer</ol>
-
+          <ol>Levi Mwendwa - Scrum Master</ol>
+          <ol>Nicholas - Back/Front end Developer</ol>
+          <ol>Favor - Back/Front end Developer</ol>
+          <ol>Habib Mohammed - Back/Front end Developer</ol>
+          <ol>Benhin - Back/Front end Developer</ol>
         </li>
       </div>
 
-
-      <nav className="manage-spaces-navbar">
-  <div className="manage-spaces-nav-links">
-    <a href="/" className="nav-link">Home</a>
-    <a href="/login" className="nav-link">Login</a>
-    <a href="/signup" className="nav-button">Sign Up</a>
-  </div>
-</nav>
-{/* 
+      {/* 
 
       <footer className="footer">
         <div className="flex flex-col gap-4 items-center">
