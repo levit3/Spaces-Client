@@ -17,14 +17,14 @@ const SpacesList = () => {
     categoryFromState = categoryFromState.slice(0, -1);
   }
 
-  console.log("Normalized Category from state:", categoryFromState);
+  // console.log("Normalized Category from state:", categoryFromState);
 
   useEffect(() => {
     setLoading(true);
     fetch("http://127.0.0.1:5555/api/spaces")
       .then((response) => response.json())
       .then((data) => {
-        console.log("Fetched spaces data:", data);
+        // console.log("Fetched spaces data:", data);
         setSpaces(data);
         setFilteredSpaces(data);
 
@@ -48,8 +48,8 @@ const SpacesList = () => {
           space.category.toLowerCase() === selectedCategory)
       );
     });
-    console.log("Filtering spaces for category:", selectedCategory);
-    console.log("Filtered spaces:", results);
+    // console.log("Filtering spaces for category:", selectedCategory);
+    // console.log("Filtered spaces:", results);
     setFilteredSpaces(results);
   }, [searchTerm, selectedCategory, spaces]);
 
@@ -62,19 +62,19 @@ const SpacesList = () => {
   };
 
   return (
-    <div className="spaces-list-container">
-      <div className="filter-container">
+    <div className="spacess-list-container">
+      <div className="filterr-container">
         <input
           type="text"
           placeholder="Search spaces..."
           value={searchTerm}
           onChange={handleSearchChange}
-          className="search-input"
+          className="searchh-input"
         />
         <select
           value={selectedCategory}
           onChange={handleCategoryChange}
-          className="category-select"
+          className="categoryy-select"
         >
           {categories.map((category) => (
             <option key={category} value={category}>
@@ -85,13 +85,13 @@ const SpacesList = () => {
       </div>
 
       {loading ? (
-        <div className="spinner"></div>
+        <div className="spinnerr"></div>
       ) : (
-        <div className="spaces-container">
+        <div className="spacess-container">
           {filteredSpaces.length > 0 ? (
             filteredSpaces.map((space) => (
-              <div key={space.id} className="space-card">
-                <div className="price-tag">${space.price_per_hour}/hour</div>
+              <div key={space.id} className="spacee-card">
+                <div className="pricee-tag">${space.price_per_hour}/hour</div>
                 <img
                   src={
                     space.space_images && space.space_images.length > 0
@@ -99,16 +99,19 @@ const SpacesList = () => {
                       : "https://via.placeholder.com/400x300?text=No+Image+Available"
                   }
                   alt={space.title}
-                  className="space-image"
+                  className="spacee-image"
                 />
 
-                <div className="hover-content">
+                <div className="hoverr-content">
                   <h3>{space.title}</h3>
                   <p>{`Location: ${space.location}`}</p>
                   <p>{`Category: ${space.category}`}</p>
                   <p>{`Status: ${space.status}`}</p>
                   <p>{space.description}</p>
-                  <Link to={`/space/${space.id}`} className="learn-more-button">
+                  <Link
+                    to={`/space/${space.id}`}
+                    className="learn-moree-button"
+                  >
                     Learn More
                   </Link>
                 </div>

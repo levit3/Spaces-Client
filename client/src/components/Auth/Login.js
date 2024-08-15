@@ -186,12 +186,9 @@ const Login = () => {
       });
 
       localStorage.setItem("token", response.token);
-<<<<<<< HEAD
       localStorage.setItem("user", JSON.stringify(response.user));
-
-=======
       localStorage.setItem("user_id", response.user.id);
->>>>>>> d4ef11f35b7384e3e7d9a6b19c327af7a64f1d0e
+
       login(response.token);
       navigate("/");
     } catch (error) {
