@@ -47,7 +47,11 @@ function EventsList() {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loading-container">
+        <div className="spinner">Fetching</div>
+      </div>
+    );
   }
 
   const handleGoBack = () => {

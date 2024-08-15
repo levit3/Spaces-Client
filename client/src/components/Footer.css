@@ -1,7 +1,28 @@
+/* Ensure the entire page takes up at least 100% of the viewport height */
+body,
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Wrapper div that contains all page content */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Content that pushes the footer down */
+.content {
+  flex: 1;
+}
+
+/* Footer styles */
 .footer-container {
   width: 100%;
-  padding: 0 15px;
   background-color: #1e1e1e;
+  padding: 0 15px;
 }
 
 .footer {

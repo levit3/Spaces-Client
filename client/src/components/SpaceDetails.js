@@ -211,11 +211,7 @@ function SpaceDetails() {
   if (!loading) {
     return (
       <div className="loading-container">
-        <img
-          className="loading"
-          src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Youtube_loading_symbol_1_(wobbly).gif"
-          alt="Loading..."
-        />
+        <div className="spinner">Fetching</div>
       </div>
     );
   }

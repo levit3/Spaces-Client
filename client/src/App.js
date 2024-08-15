@@ -94,9 +94,11 @@ const App = () => (
   <Router>
     <ThemeProvider>
       <AuthProvider>
-        <Navbar />
-        <AppContent />
-        <Footer />
+        <div className="wrapper">
+          <Navbar />
+          <AppContent />
+          <Footer />
+        </div>
       </AuthProvider>
     </ThemeProvider>
   </Router>

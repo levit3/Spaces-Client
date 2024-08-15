@@ -17,76 +17,76 @@ const Modal = ({ isOpen, onClose, message }) => {
 };
 
 const StarRating = ({ rating, onRatingChange }) => {
-    const handleClick = (value) => {
-      onRatingChange(value);
-    };
-  
-    return (
-      <div className="star-rating">
-        {[1, 2, 3, 4, 5].map((value) => (
-          <span
-            key={value}
-            className={`star ${value <= rating ? "filled" : ""}`}
-            onClick={() => handleClick(value)}
-          >
-            &#9733;
-          </span>
-        ))}
-      </div>
-    );
+  const handleClick = (value) => {
+    onRatingChange(value);
   };
 
-  function ReviewCreation() {
-    const [rating, setRating] = useState(null);
-    const [comment, setComment] = useState("");
-    const { id } = useParams();
-    const [user, setUser] = useState("");
-    const [date, setDate] = useState("");
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [loading, setLoading] = useState(true);
-    const [modalMessage, setModalMessage] = useState("");
-  
-    const images = {
-       main: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcOZ0oz476tR-6pZvDjXgItGcLjanknAHIWA&s"  
-      };
-//   useEffect(() => {
-//     fetch("/api/checksession")
-//       .then((res) => res.json())
-//       .then((data) => {
-//         if (data.error) {
-//           console.error("Error fetching user:", data.error);
-//         } else {
-//           setUser(data);
-//           setLoading(false);
-//         }
-//       })
-//       .catch((error) => {
-//         console.error("Error fetching user:", error);
-//         setLoading(false);
-//       });
-//   }, []); 
+  return (
+    <div className="star-rating">
+      {[1, 2, 3, 4, 5].map((value) => (
+        <span
+          key={value}
+          className={`star ${value <= rating ? "filled" : ""}`}
+          onClick={() => handleClick(value)}
+        >
+          &#9733;
+        </span>
+      ))}
+    </div>
+  );
+};
 
-const handleSubmit = async (e) => {
+function ReviewCreation() {
+  const [rating, setRating] = useState(null);
+  const [comment, setComment] = useState("");
+  const { id } = useParams();
+  const [user, setUser] = useState("");
+  const [date, setDate] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [modalMessage, setModalMessage] = useState("");
+
+  const images = {
+    main: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcOZ0oz476tR-6pZvDjXgItGcLjanknAHIWA&s",
+  };
+  //   useEffect(() => {
+  //     fetch("/api/checksession")
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         if (data.error) {
+  //           console.error("Error fetching user:", data.error);
+  //         } else {
+  //           setUser(data);
+  //           setLoading(false);
+  //         }
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error fetching user:", error);
+  //         setLoading(false);
+  //       });
+  //   }, []);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!rating || !comment || !date) {
       setModalMessage("All fields must be entered");
       setIsModalOpen(true);
       return;
     }
-  
+
     const formData = new FormData();
     formData.append("rating", rating);
     formData.append("comment", comment);
     formData.append("date", date);
     formData.append("space_id", id);
     formData.append("user_id", user.id);
-  
+
     try {
       const response = await fetch("/api/reviews", {
         method: "POST",
         body: formData,
       });
-  
+
       if (response.ok) {
         setModalMessage("Review created successfully!");
         setIsModalOpen(true);
@@ -99,7 +99,9 @@ const handleSubmit = async (e) => {
       }
     } catch (error) {
       console.error("Error:", error);
-      setModalMessage(`Failed to create review: ${error.message || error.toString()}`);
+      setModalMessage(
+        `Failed to create review: ${error.message || error.toString()}`
+      );
       setIsModalOpen(true);
     }
   };
@@ -111,18 +113,14 @@ const handleSubmit = async (e) => {
   if (!loading) {
     return (
       <div className="loading-container">
-        <img
-          className="loading"
-          src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Youtube_loading_symbol_1_(wobbly).gif"
-          alt="Loading..."
-        />
+        <div className="spinner">Fetching</div>
       </div>
     );
   }
 
   return (
     <section className="main-content">
-      <Navbar/>
+      <Navbar />
       <h1 className="title">Add Your Review</h1>
       <div className="review-creation-container">
         <div className="review-photo">
@@ -154,12 +152,20 @@ const handleSubmit = async (e) => {
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
-          <input className="submit-button" type="submit" value="Create Review" />
+          <input
+            className="submit-button"
+            type="submit"
+            value="Create Review"
+          />
         </form>
-        <Modal isOpen={isModalOpen} onClose={closeModal} message={modalMessage} />
+        <Modal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          message={modalMessage}
+        />
       </div>
     </section>
-  );    
-    }
+  );
+}
 
 export default ReviewCreation;
