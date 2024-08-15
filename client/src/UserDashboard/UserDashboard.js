@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./UserDashboard.css"; // Custom CSS for additional styling
+import "./UserDashboard.css";
 
 const UserDashboard = () => {
   const [user, setUser] = useState([]);
@@ -20,7 +20,7 @@ const UserDashboard = () => {
   useEffect(() => {
     if (user_id !== undefined) {
       console.log("done");
-      fetch(`/api/users/${user_id}/`)
+      fetch(`http://127.0.0.1:5555/api/users/${user_id}/`)
         .then((response) => response.json())
         .then((data) => {
           setUser(data);
