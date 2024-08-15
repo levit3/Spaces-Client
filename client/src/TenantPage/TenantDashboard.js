@@ -5,23 +5,47 @@ import "./TenantDashboard.css";
 const TenantDashboard = () => {
   const [spaces, setSpaces] = useState([]);
   const [loading, setLoading] = useState(true);
-  const[isTenant,setIsTenant] = useState(false); 
+  const [isTenant, setIsTenant] = useState(false);
   const navigate = useNavigate();
-  const userId=localStorage.getItem("user_id");
+  
+  // Hardcoded user ID for testing
+  const testUserId = 89;
 
   useEffect(() => {
-    fetch(`/api/users/`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Spaces fetched successfully:", data);
-        setSpaces(data.spaces);
+    const fetchUserData = async () => {
+      try {
+        // Fetch user information using the hardcoded ID
+        const userResponse = await fetch("/api/users/89");
+        const userData = await userResponse.json();
+
+        if (userData.role === 'tenant') {
+          setIsTenant(true);
+          
+          try {
+            // Fetch spaces for the hardcoded user ID
+            const spacesResponse = await fetch(`/api/users/${testUserId}/spaces`);
+            if (!spacesResponse.ok) {
+              throw new Error(`HTTP error! status: ${spacesResponse.status}`);
+            }
+            const spacesData = await spacesResponse.json();
+            console.log("Spaces fetched successfully:", spacesData);
+            setSpaces(spacesData.spaces || []); // Adjust based on actual response structure
+          } catch (error) {
+            console.error("Error fetching spaces:", error);
+          }
+        } else {
+          navigate("/404");
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+        navigate("/404");
+      } finally {
         setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching spaces:", error);
-        setLoading(false);
-      });
-  }, []);
+      }
+    };
+
+    fetchUserData();
+  }, [navigate]);
 
   const handleClick = (space) => {
     navigate(`/space/${space.id}`);
@@ -51,20 +75,18 @@ const TenantDashboard = () => {
     return <div>Loading spaces...</div>;
   }
 
-  return (
-    // <div className="tenant-dashboard">
-    //   <nav className="tenant-navbar">
-    //     <div className="navbar-content">
-    //       <Link to="/" className="navbar-brand">
-    //         Home
-    //       </Link>
-    //       <Link to="/add-space" className="add-space-button">
-    //         Add Space
-    //       </Link>
-    //     </div>
-    //   </nav>
+  if (!isTenant) {
+    return null; // This will be handled by the redirect
+  }
 
+  return (
+    <div>
+      
+      <Link to="/add-space" className="add-space-button">Add Space</Link>
       <div className="spaces-list">
+        <div className="filter-container">
+          {/* Add search and category filters here if needed */}
+        </div>
         <div className="spaces-container">
           {spaces.map((space) => (
             <div key={space.id} className="space-card">
@@ -82,17 +104,11 @@ const TenantDashboard = () => {
                 <p>{space.location}</p>
                 <p>{space.status}</p>
               </div>
-
               <div className="hover-content">
                 <p>{space.description}</p>
-                <button onClick={() => handleClick(space)}>
-                  Space Details
-                </button>
+                <button onClick={() => handleClick(space)}>Space Details</button>
                 <button onClick={() => handleEdit(space)}>Edit Space</button>
-                <button
-                  className="delete-button"
-                  onClick={() => handleDelete(space)}
-                >
+                <button className="delete-button" onClick={() => handleDelete(space)}>
                   Delete Details
                 </button>
               </div>
@@ -100,7 +116,7 @@ const TenantDashboard = () => {
           ))}
         </div>
       </div>
-    
+    </div>
   );
 };
 
