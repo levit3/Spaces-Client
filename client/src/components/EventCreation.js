@@ -33,20 +33,21 @@ function EventCreation() {
     main: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJjcsyLgOPmDPJOSVNXpaxCQlnPVLaQeHx4A&s",
   };
 
-  // useEffect(() => {
-  //   fetch("/api/checksession")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       if (data.error) {
-  //         console.error("Error fetching user:", data.error);
-  //       } else {
-  //         setUser(data);
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching user:", error);
-  //     });
-  //   })
+  useEffect(() => {
+    fetch("/api/checksession")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.error) {
+          console.error("Error fetching user:", data.error);
+        } else {
+          setUser(data);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching user:", error);
+
+      });
+    })
     
   useEffect(() => {
     const fetchBookings = async () => {
@@ -59,7 +60,7 @@ function EventCreation() {
         });
         const bookings = await response.json();
         const userBookings = bookings.filter(
-          (booking) => booking.user_id === 15
+          (booking) => booking.user_id === user.id
         );
         console.log(userBookings);
 
