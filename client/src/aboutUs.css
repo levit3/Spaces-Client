@@ -1,15 +1,14 @@
-/* Dark theme
-body {
+Dark theme body {
   background-color: #121212;
   color: #e0e0e0;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
 }
 
-.wrapper {
+.wrappe {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 50px;
 }
 
 .content-area {
@@ -167,4 +166,4 @@ footer-text {
 
 .footer-link:hover {
   text-decoration: underline;
-} */
+}

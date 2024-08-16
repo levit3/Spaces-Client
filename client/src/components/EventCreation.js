@@ -21,32 +21,28 @@ function EventCreation() {
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [spaceId, setSpaceId] = useState("");
-  const [user, setUser] = useState(null);
   const [bookedSpaces, setBookedSpaces] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
-  const [redirectOnClose, setRedirectOnClose] = useState(false); // New state for redirect
+  const [redirectOnClose, setRedirectOnClose] = useState(false);
+  const [image, setImage] = useState("");
   const navigate = useNavigate();
 
   const images = {
     main: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJjcsyLgOPmDPJOSVNXpaxCQlnPVLaQeHx4A&s",
   };
 
+  const user_i_d = localStorage.getItem("user_id");
+  console.log(user_i_d);
+
   useEffect(() => {
-    fetch("/api/checksession")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.error) {
-          console.error("Error fetching user:", data.error);
-        } else {
-          setUser(data);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching user:", error);
-      });
-  });
+    if (!user_i_d) {
+      setModalMessage("Please log in to create an event");
+      setIsModalOpen(true);
+      setRedirectOnClose(true);
+    }
+  }, [user_i_d]);
 
   useEffect(() => {
     const fetchBookings = async () => {
@@ -58,15 +54,18 @@ function EventCreation() {
           },
         });
         const bookings = await response.json();
-        const userBookings = bookings.filter(
-          (booking) => booking.user_id === user.id
-        );
-        console.log(userBookings);
 
+        const userBookings = bookings.filter(
+          (booking) => booking.user_id == user_i_d
+        );
         const uniqueSpacesMap = new Map();
+
         userBookings.forEach((booking) => {
-          if (!uniqueSpacesMap.has(booking.space_id)) {
-            uniqueSpacesMap.set(booking.space_id, booking.space_title);
+          const spaceId = booking.space_id;
+          const spaceTitle = booking.space.title;
+
+          if (!uniqueSpacesMap.has(spaceId)) {
+            uniqueSpacesMap.set(spaceId, spaceTitle);
           }
         });
 
@@ -74,16 +73,19 @@ function EventCreation() {
           id,
           title,
         }));
-
         console.log(spaces);
+
         setBookedSpaces(spaces);
         setLoading(true);
       } catch (error) {
         console.error("Error fetching bookings:", error);
       }
     };
-    fetchBookings();
-  }, [user]);
+
+    if (user_i_d) {
+      fetchBookings();
+    }
+  }, [user_i_d]);
 
   useEffect(() => {
     if (loading && bookedSpaces.length === 0) {
@@ -107,13 +109,14 @@ function EventCreation() {
       setIsModalOpen(true);
       return;
     }
-    console.log("Submitting event with date:", date);
+
     const event = {
       title,
       description,
       date,
       space_id: spaceId,
-      organizer_id: user.id,
+      organizer_id: user_i_d,
+      image_url: image,
     };
 
     try {
@@ -126,14 +129,15 @@ function EventCreation() {
       if (response.ok) {
         setModalMessage("Event created successfully!");
         setIsModalOpen(true);
-        console.log("Event created successfully");
+        setRedirectOnClose(true); // Redirect to home or event details after success
         setTitle("");
         setDescription("");
         setSpaceId("");
         setDate("");
       } else {
         const errorData = await response.json();
-        console.error(`Failed to create event: ${errorData.error}`);
+        setModalMessage(`Failed to create event: ${errorData.error}`);
+        setIsModalOpen(true);
       }
     } catch (error) {
       console.error("Error:", error);
@@ -147,14 +151,18 @@ function EventCreation() {
   const closeModal = () => {
     setIsModalOpen(false);
     if (redirectOnClose) {
-      navigate("/");
+      navigate("/"); // Redirect to home or a specific page
     }
   };
 
   if (!loading) {
     return (
       <div className="loading-container">
-        <div className="spinner">Fetching</div>
+        <img
+          className="loading"
+          src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Youtube_loading_symbol_1_(wobbly).gif"
+          alt="Loading..."
+        />
       </div>
     );
   }
@@ -201,7 +209,11 @@ function EventCreation() {
           >
             <option value="">Select Location</option>
             {bookedSpaces.map((space) => (
-              <option key={space.id} value={space.id}>
+              <option
+                key={space.id}
+                value={space.id}
+                style={{ color: "white" }}
+              >
                 {space.title}
               </option>
             ))}
@@ -216,6 +228,16 @@ function EventCreation() {
             placeholder="dd/mm/yyyy"
             value={date}
             onChange={(e) => setDate(e.target.value)}
+          />
+          <label htmlFor="date" className="form-label">
+            Image URL
+          </label>
+          <input
+            id="image_url"
+            className="form-input"
+            type="text"
+            value={image}
+            onChange={(e) => setImage(e.target.value)}
           />
           <input className="submit-button" type="submit" value="Create Event" />
         </form>

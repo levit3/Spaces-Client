@@ -14,7 +14,7 @@ const TenantDashboard = () => {
   const [isTenant, setIsTenant] = useState(false);
 
   useEffect(() => {
-    fetch(`/api/users/${user_id}`)
+    fetch(`/api/users/36`)
       .then((response) => response.json())
       .then((data) => {
         if (data.role === "tenant") {

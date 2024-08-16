@@ -59,11 +59,6 @@ const UserDashboard = () => {
               <p className="card-text">{email}</p>
             </div>
           </div>
-          <div>
-            <button className="btn btn-warning ms-3 shadow-sm">
-              Edit Profile
-            </button>
-          </div>
         </div>
       </div>
       <div className="row justify-content-center">

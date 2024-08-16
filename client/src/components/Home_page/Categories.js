@@ -62,11 +62,11 @@ const Categories = () => {
         "https://media.istockphoto.com/id/641194956/photo/team-at-work.jpg?s=612x612&w=0&k=20&c=468MG1dbYdQCwO76jtcrvA_RSsimcamTnU8lE0ft56U=",
     },
     {
-      title: "Pop-Up Shops",
+      title: "Office Spaces",
       description:
-        "Bring your brand to life in one of our dynamic pop-up shop spaces. These high-traffic locations are perfect for short-term retail experiences, product launches, and brand activations. With flexible lease terms and customizable interiors, you can create a unique and engaging environment.",
+        "With our office spaces, you can work from anywhere, anytime. Designed to accommodate all types of business needs, these spaces are equipped with state-of-the-art technology and professional support.",
       image:
-        "https://media.istockphoto.com/id/1349672500/photo/purchasing-coffee-from-an-independent-retailer.jpg?s=612x612&w=0&k=20&c=VGHPryohY6Iy83KdIiHyg3KLQKXSOSACOyakX0YU6H8=",
+        "https://media.istockphoto.com/id/1136436788/photo/modern-office-interior.jpg?s=612x612&w=0&k=20&c=1e3ZNIxNbPeKgiK6jmSwdVCsgevT_-OLzxovnPhYT-o=",
     },
     {
       title: "Workshop Spaces",

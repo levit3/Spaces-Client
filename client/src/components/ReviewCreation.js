@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "./ReviewCreation.css";
 import Navbar from "./Navbar";
 
@@ -45,26 +45,25 @@ function ReviewCreation() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [modalMessage, setModalMessage] = useState("");
+  const [redirectOnClose, setRedirectOnClose] = useState(false);
+  const navigate = useNavigate();
 
   const images = {
     main: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcOZ0oz476tR-6pZvDjXgItGcLjanknAHIWA&s",
   };
-  //   useEffect(() => {
-  //     fetch("/api/checksession")
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         if (data.error) {
-  //           console.error("Error fetching user:", data.error);
-  //         } else {
-  //           setUser(data);
-  //           setLoading(false);
-  //         }
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error fetching user:", error);
-  //         setLoading(false);
-  //       });
-  //   }, []);
+  const user_id = localStorage.getItem("user_id")
+    ? localStorage.getItem("user_id")
+    : null;
+
+  useEffect(() => {
+    if (user_id === null) {
+      setModalMessage("Please log in to create a review");
+      setIsModalOpen(true);
+      setRedirectOnClose(true);
+    } else {
+      setLoading(true);
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -79,7 +78,7 @@ function ReviewCreation() {
     formData.append("comment", comment);
     formData.append("date", date);
     formData.append("space_id", id);
-    formData.append("user_id", user.id);
+    formData.append("user_id", user_id);
 
     try {
       const response = await fetch("/api/reviews", {
@@ -108,6 +107,9 @@ function ReviewCreation() {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    if (redirectOnClose) {
+      navigate("/login");
+    }
   };
 
   if (!loading) {

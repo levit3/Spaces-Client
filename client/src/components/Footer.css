@@ -11,6 +11,7 @@ html {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: #1e1e1e;
 }
 
 /* Content that pushes the footer down */
