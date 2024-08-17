@@ -21,7 +21,11 @@ function EventDetail() {
   }, [id]);
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return (
+      <div className="loading-container">
+        <div className="spinner">Fetching</div>
+      </div>
+    );
   }
 
   return (

@@ -1,35 +1,35 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import "./TenantDashboard.css";
+import { useNavigate, Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../UserDashboard/UserDashboard.css";
+import "../components/SpaceDetails.css";
 
 const TenantDashboard = () => {
   const [spaces, setSpaces] = useState([]);
-  // const [searchTerm, setSearchTerm] = useState("");
-  // const [selectedCategory, setSelectedCategory] = useState("All");
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const user_id = localStorage.getItem("user_id")
     ? localStorage.getItem("user_id")
     : null;
+  const [isTenant, setIsTenant] = useState(false);
 
   useEffect(() => {
-    fetch(`/api/users/${user_id}`)
+    fetch(`/api/users/36`)
       .then((response) => response.json())
       .then((data) => {
-        console.log("Space updated successfully:", data);
-        setSpaces(data.spaces);
-        setLoading(false);
+        if (data.role === "tenant") {
+          setIsTenant(true);
+          setSpaces(data.spaces);
+          setLoading(false);
+        } else {
+          navigate("/404");
+        }
       })
-      .catch((error) => console.error("Error fetching spaces:", error));
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
+        navigate("/404");
+      });
   }, []);
-
-  // const handleSearchChange = (event) => {
-  //   setSearchTerm(event.target.value);
-  // };
-
-  // const handleCategoryChange = (event) => {
-  //   setSelectedCategory(event.target.value);
-  // };
 
   const handleClick = (space) => {
     navigate(`/space/${space.id}`);
@@ -55,32 +55,53 @@ const TenantDashboard = () => {
       .catch((error) => console.error("Error deleting space:", error));
   };
 
+  const handleAdd = () => {
+    navigate("/add-space");
+  };
+
   if (loading) {
-    return <div>Loading spaces...</div>;
+    return (
+      <div className="loading-container">
+        <div className="spinner">Fetching</div>
+      </div>
+    );
   }
 
   return (
-    <div>
-      <div className="spaces-list">
-        <div className="filter-container">
-          {/* <input
-            type="text"
-            placeholder="Search spaces..."
-            value={searchTerm}
-            onChange={handleSearchChange}
-            className="search-input"
-          /> */}
-          {/* <select
-            value={selectedCategory}
-            onChange={handleCategoryChange}
-            className="category-select"
-          >
-            Populate categories if needed */}
-          {/* </select> */}
+    <div className="container-fluid user-dashboard mt-5">
+      {/* Use container-fluid for full-width */}
+      <div className="card bg-dark text-white mb-4 shadow-lg mx-5">
+        <div className="card-body d-flex align-items-center justify-content-between">
+          <div className="d-flex align-items-center">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
+              alt={` Profile`}
+              className="profile-picture rounded-circle me-3"
+            />
+            <div>
+              <h2 className="card-title mb-1"></h2>
+              <p className="card-text"></p>
+            </div>
+          </div>
+          <div>
+            <button
+              className="btn btn-warning ms-3 shadow-sm"
+              onClick={handleAdd}
+            >
+              Add Space
+            </button>
+          </div>
         </div>
-        <div className="spaces-container">
-          {spaces.map((space) => (
-            <div key={space.id} className="tenant-space-card">
+      </div>
+      <div className="row justify-content-center">
+        <div className="col-md-4 mb-3">
+          <h2 className="py-3 text-center text-primary">Your Spaces</h2>
+        </div>
+      </div>
+      <div className="spaces-container">
+        {spaces.length > 0 ? (
+          spaces.map((space, index) => (
+            <div key={space.id} className="space-card">
               <div className="price-tag">${space.price_per_hour}/hour</div>
               <img
                 src={
@@ -89,31 +110,35 @@ const TenantDashboard = () => {
                     : "https://via.placeholder.com/400x300?text=No+Image+Available"
                 }
                 alt={space.title}
+                className="space-image"
               />
-              <div className="space-info">
-                <h3>{space.title}</h3>
-                <p>{space.location}</p>
-                <p>{space.status}</p>
-              </div>
 
               <div className="hover-content">
+                <h3>{space.title}</h3>
+                <p>{`Location: ${space.location}`}</p>
+                <p>{`Category: ${space.category}`}</p>
+                <p>{`Status: ${space.status}`}</p>
                 <p>{space.description}</p>
-                <button className="button" onClick={() => handleClick(space)}>
-                  Space Details
-                </button>
-                <button className="button" onClick={() => handleEdit(space)}>
+                <button
+                  className="learn-more-button"
+                  onClick={() => handleEdit(space)}
+                >
                   Edit Space
                 </button>
                 <button
-                  className="delete-button"
+                  className="learn-more-button"
                   onClick={() => handleDelete(space)}
                 >
                   Delete Details
                 </button>
               </div>
             </div>
-          ))}
-        </div>
+          ))
+        ) : (
+          <h4 className=" text-center text-white col-md-4 mb-3">
+            No spaces available.
+          </h4>
+        )}
       </div>
     </div>
   );

@@ -7,6 +7,9 @@ import "./Navbar.css";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const user_id = localStorage.getItem("user_id")
+    ? localStorage.getItem("user_id")
+    : null;
 
   const { isLoggedIn, logout } = useAuth();
   const { isDarkMode, toggleTheme } = useContext(ThemeContext);
@@ -36,7 +39,19 @@ const Navbar = () => {
   }, [isMenuOpen]);
 
   const handleProfile = () => {
-    navigate("/dashboard");
+    if (user_id) {
+      fetch(`/api/users/${user_id}`)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.role === "tenant") {
+            navigate("/tenantdashboard");
+          } else if (data.role === "user") {
+            navigate("/dashboard");
+          }
+        });
+    } else {
+      navigate("/login");
+    }
   };
 
   return (
@@ -65,9 +80,8 @@ const Navbar = () => {
         <li className="nav-dropdown">
           Events
           <ul className="nav-dropdown-menu">
-            <a href="#">View All Events</a>
-            <a href="#">Upcoming Events</a>
-            <a href="#">Create Event</a>
+            <a href="/events">Upcoming Events</a>
+            <a href="/events/new">Create Event</a>
           </ul>
         </li>
       </ul>

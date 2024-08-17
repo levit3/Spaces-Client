@@ -35,7 +35,11 @@ const UserDashboard = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loading-container">
+        <div className="spinner">Fetching</div>
+      </div>
+    );
   }
 
   return (
@@ -54,11 +58,6 @@ const UserDashboard = () => {
               <h2 className="card-title mb-1">{name}</h2>
               <p className="card-text">{email}</p>
             </div>
-          </div>
-          <div>
-            <button className="btn btn-warning ms-3 shadow-sm">
-              Edit Profile
-            </button>
           </div>
         </div>
       </div>

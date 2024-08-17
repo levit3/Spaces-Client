@@ -56,7 +56,22 @@ const SpaceForm = ({ space }) => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const data = await response.json();
-      console.log("Space created successfully:", data);
+      fetch(`/api/space-images/${data.id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify([
+          { image_url: values.image_url1 },
+          { image_url: values.image_url2 },
+          { image_url: values.image_url3 },
+          { image_url: values.image_url4 },
+        ]),
+      })
+        .then((response) => response.json())
+        .then((data) => console.log("Successful"));
+      setModalMessage("Space Created successfully!");
+      setIsModalOpen(true);
 
       setModalMessage("Space Created successfully!");
       setIsModalOpen(true);
@@ -103,7 +118,7 @@ const SpaceForm = ({ space }) => {
   };
   return (
     <div>
-      <h2>{space ? "Edit Space" : "Add Space"}</h2>
+      {/* <h2>{space ? "Edit Space" : "Add Space"}</h2> */}
       <Formik
         enableReinitialize={true}
         initialValues={{
@@ -133,11 +148,6 @@ const SpaceForm = ({ space }) => {
             onSubmit={handleSubmit}
           >
             <h2>{space ? "Edit Space" : "Add Space"}</h2>
-            <img
-              src={`${process.env.PUBLIC_URL}/logo1.png`}
-              alt="Logo"
-              className="space-form-logo"
-            />
             <div className="row">
               <div className="col">
                 <label htmlFor="title" className="form-label">
@@ -249,6 +259,87 @@ const SpaceForm = ({ space }) => {
                 className="error"
                 style={{ color: "red", fontSize: "15px", margin: 0 }}
               />
+            </div>
+            12:44 PM
+            <div className="row mt-3">
+              <div className="col">
+                <label htmlFor="image_url1" className="form-label">
+                  Image URL 1
+                </label>
+                <Field
+                  type="text"
+                  className="form-control"
+                  id="image_url1"
+                  name="image_url1"
+                  placeholder="Enter Image URL 1"
+                  value={values.image_url1}
+                  onChange={handleChange}
+                />
+                <ErrorMessage
+                  name="image_url1"
+                  component="div"
+                  className="error"
+                />
+              </div>
+              <div className="col">
+                <label htmlFor="image_url2" className="form-label">
+                  Image URL 2
+                </label>
+                <Field
+                  type="text"
+                  className="form-control"
+                  id="image_url2"
+                  name="image_url2"
+                  placeholder="Enter Image URL 2"
+                  value={values.image_url2}
+                  onChange={handleChange}
+                />
+                <ErrorMessage
+                  name="image_url2"
+                  component="div"
+                  className="error"
+                />
+              </div>
+            </div>
+            <div className="row mt-3">
+              <div className="col">
+                <label htmlFor="image_url3" className="form-label">
+                  Image URL 3
+                </label>
+                <Field
+                  type="text"
+                  className="form-control"
+                  id="image_url3"
+                  name="image_url3"
+                  placeholder="Enter Image URL 3"
+                  value={values.image_url3}
+                  onChange={handleChange}
+                />
+                <ErrorMessage
+                  name="image_url3"
+                  component="div"
+                  className="error"
+                />
+              </div>
+              <div className="col">
+                <label htmlFor="image_url4" className="form-label">
+                  Image URL 4
+                </label>
+                <Field
+                  type="text"
+                  className="form-control"
+                  id="image_url4"
+                  name="image_url4"
+                  placeholder="Enter Image URL 4"
+                  value={values.image_url4}
+                  onChange={handleChange}
+                />
+                <ErrorMessage
+                  name="image_url4"
+                  component="div"
+                  className="error"
+                />
+              </div>
             </div>
             <button
               type="submit"

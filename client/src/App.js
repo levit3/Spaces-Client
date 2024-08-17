@@ -29,6 +29,7 @@ import AddSpacePage from "./TenantPage/AddSpacePage";
 import EditSpacePage from "./TenantPage/EditSpacePage";
 import TenantDashboard from "./TenantPage/TenantDashboard";
 import ManageUsers from "./TenantPage/ManageUsers";
+import ReviewCreation from "./components/ReviewCreation";
 
 const AppContent = () => {
   const { isLoggedIn } = useAuth();
@@ -63,6 +64,7 @@ const AppContent = () => {
         <Route path="/edit-space/:id" element={<EditSpacePage />} />
         <Route path="/manage-users" element={<ManageUsers />} />
         <Route path="*" element={<PageNotFound />} />
+        <Route path="/review/:id" element={<ReviewCreation />} />
         <Route
           path="/spaces"
           element={
@@ -94,9 +96,11 @@ const App = () => (
   <Router>
     <ThemeProvider>
       <AuthProvider>
-        <Navbar />
-        <AppContent />
-        <Footer />
+        <div className="wrapper">
+          <Navbar />
+          <AppContent />
+          <Footer />
+        </div>
       </AuthProvider>
     </ThemeProvider>
   </Router>
