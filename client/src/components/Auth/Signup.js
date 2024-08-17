@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -54,6 +54,7 @@ const validationSchema = Yup.object({
 const Signup = () => {
   const navigate = useNavigate();
   const { isLoggedIn, login } = useAuth();
+  const [userType, setUserType] = useState("user");
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -69,24 +70,20 @@ const Signup = () => {
           name: values.name,
           email: values.email,
           password: values.password,
+          userType: userType,
         }),
       });
-
-      localStorage.setItem("token", response.token);
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          name: values.name,
-          email: values.email,
-          role: "user",
-        })
-      );
 
       login(response.token);
       localStorage.setItem("user_id", response.user.id);
       localStorage.setItem("token", response.token);
+      localStorage.setItem("user", JSON.stringify(response.user));
 
-      navigate("/");
+      if (userType === "tenant") {
+        navigate("/");
+      } else {
+        navigate("/");
+      }
     } catch (error) {
       setErrors({ general: error.message || "Signup failed" });
     } finally {
@@ -125,7 +122,7 @@ const Signup = () => {
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
-          {({ isSubmitting }) => (
+          {({ isSubmitting, submitForm }) => (
             <Form>
               <div className="auth-error-message">
                 <ErrorMessage
@@ -186,13 +183,30 @@ const Signup = () => {
                 name="confirmPassword"
                 placeholder="Confirm Password"
               />
-              <button
-                type="submit"
-                className="auth-signup-btn"
-                disabled={isSubmitting}
-              >
-                Create Account
-              </button>
+              <div className="auth-signup-buttons">
+                <button
+                  type="button"
+                  className="auth-signup-btn"
+                  disabled={isSubmitting}
+                  onClick={() => {
+                    setUserType("user");
+                    submitForm();
+                  }}
+                >
+                  Sign Up as User
+                </button>
+                <button
+                  type="button"
+                  className="auth-signup-btn"
+                  disabled={isSubmitting}
+                  onClick={() => {
+                    setUserType("tenant");
+                    submitForm();
+                  }}
+                >
+                  Sign Up as Tenant
+                </button>
+              </div>
             </Form>
           )}
         </Formik>
