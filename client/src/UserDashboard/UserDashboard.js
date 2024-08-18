@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./UserDashboard.css"; // Custom CSS for additional styling
+const API = process.env.REACT_APP_SERVER_API;
 
 const UserDashboard = () => {
   const [user, setUser] = useState([]);
