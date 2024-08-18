@@ -20,7 +20,7 @@ const UserDashboard = () => {
   useEffect(() => {
     if (user_id !== undefined) {
       console.log("done");
-      fetch(`/api/users/${user_id}/`)
+      fetch(`${API}/api/users/${user_id}/`)
         .then((response) => response.json())
         .then((data) => {
           setUser(data);
@@ -45,7 +45,6 @@ const UserDashboard = () => {
   return (
     <div className="container-fluid user-dashboard mt-5">
       {" "}
-      {/* Use container-fluid for full-width */}
       <div className="card bg-dark  text-white mb-4 shadow-lg mx-5">
         <div className="card-body d-flex align-items-center justify-content-between">
           <div className="d-flex align-items-center">
@@ -87,7 +86,6 @@ const UserDashboard = () => {
           </button>
         </div>
       </div>
-      {/* Dynamic Content Based on Selected Section */}
       <div className="section-content">
         {selectedSection === "spaces" ? (
           <div className="spaces-list mt-4">

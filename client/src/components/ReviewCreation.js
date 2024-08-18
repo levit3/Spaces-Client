@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./ReviewCreation.css";
 import Navbar from "./Navbar";
+const API = process.env.REACT_APP_SERVER_API;
 
 const Modal = ({ isOpen, onClose, message }) => {
   if (!isOpen) return null;
@@ -81,7 +82,7 @@ function ReviewCreation() {
     formData.append("user_id", user_id);
 
     try {
-      const response = await fetch("/api/reviews", {
+      const response = await fetch(`${API}/api/reviews`, {
         method: "POST",
         body: formData,
       });

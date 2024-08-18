@@ -2,6 +2,7 @@ import "./SpaceDetails.css";
 import React, { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
+const API = process.env.REACT_APP_SERVER_API;
 
 const spaceAmenities = [
   [
@@ -185,7 +186,7 @@ function SpaceDetails() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`/api/spaces/${id}/`)
+    fetch(`${API}/api/spaces/${id}/`)
       .then((res) => res.json())
       .then((data) => {
         setSpace(data);

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+const API = process.env.REACT_APP_SERVER_API;
 
 const SpaceForm = ({ space }) => {
   const [spaces, setSpaces] = useState([]);
@@ -37,7 +38,7 @@ const SpaceForm = ({ space }) => {
   });
 
   const updateSpace = (values, resetForm) => {
-    fetch(`/api/spaces/${space.id}`, {
+    fetch(`${API}/api/spaces/${space.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -63,7 +64,7 @@ const SpaceForm = ({ space }) => {
   };
 
   const addSpace = (values, resetForm) => {
-    fetch("/api/spaces", {
+    fetch(`${API}/api/spaces`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

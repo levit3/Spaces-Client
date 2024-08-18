@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./SpaceDetails.css";
+const API = process.env.REACT_APP_SERVER_API;
 
 const SpacesList = () => {
   const [spaces, setSpaces] = useState([]);
@@ -21,7 +22,7 @@ const SpacesList = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch("/api/spaces")
+    fetch(`${API}/api/spaces`)
       .then((response) => response.json())
       .then((data) => {
         console.log("Fetched spaces data:", data);

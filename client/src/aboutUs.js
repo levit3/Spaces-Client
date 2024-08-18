@@ -1,24 +1,6 @@
 import React from "react";
 import "./aboutUs.css";
 
-// Feature component
-// function Feature({ imageSrcSet, title, description }) {
-//   return (
-//     <div className="feature-container">
-//       <img
-//         loading="lazy"
-//         srcSet={imageSrcSet}
-//         className="feature-image"
-//         alt={title}
-//       />
-//       <div className="feature-text-container">
-//         <div className="feature-title">{title}</div>
-//         <div className="feature-description">{description}</div>
-//       </div>
-//     </div>
-//   );
-// }
-
 function Card({ title, children }) {
   return (
     <div className="in-card">

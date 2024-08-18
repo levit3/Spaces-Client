@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import SpaceForm from './SpaceForm';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import SpaceForm from "./SpaceForm";
+const API = process.env.REACT_APP_SERVER_API;
 
 const EditSpacePage = () => {
   const { id } = useParams();
@@ -9,26 +10,33 @@ const EditSpacePage = () => {
   useEffect(() => {
     const fetchSpace = async () => {
       try {
-        const response = await fetch(`/api/spaces/${id}`);
-        if  (!response.ok) {throw new Error(`HTTP error! Status: ${response.status}`);}
+        const response = await fetch(`${API}/api/spaces/${id}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
         const data = await response.json();
         setSpace(data);
       } catch (error) {
-        console.error('Error fetching space:', error);
+        console.error("Error fetching space:", error);
       }
     };
     fetchSpace();
-  },[id]);
-  const handleSuccess = (data) => { 
-    console.log('Space updated successfully:', data);
+  }, [id]);
+  const handleSuccess = (data) => {
+    console.log("Space updated successfully:", data);
   };
-
 
   return (
     <div>
       <h1>Edit Space</h1>
       {space ? (
-        <SpaceForm space={space} onSuccess={handleSuccess} onClose={() => {/* handle close */}} />
+        <SpaceForm
+          space={space}
+          onSuccess={handleSuccess}
+          onClose={() => {
+            /* handle close */
+          }}
+        />
       ) : (
         <p>Loading...</p>
       )}

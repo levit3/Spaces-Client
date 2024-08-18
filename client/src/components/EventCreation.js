@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./EventCreation.css";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
+const API = process.env.REACT_APP_SERVER_API;
 
 const Modal = ({ isOpen, onClose, message }) => {
   if (!isOpen) return null;
@@ -47,7 +48,7 @@ function EventCreation() {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const response = await fetch("/api/bookings", {
+        const response = await fetch(`${API}/api/bookings`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -120,7 +121,7 @@ function EventCreation() {
     };
 
     try {
-      const response = await fetch("/api/events", {
+      const response = await fetch(`${API}/api/events`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(event),

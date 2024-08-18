@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../UserDashboard/UserDashboard.css";
 import "../components/SpaceDetails.css";
+const API = process.env.REACT_APP_SERVER_API;
 
 const TenantDashboard = () => {
   const [spaces, setSpaces] = useState([]);
@@ -14,7 +15,11 @@ const TenantDashboard = () => {
   const [isTenant, setIsTenant] = useState(false);
 
   useEffect(() => {
-    fetch(`/api/users/36`)
+    if (!user_id) {
+      navigate("/login");
+      return;
+    }
+    fetch(`${API}/api/users/${user_id}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.role === "tenant") {
@@ -40,7 +45,7 @@ const TenantDashboard = () => {
   };
 
   const handleDelete = (space) => {
-    fetch(`/api/spaces/${space.id}`, {
+    fetch(`${API}/api/spaces/${space.id}`, {
       method: "DELETE",
     })
       .then((response) => {

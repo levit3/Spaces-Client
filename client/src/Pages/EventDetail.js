@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./CSS/EventDetail.css";
+const API = process.env.REACT_APP_SERVER_API;
 
 function EventDetail() {
   const { id } = useParams();
   const [event, setEvent] = useState();
   const [loading, setLoading] = useState(true);
-  const time = "8AM - 4PM";
   const src =
     "https://cdn.builder.io/api/v1/image/assets/TEMP/dfe3240009fd425ddb9fe0e226d9444abbf3e86a4d8c9e87b75a5e5e7efef0f6?apiKey=8ad21786488a40e8a18ed0f9f1e05271&&apiKey=8ad21786488a40e8a18ed0f9f1e05271";
 
   useEffect(() => {
-    fetch(`/api/events/${id}/`)
+    fetch(`${API}/api/events/${id}/`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -44,7 +44,6 @@ function EventDetail() {
           <div className="event-location">
             {event.space.title}, {event.space.location}
           </div>
-          <p className="event-time">{time}</p>
         </section>
       </div>
       <section className="event-hero">

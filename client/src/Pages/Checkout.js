@@ -4,16 +4,10 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useLocation, useNavigate } from "react-router-dom";
 import PageNotFound from "./PageNotFound";
+const API = process.env.REACT_APP_SERVER_API;
 
 function Checkout() {
   const [selectedMethod, setSelectedMethod] = useState("paypal");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [paypalEmail, setPaypalEmail] = useState("");
-  const [mpesaPhone, setMpesaPhone] = useState("");
-  const [date, setDate] = useState("");
   const [booking, setBooking] = useState([]);
   const [loading, setLoading] = useState(true);
   const location = useLocation();
@@ -42,11 +36,11 @@ function Checkout() {
   });
 
   useEffect(() => {
-    fetch(`/api/bookings/${id}/`)
+    fetch(`${API}/api/bookings/${id}/`)
       .then((response) => response.json())
       .then((data) => {
         setBooking(data);
-        fetch(`/api/space-images/${space_id}`)
+        fetch(`${API}/api/space-images/${space_id}`)
           .then((response) => response.json())
           .then((data) => {
             setImage(data.image_urls[0]);
@@ -71,76 +65,6 @@ function Checkout() {
     window.history.back();
   };
 
-  // function processPayment() {
-  //   if (selectedMethod === "paypal") {
-  //     try {
-  //       fetch("/api/payments", {
-  //         method: "POST",
-  //         headers: { "Content-Type": "application/json" },
-  //         body: JSON.stringify({
-  //           booking_id: booking.id,
-  //           payment_method: "paypal",
-  //           user_id: booking.user.id,
-  //           amount: booking.total_price,
-  //         }),
-  //       })
-  //         .then((response) => {
-  //           if (!response.ok) {
-  //             throw new Error("Network response was not ok.");
-  //           }
-  //           return response.json();
-  //         })
-  //         .then((data) => {
-  //           const url = data.approval_url;
-  //           const width = 400;
-  //           const height = 600;
-  //           const left = (window.innerWidth - width) / 2;
-  //           const top = (window.innerHeight - height) / 2;
-
-  //           window.open(
-  //             url,
-  //             "Login",
-  //             `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes`
-  //           );
-  //           navigate("/payment-success", { state: id });
-  //         })
-  //         .catch((error) => {
-  //           console.error("Error processing PayPal payment:", error);
-  //         });
-  //     } catch (error) {
-  //       console.error("Error processing PayPal payment:", error);
-  //     }
-  //   } else if (selectedMethod === "mpesa") {
-  //     try {
-  //       fetch("/api/payments", {
-  //         method: "POST",
-  //         headers: { "Content-Type": "application/json" },
-  //         body: JSON.stringify({
-  //           booking_id: booking.id,
-  //           payment_method: "mpesa",
-  //           phone_number: mpesaPhone,
-  //           user_id: booking.user.id,
-  //           amount: booking.total_price,
-  //         }),
-  //       })
-  //         .then((response) => {
-  //           if (!response.ok) {
-  //             throw new Error(response.json().message);
-  //           }
-  //           return response.json();
-  //         })
-  //         .then((data) => {
-  //           navigate("/payment-success", { state: id });
-  //         })
-  //         .catch((error) => {
-  //           console.error("Error processing M-PESA payment:", error);
-  //         });
-  //     } catch (error) {
-  //       console.error("Error processing M-PESA payment:", error);
-  //     }
-  //   }
-  // }
-
   const processPayment = (values) => {
     const paymentData = {
       booking_id: booking.id,
@@ -151,7 +75,7 @@ function Checkout() {
       ...(selectedMethod === "paypal" && { paypalEmail: values.paypalEmail }),
     };
 
-    fetch("/api/payments", {
+    fetch(`${API}/api/payments`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(paymentData),

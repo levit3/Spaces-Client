@@ -4,6 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useAuth } from "./AuthContext";
 import "./Auth.css";
+const API = process.env.REACT_APP_SERVER_API;
 
 const authenticatedFetch = async (url, options = {}) => {
   const setNotification = options.setNotification;
@@ -63,7 +64,7 @@ const Signup = () => {
 
   const handleSubmit = async (values, { setSubmitting, setErrors }) => {
     try {
-      const response = await authenticatedFetch("/api/signup", {
+      const response = await authenticatedFetch(`${API}/api/signup`, {
         method: "POST",
         body: JSON.stringify({
           name: values.name,

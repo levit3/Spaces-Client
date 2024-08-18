@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "./Auth/AuthContext";
 import { ThemeContext } from "./ThemeContext";
 import "./Navbar.css";
+const API = process.env.REACT_APP_SERVER_API;
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,7 +41,7 @@ const Navbar = () => {
 
   const handleProfile = () => {
     if (user_id) {
-      fetch(`/api/users/${user_id}`)
+      fetch(`${API}/api/users/${user_id}`)
         .then((response) => response.json())
         .then((data) => {
           if (data.role === "tenant") {

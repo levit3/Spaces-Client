@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./CSS/EventList.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+const API = process.env.REACT_APP_SERVER_API;
 
 function EventsList() {
   const [filteredEvents, setFilteredEvents] = useState([]);
@@ -23,7 +24,7 @@ function EventsList() {
   };
 
   useEffect(() => {
-    fetch("/api/events")
+    fetch(`${API}/api/events`)
       .then((response) => response.json())
       .then((data) => {
         setEvents(data);

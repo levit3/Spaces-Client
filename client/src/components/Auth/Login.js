@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 import "./Auth.css";
+const API = process.env.REACT_APP_SERVER_API;
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -49,7 +50,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await authenticatedFetch("/api/login", {
+      const response = await authenticatedFetch(`${API}/api/login`, {
         method: "POST",
         body: JSON.stringify({ email, password }),
       });

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./BookingForm.css";
+const API = process.env.REACT_APP_SERVER_API;
 
 function BookingForm({ id, price_per_hour }) {
   const [startDate, setStartDate] = useState(new Date());
@@ -56,7 +57,7 @@ function BookingForm({ id, price_per_hour }) {
       total_price: totalPrice,
     };
 
-    fetch("/api/bookings", {
+    fetch(`${API}/api/bookings`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

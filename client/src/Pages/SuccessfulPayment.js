@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./CSS/SussessfulPayment.css";
 import { useLocation } from "react-router-dom";
 import PageNotFound from "./PageNotFound";
+const API = process.env.REACT_APP_SERVER_API;
 
 function SuccessfulPayment() {
   const [booking, setBooking] = useState([]);
@@ -11,7 +12,7 @@ function SuccessfulPayment() {
   const id = location.state;
 
   useEffect(() => {
-    fetch(`/api/bookings/${id}/`)
+    fetch(`${API}/api/bookings/${id}/`)
       .then((response) => response.json())
       .then((data) => {
         const sign = data.payment.payment_method === "mpesa" ? "Ksh" : "$";
@@ -21,7 +22,7 @@ function SuccessfulPayment() {
           .then((data) => {
             setImage(data.image_urls[0]);
           });
-        fetch("/api/send-email", {
+        fetch(`${API}/api/send-email`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

@@ -4,6 +4,7 @@ import BookingForm from "./BookingForm";
 import "./BookingDetails.css";
 import { useLocation, useParams } from "react-router-dom";
 import PageNotFound from "../Pages/PageNotFound";
+const API = process.env.REACT_APP_SERVER_API;
 
 function BookingDetails() {
   const [space, setSpace] = useState([]);
@@ -16,7 +17,7 @@ function BookingDetails() {
 
   useEffect(() => {
     try {
-      fetch(`/api/spaces/${id}/`)
+      fetch(`${API}/api/spaces/${id}/`)
         .then((response) => response.json())
         .then((data) => {
           console.log(data);

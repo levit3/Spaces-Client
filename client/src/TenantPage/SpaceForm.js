@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "./SpaceForm.css";
+const API = process.env.REACT_APP_SERVER_API;
 
 const Modal = ({ isOpen, onClose, message }) => {
   if (!isOpen) return null;
@@ -44,7 +45,7 @@ const SpaceForm = ({ space }) => {
       tenant_id: user_id,
     };
     try {
-      const response = await fetch("/api/spaces", {
+      const response = await fetch(`${API}/api/spaces`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -56,7 +57,7 @@ const SpaceForm = ({ space }) => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const data = await response.json();
-      fetch(`/api/space-images/${data.id}`, {
+      fetch(`${API}/api/space-images/${data.id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -87,7 +88,7 @@ const SpaceForm = ({ space }) => {
       tenant_id: user_id,
     };
     try {
-      const response = await fetch(`/api/spaces/${space.id}`, {
+      const response = await fetch(`${API}/api/spaces/${space.id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -118,7 +119,6 @@ const SpaceForm = ({ space }) => {
   };
   return (
     <div>
-      {/* <h2>{space ? "Edit Space" : "Add Space"}</h2> */}
       <Formik
         enableReinitialize={true}
         initialValues={{
