@@ -17,7 +17,7 @@ function SuccessfulPayment() {
       .then((data) => {
         const sign = data.payment.payment_method === "mpesa" ? "Ksh" : "$";
         setBooking(data);
-        fetch(`/api/space-images/${data.space.id}`)
+        fetch(`${API}/api/space-images/${data.space.id}`)
           .then((response) => response.json())
           .then((data) => {
             setImage(data.image_urls[0]);
