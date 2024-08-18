@@ -28,7 +28,6 @@ import PageNotFound from "./Pages/PageNotFound";
 import AddSpacePage from "./TenantPage/AddSpacePage";
 import EditSpacePage from "./TenantPage/EditSpacePage";
 import TenantDashboard from "./TenantPage/TenantDashboard";
-import ManageUsers from "./TenantPage/ManageUsers";
 import ReviewCreation from "./components/ReviewCreation";
 
 const AppContent = () => {
@@ -62,7 +61,6 @@ const AppContent = () => {
         <Route path="/tenantdashboard" element={<TenantDashboard />} />
         <Route path="/add-space" element={<AddSpacePage />} />
         <Route path="/edit-space/:id" element={<EditSpacePage />} />
-        <Route path="/manage-users" element={<ManageUsers />} />
         <Route path="*" element={<PageNotFound />} />
         <Route path="/review/:id" element={<ReviewCreation />} />
         <Route
