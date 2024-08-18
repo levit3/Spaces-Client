@@ -22,7 +22,9 @@ const SpacesList = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`${API}/api/spaces`)
+    fetch(`${API}/api/spaces`, {
+      credentials: "include",
+    })
       .then((response) => response.json())
       .then((data) => {
         console.log("Fetched spaces data:", data);
