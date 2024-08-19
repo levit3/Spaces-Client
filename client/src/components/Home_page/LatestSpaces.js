@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./Homepage.css";
+import { Navigate } from "react-router-dom";
 const API = process.env.REACT_APP_SERVER_API;
 
 function LatestSpaces() {
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = Navigate();
 
   useEffect(() => {
     fetch(`${API}/api/spaces`, {
@@ -37,7 +39,11 @@ function LatestSpaces() {
       <h2>Latest Listed Spaces</h2>
       <div className="properties__list">
         {properties.slice(0, 5).map((property, index) => (
-          <div key={index} className="property">
+          <div
+            key={index}
+            className="property"
+            onClick={() => navigate(`/space/${property.id}`)}
+          >
             <img src={property.space_images[0].image_url} alt={property.city} />
             <div className="property__info">
               <h3>{property.price_per_hour}</h3>
