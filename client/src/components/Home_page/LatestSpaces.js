@@ -4,6 +4,7 @@ const API = process.env.REACT_APP_SERVER_API;
 
 function LatestSpaces() {
   const [properties, setProperties] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch(`${API}/api/spaces`, {
@@ -16,11 +17,20 @@ function LatestSpaces() {
       .then((response) => response.json())
       .then((data) => {
         setProperties(data);
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching spaces data:", error);
       });
   }, []);
+
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <div className="spinner">Fetching</div>
+      </div>
+    );
+  }
 
   return (
     <div className="properties">
