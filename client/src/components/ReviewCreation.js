@@ -85,6 +85,7 @@ function ReviewCreation() {
       const response = await fetch(`${API}/api/reviews`, {
         method: "POST",
         body: formData,
+        credentials: "include",
       });
 
       if (response.ok) {

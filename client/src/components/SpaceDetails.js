@@ -186,7 +186,13 @@ function SpaceDetails() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`${API}/api/spaces/${id}/`)
+    fetch(`${API}/api/spaces/${id}/`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "GET",
+      credentials: "include",
+    })
       .then((res) => res.json())
       .then((data) => {
         setSpace(data);

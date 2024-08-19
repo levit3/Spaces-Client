@@ -24,7 +24,13 @@ function EventsList() {
   };
 
   useEffect(() => {
-    fetch(`${API}/api/events`)
+    fetch(`${API}/api/events`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    })
       .then((response) => response.json())
       .then((data) => {
         setEvents(data);

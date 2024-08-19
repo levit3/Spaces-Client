@@ -10,7 +10,9 @@ const EditSpacePage = () => {
   useEffect(() => {
     const fetchSpace = async () => {
       try {
-        const response = await fetch(`${API}/api/spaces/${id}`);
+        const response = await fetch(`${API}/api/spaces/${id}`, {
+          credentials: "include",
+        });
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }

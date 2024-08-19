@@ -74,6 +74,7 @@ const SpaceForm = ({ space }) => {
           { image_url: values.image_url3 },
           { image_url: values.image_url4 },
         ]),
+        credentials: "include",
       })
         .then((response) => response.json())
         .then((data) => console.log("Successful"));
@@ -103,6 +104,7 @@ const SpaceForm = ({ space }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(requestBody),
+        credentials: "include",
       });
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);

@@ -12,12 +12,18 @@ function SuccessfulPayment() {
   const id = location.state;
 
   useEffect(() => {
-    fetch(`${API}/api/bookings/${id}/`)
+    fetch(`${API}/api/bookings/${id}/`, {
+      credentials: "include",
+    })
       .then((response) => response.json())
       .then((data) => {
         const sign = data.payment.payment_method === "mpesa" ? "Ksh" : "$";
         setBooking(data);
-        fetch(`${API}/api/space-images/${data.space.id}`)
+        fetch(`${API}/api/space-images/${data.space.id}`, {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+        })
           .then((response) => response.json())
           .then((data) => {
             setImage(data.image_urls[0]);
@@ -141,6 +147,7 @@ function SuccessfulPayment() {
             </html>
         `,
           }),
+          credentials: "include",
         })
           .then((response) => response.json())
           .then((data) => console.log(data));

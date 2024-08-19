@@ -53,6 +53,7 @@ const Login = () => {
       const response = await authenticatedFetch(`${API}/api/login`, {
         method: "POST",
         body: JSON.stringify({ email, password }),
+        credentials: "include",
       });
 
       localStorage.setItem("token", response.token);

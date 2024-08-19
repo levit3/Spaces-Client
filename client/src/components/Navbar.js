@@ -41,7 +41,13 @@ const Navbar = () => {
 
   const handleProfile = () => {
     if (user_id) {
-      fetch(`${API}/api/users/${user_id}`)
+      fetch(`${API}/api/users/${user_id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      })
         .then((response) => response.json())
         .then((data) => {
           if (data.role === "tenant") {

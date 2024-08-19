@@ -21,7 +21,13 @@ const UserDashboard = () => {
   useEffect(() => {
     if (user_id !== undefined) {
       console.log("done");
-      fetch(`${API}/api/users/${user_id}/`)
+      fetch(`${API}/api/users/${user_id}/`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      })
         .then((response) => response.json())
         .then((data) => {
           setUser(data);

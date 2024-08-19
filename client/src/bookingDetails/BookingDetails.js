@@ -17,7 +17,9 @@ function BookingDetails() {
 
   useEffect(() => {
     try {
-      fetch(`${API}/api/spaces/${id}/`)
+      fetch(`${API}/api/spaces/${id}/`, {
+        credentials: "include",
+      })
         .then((response) => response.json())
         .then((data) => {
           console.log(data);

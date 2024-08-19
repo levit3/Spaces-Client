@@ -19,7 +19,13 @@ const TenantDashboard = () => {
       navigate("/login");
       return;
     }
-    fetch(`${API}/api/users/${user_id}`)
+    fetch(`${API}/api/users/${user_id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    })
       .then((response) => response.json())
       .then((data) => {
         if (data.role === "tenant") {
@@ -47,6 +53,10 @@ const TenantDashboard = () => {
   const handleDelete = (space) => {
     fetch(`${API}/api/spaces/${space.id}`, {
       method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
     })
       .then((response) => {
         if (response.ok) {

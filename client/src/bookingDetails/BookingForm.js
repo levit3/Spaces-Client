@@ -63,6 +63,7 @@ function BookingForm({ id, price_per_hour }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(bookingData),
+      credentials: "include",
     })
       .then((response) => response.json())
       .then((data) => {

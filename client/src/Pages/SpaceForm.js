@@ -44,6 +44,7 @@ const SpaceForm = ({ space }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(values),
+      credentials: "include",
     })
       .then((response) => {
         if (!response.ok) {
@@ -77,6 +78,7 @@ const SpaceForm = ({ space }) => {
         status: values.status,
         tenant_id: 2,
       }),
+      credentials: "include",
     })
       .then((response) => {
         if (!response.ok) {

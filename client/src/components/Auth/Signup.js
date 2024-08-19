@@ -71,6 +71,7 @@ const Signup = () => {
           email: values.email,
           password: values.password,
         }),
+        credentials: "include",
       });
 
       login(response.token);

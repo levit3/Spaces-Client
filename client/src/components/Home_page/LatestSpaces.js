@@ -6,7 +6,13 @@ function LatestSpaces() {
   const [properties, setProperties] = useState([]);
 
   useEffect(() => {
-    fetch(`${API}/api/spaces`)
+    fetch(`${API}/api/spaces`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    })
       .then((response) => response.json())
       .then((data) => {
         setProperties(data);
