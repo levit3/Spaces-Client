@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./Homepage.css";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const API = process.env.REACT_APP_SERVER_API;
 
 function LatestSpaces() {
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
-  const navigate = Navigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`${API}/api/spaces`, {
