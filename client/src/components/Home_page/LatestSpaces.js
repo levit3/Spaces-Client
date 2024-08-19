@@ -38,11 +38,11 @@ function LatestSpaces() {
       <div className="properties__list">
         {properties.slice(0, 5).map((property, index) => (
           <div key={index} className="property">
-            <img src={property.image} alt={property.city} />
+            <img src={property.space_images[0].image_url} alt={property.city} />
             <div className="property__info">
-              <h3>{property.price}</h3>
-              <p>{property.city}</p>
-              <p>{property.address}</p>
+              <h3>{property.price_per_hour}</h3>
+              <p>{property.title}</p>
+              <p>{property.location}</p>
             </div>
           </div>
         ))}
