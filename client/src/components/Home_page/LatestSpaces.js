@@ -46,7 +46,7 @@ function LatestSpaces() {
           >
             <img src={property.space_images[0].image_url} alt={property.city} />
             <div className="property__info">
-              <h3>{property.price_per_hour}</h3>
+              <h4>${property.price_per_hour}</h4>
               <p>{property.title}</p>
               <p>{property.location}</p>
             </div>
